@@ -13,7 +13,7 @@ $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
 	<!-- Required meta tags -->
@@ -103,7 +103,7 @@ $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
 							aria-hidden="true">&times;</span></button>
 				</div>
 				<form id="form_usuarios">
-					<div class=" modal-body">
+					<div class="modal-body">
 						<div class="form-group">
 							<label for="cedula_usuario" class=" col-form-label">Identificación:</label>
 							<input type="text" class="form-control" id="cedula_usuario">

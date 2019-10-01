@@ -18,31 +18,43 @@ switch($opcion){
 	case 1: //alta
 		$consulta = "INSERT INTO usuarios (nombre_usuario, apellido_usuario, cedula_usuario, telefono_usuario,
 					email_usuario, password, Tipos_de_usuario_id_Tipo_usuario, Clientes_id_cliente) VALUES
-					('Jairo','Perez','79888999','555112233','jperez@mico.com','0','1','1')";			
+					('$cedula','$nombre','$apellido','$telefono','$email','','$tipo_usuario','$nombre_cliente')";			
 		$resultado = $conexion->prepare($consulta);
 		$resultado->execute(); 
-
 		//$consulta = "SELECT * FROM usuarios ORDER BY id_usuario ESC LIMIT 1";
-		$consulta = "SELECT * FROM usuarios ORDER BY id_usuario DESC";
+		$consulta = "SELECT U.id_usuario, U.nombre_usuario, U.apellido_usuario, U.cedula_usuario, U.telefono_usuario, U.email_usuario, TU.nombre_tipo_usuario, C.razon_social_cliente 
+			FROM usuarios U, tipos_de_usuario TU, clientes C 
+			WHERE  U.Tipos_de_usuario_id_Tipo_usuario = TU.id_Tipo_usuario AND U.Clientes_id_cliente=C.id_cliente 
+			ORDER BY id_usuario";
 		$resultado = $conexion->prepare($consulta);
 		$resultado->execute();
-		$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+		$data = $resultado->fetchAll(PDO::FETCH_ASSOC);
 		break;
 	case 2: //modificación
 		$consulta = "UPDATE personas SET nombre='$nombre', pais='$pais', edad='$edad' WHERE id='$id' ";		
 		$resultado = $conexion->prepare($consulta);
 		$resultado->execute();        
 		
-		$consulta = "SELECT id, nombre, pais, edad FROM personas WHERE id='$id' ";       
+		$consulta = "SELECT U.id_usuario, U.nombre_usuario, U.apellido_usuario, U.cedula_usuario, U.telefono_usuario, U.email_usuario, TU.nombre_tipo_usuario, C.razon_social_cliente 
+			FROM usuarios U, tipos_de_usuario TU, clientes C 
+			WHERE  U.Tipos_de_usuario_id_Tipo_usuario = TU.id_Tipo_usuario AND U.Clientes_id_cliente=C.id_cliente 
+			ORDER BY id_usuario";
 		$resultado = $conexion->prepare($consulta);
 		$resultado->execute();
-		$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+		$data = $resultado->fetchAll(PDO::FETCH_ASSOC);
 		break;        
 	case 3://baja
-		$consulta = "DELETE FROM personas WHERE id='$id' ";		
+		$consulta = "DELETE FROM usuarios WHERE cedula_usuario ='$cedula'";		
 		$resultado = $conexion->prepare($consulta);
 		$resultado->execute();                           
-		break;        
+		$consulta = "SELECT U.id_usuario, U.nombre_usuario, U.apellido_usuario, U.cedula_usuario, U.telefono_usuario, U.email_usuario, TU.nombre_tipo_usuario, C.razon_social_cliente 
+			FROM usuarios U, tipos_de_usuario TU, clientes C 
+			WHERE  U.Tipos_de_usuario_id_Tipo_usuario = TU.id_Tipo_usuario AND U.Clientes_id_cliente=C.id_cliente 
+			ORDER BY id_usuario";
+		$resultado = $conexion->prepare($consulta);
+		$resultado->execute();
+		$data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+		break;
 }
 
 print json_encode($data, JSON_UNESCAPED_UNICODE); //enviar el array final en formato json a JS

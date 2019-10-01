@@ -46,13 +46,14 @@ $(document).ready(function () {
 	});
 
 	$("#btnNuevo").click(function () {
-		$("#formPersonas").trigger("reset");
+		$("#form_usuarios").trigger("reset");
 		$(".modal-header").css("background-color", "#28a745");
 		$(".modal-header").css("color", "white");
 		$(".modal-title").text("Agregar Usuario");
 		$("#modalCRUD").modal("show");
 		id = null;
 		opcion = 1; //alta
+
 	});
 
 	$('#btnNuevo').click(function () {
@@ -89,8 +90,8 @@ $(document).ready(function () {
 		apellidos = fila.find('td:eq(2)').text();
 		telefono = parseInt(fila.find('td:eq(3)').text());
 		correo = fila.find('td:eq(4)').text();
-		tipo_usuario = parseInt(fila.find('td:eq(5)').text());
-		cliente = parseInt(fila.find('td:eq(6)').text());
+		tipo_usuario = fila.find('td:eq(5)').text();
+		cliente = fila.find('td:eq(6)').text();
 
 
 
@@ -153,10 +154,12 @@ $(document).ready(function () {
 				'telefono': telefono,
 				'email': email,
 				'tipo_usuario': tipo_usuario,
-				'nombre_cliente': nombre_cliente
+				'nombre_cliente': nombre_cliente,
+				'opcion': opcion
 			},
 			success: function (data) {
 				//var datos = JSON.parse(data);
+				console.log(data);
 				id = data[0].id;
 				cedula = data[0].cedula;
 				nombre = data[0].nombre;
