@@ -17,7 +17,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="shortcut icon" href="#" />
-	<title>NTS Siglo XXI</title>
+	<title>NTS Siglo XXI - RALF</title>
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
