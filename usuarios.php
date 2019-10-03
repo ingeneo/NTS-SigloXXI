@@ -22,7 +22,8 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<!-- CSS personalizado --> 
-	<link rel="stylesheet" href="main.css">  
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/estilos.css">
 	<!--datables CSS básico-->
 	<link rel="stylesheet" type="text/css" href="datatables/datatables.min.css"/>
 	<!--datables estilo bootstrap 4 CSS-->  
@@ -32,14 +33,20 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 	
   <body> 
 	 <header>
-<!--<h3 class="text-center text-light">Tutorial</h3>-->
-		 <h4 class="text-center text-light">Administracion de USUARIOS</h4> 
-	 </header>    
-	  
+		<div class="row fondo">
+			<div class="col-sm-1 col-md-1">
+				<a href="home.php"><i class="icono fas fa-home"></i></a>
+			</div>
+			<div class="col-sm-11 col-md-11 col-lg-11">
+				<h1 class="titulos text-center text-uppercase">Administración de Usuarios</h1>
+			</div>
+		</div>
+	</header>
+	
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12">
-			<button id="btnNuevo" type="button" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle"></i> Nuevo usuario</button>    
+			<button id="btnNuevo" type="button" class="btn btn-success" data-toggle="modal"><i class="icono1 fas fa-plus-circle"></i> Nuevo usuario</button>    
 			</div>
 		</div>
 	</div>
@@ -122,10 +129,18 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 					<label for="email_usuario" class="col-form-label">E-mail:</label>
 					<input type="mail" class="form-control" id="email_usuario">
 				</div>
+				<div class="form-group">
+					<label for="tipo_usuario" class=" col-form-label">Tipo de usuario:</label>
+					<select class="form-control" id="tipo_usuario" name="tipo_usuario" required></select>
+				</div>
+				<div class="form-group">
+					<label for="nombre_cliente" class=" col-form-label">Cliente:</label>
+					<select class="form-control" id="nombre_cliente" name="nombre_cliente" required></select>
+				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-light" data-dismiss="modal"><i class="fas fa-times-circle"></i> Cancelar</button>
-				<button type="submit" id="btnGuardar" class="btn btn-dark"><i class="fas fa-check-circle"></i> Guardar</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="icono1 fas fa-times-circle"></i> Cancelar</button>
+				<button type="submit" id="btnGuardar" class="btn btn-dark"><i class="icono1 fas fa-check-circle"></i> Guardar</button>
 			</div>
 		</form>
 		</div>
@@ -145,7 +160,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 	<script src="pdfmake/pdfmake.min.js"></script>
 	<script src="pdfmake/vfs_fonts.js"></script>
 	 
-	<script type="text/javascript" src="main.js"></script>  
+	<script type="text/javascript" src="js/main_usuarios.js"></script>  
 
 </body>
 </html>

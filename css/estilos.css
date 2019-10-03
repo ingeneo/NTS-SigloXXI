@@ -6,6 +6,11 @@ body {
 	background: rgb(204, 20, 23);
 }
 
+.fondo a {
+	margin-top: 10px;
+	margin: auto;
+}
+
 .contenedor {
 	padding: 0px;
 	margin: 0px;
@@ -40,6 +45,7 @@ body {
 .titulos {
 	font-weight: bold;
 	color: #000000;
+	margin: 0px;
 }
 
 .usuarios {
@@ -105,6 +111,20 @@ body {
 .fab {
 	font-size: 100px;
 	color: rgb(10, 23, 32);
+	text-shadow: 4px 4px 20px grey;
+	text-decoration: none;
+}
+
+.icono {
+	font-size: 40px;
+	color: rgb(255, 255, 255);
+	text-shadow: 4px 4px 20px grey;
+	text-decoration: none;
+}
+
+.icono1 {
+	font-size: 20px;
+	color: rgb(255, 255, 255);
 	text-shadow: 4px 4px 20px grey;
 	text-decoration: none;
 }
