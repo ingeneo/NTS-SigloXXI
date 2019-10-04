@@ -4,7 +4,7 @@ $fecha = date('Y-m-d');
 $anio = date("Y", strtotime($fecha));
 
 function ListaTipoUsuario() {
-	include_once 'bd/conexion.php';
+	include_once 'conexion/conexion.php';
 	$objeto = new Conexion();
 	$conexion = $objeto->Conectar();
 	$consulta = "SELECT id_tipo_usuario AS TIPO, nombre_tipo_usuario AS NOMBRE 

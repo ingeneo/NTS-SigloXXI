@@ -4,7 +4,7 @@ $fecha = date('Y-m-d');
 $anio = date("Y", strtotime($fecha));
 
 function ListaClientes() {
-	include_once 'bd/conexion.php';
+	include_once 'conexion/conexion.php';
 	$objeto = new Conexion();
 	$conexion = $objeto->Conectar();
 	$consulta = "SELECT id_cliente AS TIPO, razon_social_cliente AS NOMBRE 
