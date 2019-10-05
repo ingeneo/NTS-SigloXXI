@@ -31,7 +31,7 @@
 				<h3>Clientes</h3>
 			</div>
 			<div class="caja_icono col-lg-4 col-md-4 col-sm-12">
-				<a href="bodega.php" class="btn1"><i class="fas fa-warehouse"></i></a>
+				<a href="bodegas.php" class="btn1"><i class="fas fa-warehouse"></i></a>
 				<h3>Bodega</h3>
 			</div>
 		</div>

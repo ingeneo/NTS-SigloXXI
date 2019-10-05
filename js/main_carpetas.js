@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	tablaBodegas = $("#tablaBodegas").DataTable({
+	tablaCarpetas = $("#tablaCarpetas").DataTable({
 		"responsive": true,
 		"dom": 'Bfrtilp',
 		"buttons": [{
@@ -47,38 +47,21 @@ $(document).ready(function () {
 
 	$('#btnNuevo').click(function () {
 		$.ajax({
-				url: './lista_departamentos.php'
+				url: './lista_cajas.php'
 			})
-			.done(function (ListaDeptos) {
-				$('#lista_depto').html(ListaDeptos);
-			})
-			.fail(function () {
-				alert('Hubo un error al cargar los Deptos !');
-			});
-	});
-
-	$('#lista_depto').on('change', function () {
-		var depto = $('#lista_depto').val();
-		$.ajax({
-				type: "POST",
-				url: './lista_ciudades.php',
-				data: {
-					'depto': depto
-				}
-			})
-			.done(function (ListaCiudad) {
-				$('#lista_ciudad').html(ListaCiudad);
+			.done(function (ListaCajas) {
+				$('#lista_cajas').html(ListaCajas);
 			})
 			.fail(function () {
-				alert('Hubo un error al cargar las ciudades !');
+				alert('Hubo un error al cargar las Cajas !');
 			});
 	});
 
 	$("#btnNuevo").click(function () {
-		$("#formBodegas").trigger("reset");
+		$("#formCarpetas").trigger("reset");
 		$(".modal-header").css("background-color", "#28a745");
 		$(".modal-header").css("color", "white");
-		$(".modal-title").text("Nueva Bodega");
+		$(".modal-title").text("Nueva Carpeta");
 		$("#modalCRUD").modal("show");
 		id = null;
 		opcion = 1; //alta
@@ -90,44 +73,23 @@ $(document).ready(function () {
 	$(document).on("click", ".btnEditar", function () {
 		fila = $(this).closest("tr");
 		id = parseInt(fila.find('td:eq(0)').text());
-		nombre = fila.find('td:eq(1)').text();
-		direccion = fila.find('td:eq(2)').text();
-		telefono = fila.find('td:eq(3)').text();
+		serial = fila.find('td:eq(1)').text();	
 
-		$("#id_bodega").val(id);
-		$("#nombre_bodega").val(nombre);
-		$("#direccion_bodega").val(direccion);
-		$("#telefono_bodega").val(telefono);
+		$("#id_carpeta").val(id);
+		$("#codigo_carpeta").val(serial);
 		opcion = 2; //editar
 		$(".modal-header").css("background-color", "#007bff");
 		$(".modal-header").css("color", "white");
-		$(".modal-title").text("Editar Bodega");
+		$(".modal-title").text("Editar Carpeta");
 		$("#modalCRUD").modal("show");
 		$.ajax({
-				url: './lista_departamentos.php'
-			})
-			.done(function (ListaDeptos) {
-				$('#lista_depto').html(ListaDeptos);
-			})
-			.fail(function () {
-				alert('Hubo un error al cargar los Deptos !');
-			});
-
-		$('#lista_depto').on('change', function () {
-			var depto = $('#lista_depto').val();
-			$.ajax({
-					type: "POST",
-					url: './lista_ciudades.php',
-					data: {
-						'depto': depto
-					}
-				})
-				.done(function (ListaCiudad) {
-					$('#lista_ciudad').html(ListaCiudad);
-				})
-				.fail(function () {
-					alert('Hubo un error al cargar las ciudades !');
-				});
+			url: './lista_cajas.php'
+		})
+		.done(function (ListaCajas) {
+			$('#lista_cajas').html(ListaCajas);
+		})
+		.fail(function () {
+			alert('Hubo un error al cargar las Cajas !');
 		});
 
 	});
@@ -136,12 +98,12 @@ $(document).ready(function () {
 	$(document).on("click", ".btnBorrar", function () {
 		fila = $(this);
 		id = parseInt($(this).closest("tr").find('td:eq(0)').text());
-		nombre = $(this).closest("tr").find('td:eq(1)').text();
+		serial = $(this).closest("tr").find('td:eq(1)').text();
 		opcion = 3; //borrar
-		var respuesta = confirm("¿Está seguro de eliminar el registro: " + nombre + " ?");
+		var respuesta = confirm("¿Está seguro de eliminar el registro: " + serial + " ?");
 		if (respuesta) {
 			$.ajax({
-				url: "cruds/crud_bodegas.php",
+				url: "cruds/crud_carpetas.php",
 				type: "POST",
 				dataType: "json",
 				data: {
@@ -149,7 +111,7 @@ $(document).ready(function () {
 					id: id
 				},
 				success: function () {
-					tablaBodegas.row(fila.parents('tr')).remove().draw();
+					tablaCarpetas.row(fila.parents('tr')).remove().draw();
 				}
 			});
 		}
@@ -160,36 +122,30 @@ $(document).ready(function () {
 		setTimeout(recargar, 800);
 	});
 
-	$("#formBodegas").submit(function (e) {
+	$("#formCarpetas").submit(function (e) {
 		e.preventDefault();
-		id = $.trim($("#id_bodega").val());
-		nombre = $.trim($("#nombre_bodega").val());
-		direccion = $.trim($("#direccion_bodega").val());
-		telefono = $.trim($("#telefono_bodega").val());
-		ciudad = $.trim($("#lista_ciudad").val());
+		id = $.trim($("#id_carpeta").val());
+		serial = $.trim($("#codigo_carpeta").val());
+		caja = $.trim($("#lista_cajas").val());
 		$.ajax({
-			url: "cruds/crud_bodegas.php",
+			url: "cruds/crud_carpetas.php",
 			type: "POST",
 			dataType: "json",
 			data: {
 				id: id,
-				nombre: nombre,
-				direccion: direccion,
-				telefono: telefono,
-				ciudad: ciudad,
+				serial: serial,
+				caja: caja,
 				opcion: opcion
 			},
 			success: function (data) {
 				console.log(data);
 				id = data[0].id;
-				nombre = data[0].nombre;
-				direccion = data[0].direccion;
-				telefono = data[0].telefono;
-				ciudad = data[0].ciudad;
+				serial = data[0].serial;
+				caja = data[0].caja;
 				if (opcion == 1) {
-					tablaBodegas.row.add([id, nombre, direccion, telefono, ciudad]).draw();
+					tablaCarpetas.row.add([id, serial, caja]).draw();
 				} else {
-					tablaBodegas.row(fila).data([id, nombre, direccion, telefono, ciudad]).draw();
+					tablaCarpetas.row(fila).data([id, serial, caja]).draw();
 				}
 			}
 		});
