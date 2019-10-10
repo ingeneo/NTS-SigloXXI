@@ -88,6 +88,19 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 								}
 							?>
 						</tbody>
+						<tfoot class="text-center">
+							<tr>
+								<th>ID</th>
+								<th>Identificación</th>
+								<th>Nombre</th>
+								<th>Apellido</th>
+								<th>Teléfono</th>
+								<th>E-mail</th>
+								<th>Tipo</th>
+								<th>Cliente</th>
+								<th style="display:none;"></th>
+							</tr>
+						</tfoot>
 						</table>
 					</div>
 				</div>
@@ -148,6 +161,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 </div>
 	<!-- jQuery, Popper.js, Bootstrap JS -->
 	<script src="jquery/jquery-3.3.1.min.js"></script>
+	<!-- <script src="jquery/jquery-3.4.1.js"></script> -->
 	<script src="popper/popper.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	  
@@ -160,7 +174,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 	<script src="pdfmake/pdfmake.min.js"></script>
 	<script src="pdfmake/vfs_fonts.js"></script>
 	 
-	<script type="text/javascript" src="js/main_usuarios.js"></script>  
+	<script type="text/javascript" src="js/main_usuarios.js"></script>
 
 </body>
 </html>
