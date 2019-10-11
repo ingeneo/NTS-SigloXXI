@@ -1,12 +1,9 @@
 $(document).ready(function () {
 	$('#tablaPersonas tfoot th').each(function () {
 		var title = $(this).text();
-		$(this).html('<input type="text" placeholder="Search ' + title + '" />');
+		$(this).html('<input type="text" style="width: 98px" placeholder="'+ title +'" />');
 	});
 	var tablaPersonas = $("#tablaPersonas").dataTable({
-
-
-
 		"responsive": true,
 		"dom": 'Bfrtilp',
 		"buttons": [{

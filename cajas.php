@@ -81,6 +81,15 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 								}
 							?>
 						</tbody>
+						<tfoot class="text-center">
+							<tr>
+								<th>ID</th>
+								<th>Serial</th>
+								<th>Descripción</th>
+								<th>Ubicación</th>
+								<th style="display:none;"></th>
+							</tr>
+						</tfoot>
 						</table>
 					</div>
 				</div>

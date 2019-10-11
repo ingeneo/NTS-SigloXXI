@@ -78,6 +78,14 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 								}
 							?>
 						</tbody>
+						<tfoot class="text-center">
+							<tr>
+								<th>ID</th>
+								<th>Serial Carpeta</th>
+								<th>Caja al que pertenece</th>
+								<th style="display:none;"></th>
+							</tr>
+						</tfoot>
 						</table>
 					</div>
 				</div>

@@ -1,5 +1,9 @@
 $(document).ready(function () {
-	tablaBodegas = $("#tablaBodegas").DataTable({
+	$('#tablaBodegas tfoot th').each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" style="width: 98px" placeholder="'+ title +'" />');
+	});
+	var	tablaBodegas = $("#tablaBodegas").dataTable({
 		"responsive": true,
 		"dom": 'Bfrtilp',
 		"buttons": [{
@@ -43,6 +47,16 @@ $(document).ready(function () {
 			},
 			"sProcessing": "Procesando...",
 		}
+	});
+
+	tablaBodegas.api().columns().every(function () {
+		var that = this;
+
+		$('input', this.footer()).on('keyup change', function () {
+			if (that.search() !== this.value) {
+				that.search(this.value).draw();
+			}
+		});
 	});
 
 	$('#btnNuevo').click(function () {
