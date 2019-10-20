@@ -6,32 +6,36 @@ $conexion = $objeto->Conectar();
 // Recepción de los datos enviados mediante POST desde el JS   
 
 $id = (isset($_POST['id'])) ? $_POST['id'] : '';
-$nit = (isset($_POST['nit'])) ? $_POST['nit'] : '';
-$razon = (isset($_POST['razon'])) ? $_POST['razon'] : '';
-$direccion = (isset($_POST['direccion'])) ? $_POST['direccion'] : '';
-$telefono = (isset($_POST['telefono'])) ? $_POST['telefono'] : '';
-$email = (isset($_POST['email'])) ? $_POST['email'] : '';
-$ciudad = (isset($_POST['ciudad'])) ? $_POST['ciudad'] : '';
+$descripcion = (isset($_POST['descripcion'])) ? $_POST['descripcion'] : '';
+$bodega = (isset($_POST['bodega'])) ? $_POST['bodega'] : '';
+$estante = (isset($_POST['estante'])) ? $_POST['estante'] : '';
+$cara = (isset($_POST['cara'])) ? $_POST['cara'] : '';
+$modulo = (isset($_POST['modulo'])) ? $_POST['modulo'] : '';
+$piso = (isset($_POST['piso'])) ? $_POST['piso'] : '';
+$entrepano = (isset($_POST['entrepano'])) ? $_POST['entrepano'] : '';
+$ubicacion = (isset($_POST['ubicacion'])) ? $_POST['ubicacion'] : '';
+$tipo = (isset($_POST['tipo'])) ? $_POST['tipo'] : '';
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
+
+$serial = 'B'.$bodega.'E'.$estante.'C'.$cara.'M'.$modulo.'P'.$piso.'EP'.$entrepano.'U'.$ubicacion;
 
 switch($opcion){
 	case 1: //alta
-		$consulta = "INSERT INTO clientes (nit_cliente, razon_social_cliente, direccion_cliente, telefono_cliente,
-		email_cliente, Municipios_id_municipio) VALUES
-		('$nit','$razon','$direccion','$telefono','$email', $ciudad)";
+		$consulta = "INSERT INTO cajas (serial_caja, descripcion_caja, Ubicacion_caja_id_ubicacion_caja, 
+		Estado_item_id_estado_item, Tipo_caja_id_tipo_caja) VALUES
+		('$serial','$descripcion','$ubicacion','1','$tipo')";
 		$resultado = $conexion->prepare($consulta);
 		$resultado->execute();
 	break;
 	case 2: //modificación
-		$consulta = "UPDATE clientes SET nit_cliente='$nit', razon_social_cliente='$razon', 
-		direccion_cliente='$direccion', telefono_cliente='$telefono', email_cliente='$email', 
-		Municipios_id_municipio='$ciudad' 
-		WHERE id_cliente='$id'";		
+		$consulta = "UPDATE cajas SET serial_caja='$serial', descripcion_caja='$descripcion', 
+		Ubicacion_caja_id_ubicacion_caja='$ubicacion', Tipo_caja_id_tipo_caja='$tipo' 
+		WHERE id_caja='$id'";		
 		$resultado = $conexion->prepare($consulta);
 		$resultado->execute();
 	break;
 	case 3://baja
-		$consulta = "DELETE FROM clientes WHERE id_cliente='$id' ";
+		$consulta = "DELETE FROM cajas WHERE id_caja = '$id' ";
 		$resultado = $conexion->prepare($consulta);
 		$resultado->execute();
 	break;}

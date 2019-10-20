@@ -2,10 +2,12 @@
 include_once 'conexion/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
-$consulta = "SELECT C.id_cliente, C.nit_cliente, C.razon_social_cliente, C.direccion_cliente, C.telefono_cliente, C.email_cliente, M.municipio 
-			FROM clientes C, municipios M 
-			WHERE  C.Municipios_id_municipio = M.id_municipio 
-			ORDER BY razon_social_cliente";
+$consulta = "SELECT CJ.id_caja, CJ.serial_caja, CJ.descripcion_caja, UC.ubicacion_X, UC.ubicacion_Y, UC.ubicacion_Z, EI.nombre_estado_item, TC.nombre_tipo_caja
+			 FROM cajas CJ, estado_item EI, ubicacion_caja UC, tipo_caja TC
+			 WHERE CJ.Estado_item_id_estado_item = EI.id_estado_item
+			 AND CJ.Tipo_caja_id_tipo_caja = TC.id_tipo_caja
+			 AND CJ.Ubicacion_caja_id_ubicacion_caja = UC.id_ubicacion_caja
+			 ORDER BY id_caja";
 $resultado = $conexion->prepare($consulta);
 $resultado->execute();
 $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -46,7 +48,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12">
-			<button id="btnNuevo" type="button" class="btn btn-success" data-toggle="modal"><i class="icono1 fas fa-plus-circle"></i> Nueva caja</button>    
+			<button id="btnNuevo" type="button" class="btn btn-success" data-toggle="modal"><i class="icono1 fas fa-plus-circle"></i> Nueva Caja</button>    
 			</div>
 		</div>
 	</div>
@@ -62,6 +64,8 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 								<th>Serial</th>
 								<th>Descripción</th>
 								<th>Ubicación</th>
+								<th>Estado</th>
+								<th>Tipo caja</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -71,10 +75,11 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 							?>
 							<tr>
 								<td><?php echo $dat['id_caja'] ?></td>
-								<td><?php echo $dat['nombre_caja'] ?></td>
+								<td><?php echo $dat['serial_caja'] ?></td>
 								<td><?php echo $dat['descripcion_caja'] ?></td>
-								<td><?php echo $dat['direccion_cliente'] ?></td>
-								<td><?php echo $dat['telefono_cliente'] ?></td>
+								<td><?php echo $dat['ubicacion_X'].$dat['ubicacion_Y'].$dat['ubicacion_Z']?></td>
+								<td><?php echo $dat['nombre_estado_item'] ?></td>
+								<td><?php echo $dat['nombre_tipo_caja'] ?></td>
 								<td nowrap></td>
 							</tr>
 							<?php
@@ -87,6 +92,8 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 								<th>Serial</th>
 								<th>Descripción</th>
 								<th>Ubicación</th>
+								<th>Estado</th>
+								<th>Tipo caja</th>
 								<th style="display:none;"></th>
 							</tr>
 						</tfoot>
@@ -105,36 +112,45 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-		<form id="formClientes">
+		<form id="formCajas">
 			<div class="modal-body">
-				<input type="hidden" class="form-control" id="id_cliente">
+				<input type="hidden" class="form-control" id="id_caja">
+				<input type="hidden" class="form-control" id="serial_caja">
 				<div class="form-group">
-					<label for="nit_cliente" class="col-form-label">Identificación:</label>
-					<input type="text" class="form-control" id="nit_cliente">
+					<label for="descripcion_caja" class="col-form-label">Descripción:</label>
+					<input type="text" class="form-control" id="descripcion_caja">
 				</div>
 				<div class="form-group">
-					<label for="razon_social_cliente" class="col-form-label">Razon Social:</label>
-					<input type="text" class="form-control" id="razon_social_cliente">
+					<label for="lista_bodegas" class=" col-form-label">Bodega:</label>
+					<select class="form-control" id="lista_bodegas" name="lista_bodegas" required></select>
 				</div>
 				<div class="form-group">
-					<label for="direccion_cliente" class="col-form-label">Dirección:</label>
-					<input type="text" class="form-control" id="direccion_cliente">
+					<label for="lista_estantes" class=" col-form-label">Estante:</label>
+					<select class="form-control" id="lista_estantes" name="lista_estantes" required></select>
 				</div>
 				<div class="form-group">
-					<label for="telefono_cliente" class="col-form-label">Teléfono:</label>
-					<input type="text" class="form-control" id="telefono_cliente">
+					<label for="lista_caras" class=" col-form-label">Cara:</label>
+					<select class="form-control" id="lista_caras" name="lista_caras" required></select>
 				</div>
 				<div class="form-group">
-					<label for="email_cliente" class="col-form-label">E-mail:</label>
-					<input type="mail" class="form-control" id="email_cliente">
+					<label for="lista_modulos" class=" col-form-label">Modulo:</label>
+					<select class="form-control" id="lista_modulos" name="lista_modulos" required></select>
 				</div>
 				<div class="form-group">
-					<label for="lista_depto" class=" col-form-label">Departamento:</label>
-					<select class="form-control" id="lista_depto" name="lista_depto" required></select>
+					<label for="lista_pisos" class=" col-form-label">Piso:</label>
+					<select class="form-control" id="lista_pisos" name="lista_pisos" required></select>
 				</div>
 				<div class="form-group">
-					<label for="lista_ciudad" class=" col-form-label">Ciudad:</label>
-					<select class="form-control" id="lista_ciudad" name="lista_ciudad" required></select>
+					<label for="lista_entrepanos" class=" col-form-label">Entrepaño:</label>
+					<select class="form-control" id="lista_entrepanos" name="lista_entrepanos" required></select>
+				</div>
+				<div class="form-group">
+					<label for="lista_ubicaciones" class=" col-form-label">Ubicación Caja:</label>
+					<select class="form-control" id="lista_ubicaciones" name="lista_ubicaciones" required></select>
+				</div>
+				<div class="form-group">
+					<label for="lista_tipo_cajas" class=" col-form-label">Tipo Caja:</label>
+					<select class="form-control" id="lista_tipo_cajas" name="lista_tipo_cajas" required></select>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -149,7 +165,6 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 	<script src="jquery/jquery-3.3.1.min.js"></script>
 	<script src="popper/popper.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
-	  
 	<!-- datatables JS -->
 	<script type="text/javascript" src="datatables/datatables.min.js"></script>
 	<!-- Botones para usar en dataTables -->
@@ -158,8 +173,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 	<script src="JSZip/jszip.min.js"></script>
 	<script src="pdfmake/pdfmake.min.js"></script>
 	<script src="pdfmake/vfs_fonts.js"></script>
-	 
-	<script type="text/javascript" src="js/main_clientes.js"></script>  
+	<script type="text/javascript" src="js/main_cajas.js"></script>  
 
 </body>
 </html>

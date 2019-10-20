@@ -1,9 +1,9 @@
 $(document).ready(function () {
 	$('#tablaCajas tfoot th').each(function () {
 		var title = $(this).text();
-		$(this).html('<input type="text" style="width: 98px" placeholder="'+ title +'" />');
+		$(this).html('<input type="text" style="width: 98px" placeholder="' + title + '" />');
 	});
-	var	tablaCajas = $("#tablaCajas").dataTable({
+	var tablaCajas = $("#tablaCajas").dataTable({
 		"responsive": true,
 		"dom": 'Bfrtilp',
 		"buttons": [{
@@ -61,38 +61,135 @@ $(document).ready(function () {
 
 	$('#btnNuevo').click(function () {
 		$.ajax({
-				url: './lista_departamentos.php'
+				url: './lista_bodegas.php'
 			})
-			.done(function (ListaDeptos) {
-				$('#lista_depto').html(ListaDeptos);
+			.done(function (ListaBodega) {
+				$('#lista_bodegas').html(ListaBodega);
 			})
 			.fail(function () {
-				alert('Hubo un error al cargar los Deptos !');
+				alert('Hubo un error al cargar las Bodegas !');
 			});
 	});
 
-	$('#lista_depto').on('change', function () {
-		var depto = $('#lista_depto').val();
+	$('#lista_bodegas').on('change', function () {
+		var bodega = $('#lista_bodegas').val();
 		$.ajax({
 				type: "POST",
-				url: './lista_ciudades.php',
+				url: './lista_estantes.php',
 				data: {
-					'depto': depto
+					'bodega': bodega
 				}
 			})
-			.done(function (ListaCiudad) {
-				$('#lista_ciudad').html(ListaCiudad);
+			.done(function (ListaEstante) {
+				$('#lista_estantes').html(ListaEstante);
 			})
 			.fail(function () {
-				alert('Hubo un error al cargar las ciudades !');
+				alert('Hubo un error al cargar los Estantes !');
+			});
+	});
+
+	$('#lista_estantes').on('change', function () {
+		var estante = $('#lista_estantes').val();
+		$.ajax({
+				type: "POST",
+				url: './lista_caras.php',
+				data: {
+					'estante': estante
+				}
+			})
+			.done(function (ListaCara) {
+				$('#lista_caras').html(ListaCara);
+			})
+			.fail(function () {
+				alert('Hubo un error al cargar las Caras !');
+			});
+	});
+
+	$('#lista_caras').on('change', function () {
+		var cara = $('#lista_caras').val();
+		$.ajax({
+				type: "POST",
+				url: './lista_modulos.php',
+				data: {
+					'cara': cara
+				}
+			})
+			.done(function (ListaModulo) {
+				$('#lista_modulos').html(ListaModulo);
+			})
+			.fail(function () {
+				alert('Hubo un error al cargar los Modulos !');
+			});
+	});
+
+	$('#lista_modulos').on('change', function () {
+		var modulo = $('#lista_modulos').val();
+		$.ajax({
+				type: "POST",
+				url: './lista_pisos.php',
+				data: {
+					'modulo': modulo
+				}
+			})
+			.done(function (ListaPiso) {
+				$('#lista_pisos').html(ListaPiso);
+			})
+			.fail(function () {
+				alert('Hubo un error al cargar los Pisos !');
+			});
+	});
+
+	$('#lista_pisos').on('change', function () {
+		var piso = $('#lista_pisos').val();
+		$.ajax({
+				type: "POST",
+				url: './lista_entrepanos.php',
+				data: {
+					'piso': piso
+				}
+			})
+			.done(function (ListaEntrepano) {
+				$('#lista_entrepanos').html(ListaEntrepano);
+			})
+			.fail(function () {
+				alert('Hubo un error al cargar los Entrepaños !');
+			});
+	});
+
+	$('#lista_entrepanos').on('change', function () {
+		var entrepano = $('#lista_entrepanos').val();
+		$.ajax({
+				type: "POST",
+				url: './lista_ubicaciones.php',
+				data: {
+					'entrepano': entrepano
+				}
+			})
+			.done(function (ListaUbicacion) {
+				$('#lista_ubicaciones').html(ListaUbicacion);
+			})
+			.fail(function () {
+				alert('Hubo un error al cargar las Ubicaciones !');
+			});
+	});
+
+	$('#lista_ubicaciones').on('change', function () {
+		$.ajax({
+				url: './lista_tipos_cajas.php'
+			})
+			.done(function (ListaTipoCaja) {
+				$('#lista_tipo_cajas').html(ListaTipoCaja);
+			})
+			.fail(function () {
+				alert('Hubo un error al cargar los tipos de Cajas !');
 			});
 	});
 
 	$("#btnNuevo").click(function () {
-		$("#formClientes").trigger("reset");
+		$("#formCajas").trigger("reset");
 		$(".modal-header").css("background-color", "#28a745");
 		$(".modal-header").css("color", "white");
-		$(".modal-title").text("Nuevo Cliente");
+		$(".modal-title").text("Nueva Caja");
 		$("#modalCRUD").modal("show");
 		id = null;
 		opcion = 1; //alta
@@ -104,47 +201,137 @@ $(document).ready(function () {
 	$(document).on("click", ".btnEditar", function () {
 		fila = $(this).closest("tr");
 		id = parseInt(fila.find('td:eq(0)').text());
-		nit = fila.find('td:eq(1)').text();
-		razon = fila.find('td:eq(2)').text();
-		direccion = fila.find('td:eq(3)').text();
-		telefono = fila.find('td:eq(4)').text();
-		email = fila.find('td:eq(5)').text();
+		descripcion = fila.find('td:eq(2)').text();
 
-		$("#id_cliente").val(id);
-		$("#nit_cliente").val(nit);
-		$("#razon_social_cliente").val(razon);
-		$("#direccion_cliente").val(direccion);
-		$("#telefono_cliente").val(telefono);
-		$("#email_cliente").val(email);
+		$("#id_caja").val(id);
+		$("#descripcion_caja").val(descripcion);
+
 		opcion = 2; //editar
 		$(".modal-header").css("background-color", "#007bff");
 		$(".modal-header").css("color", "white");
-		$(".modal-title").text("Editar Cliente");
+		$(".modal-title").text("Editar Caja");
 		$("#modalCRUD").modal("show");
 		$.ajax({
-				url: './lista_departamentos.php'
+				url: './lista_bodegas.php'
 			})
-			.done(function (ListaDeptos) {
-				$('#lista_depto').html(ListaDeptos);
+			.done(function (ListaBodega) {
+				$('#lista_bodegas').html(ListaBodega);
 			})
 			.fail(function () {
-				alert('Hubo un error al cargar los Deptos !');
+				alert('Hubo un error al cargar las Bodegas !');
 			});
 
-		$('#lista_depto').on('change', function () {
-			var depto = $('#lista_depto').val();
+		$('#lista_bodegas').on('change', function () {
+			var bodega = $('#lista_bodegas').val();
 			$.ajax({
 					type: "POST",
-					url: './lista_ciudades.php',
+					url: './lista_estantes.php',
 					data: {
-						'depto': depto
+						'bodega': bodega
 					}
 				})
-				.done(function (ListaCiudad) {
-					$('#lista_ciudad').html(ListaCiudad);
+				.done(function (ListaEstante) {
+					$('#lista_estantes').html(ListaEstante);
 				})
 				.fail(function () {
-					alert('Hubo un error al cargar las ciudades !');
+					alert('Hubo un error al cargar los Estantes !');
+				});
+		});
+
+		$('#lista_estantes').on('change', function () {
+			var estante = $('#lista_estantes').val();
+			$.ajax({
+					type: "POST",
+					url: './lista_caras.php',
+					data: {
+						'estante': estante
+					}
+				})
+				.done(function (ListaCara) {
+					$('#lista_caras').html(ListaCara);
+				})
+				.fail(function () {
+					alert('Hubo un error al cargar las Caras !');
+				});
+		});
+
+		$('#lista_caras').on('change', function () {
+			var cara = $('#lista_caras').val();
+			$.ajax({
+					type: "POST",
+					url: './lista_modulos.php',
+					data: {
+						'cara': cara
+					}
+				})
+				.done(function (ListaModulo) {
+					$('#lista_modulos').html(ListaModulo);
+				})
+				.fail(function () {
+					alert('Hubo un error al cargar los Modulos !');
+				});
+		});
+
+		$('#lista_modulos').on('change', function () {
+			var modulo = $('#lista_modulos').val();
+			$.ajax({
+					type: "POST",
+					url: './lista_pisos.php',
+					data: {
+						'modulo': modulo
+					}
+				})
+				.done(function (ListaPiso) {
+					$('#lista_pisos').html(ListaPiso);
+				})
+				.fail(function () {
+					alert('Hubo un error al cargar los Pisos !');
+				});
+		});
+
+		$('#lista_pisos').on('change', function () {
+			var piso = $('#lista_pisos').val();
+			$.ajax({
+					type: "POST",
+					url: './lista_entrepanos.php',
+					data: {
+						'piso': piso
+					}
+				})
+				.done(function (ListaEntrepano) {
+					$('#lista_entrepanos').html(ListaEntrepano);
+				})
+				.fail(function () {
+					alert('Hubo un error al cargar los Entrepaños !');
+				});
+		});
+
+		$('#lista_entrepanos').on('change', function () {
+			var entrepano = $('#lista_entrepanos').val();
+			$.ajax({
+					type: "POST",
+					url: './lista_ubicaciones.php',
+					data: {
+						'entrepano': entrepano
+					}
+				})
+				.done(function (ListaUbicacion) {
+					$('#lista_ubicaciones').html(ListaUbicacion);
+				})
+				.fail(function () {
+					alert('Hubo un error al cargar las Ubicaciones !');
+				});
+		});
+
+		$('#lista_ubicaciones').on('change', function () {
+			$.ajax({
+					url: './lista_tipos_cajas.php'
+				})
+				.done(function (ListaTipoCaja) {
+					$('#lista_tipo_cajas').html(ListaTipoCaja);
+				})
+				.fail(function () {
+					alert('Hubo un error al cargar los tipos de Cajas !');
 				});
 		});
 
@@ -154,12 +341,12 @@ $(document).ready(function () {
 	$(document).on("click", ".btnBorrar", function () {
 		fila = $(this);
 		id = parseInt($(this).closest("tr").find('td:eq(0)').text());
-		razon = $(this).closest("tr").find('td:eq(2)').text();
+		serial = $(this).closest("tr").find('td:eq(1)').text();
 		opcion = 3; //borrar
-		var respuesta = confirm("¿Está seguro de eliminar el registro: " + razon + " ?");
+		var respuesta = confirm("¿Está seguro de eliminar el registro: " + serial + " ?");
 		if (respuesta) {
 			$.ajax({
-				url: "cruds/crud_clientes.php",
+				url: "cruds/crud_cajas.php",
 				type: "POST",
 				dataType: "json",
 				data: {
@@ -167,7 +354,7 @@ $(document).ready(function () {
 					id: id
 				},
 				success: function () {
-					tablaClientes.row(fila.parents('tr')).remove().draw();
+					tablaCajas.row(fila.parents('tr')).remove().draw();
 				}
 			});
 		}
@@ -178,42 +365,51 @@ $(document).ready(function () {
 		setTimeout(recargar, 800);
 	});
 
-	$("#formClientes").submit(function (e) {
+	$("#formCajas").submit(function (e) {
 		e.preventDefault();
-		id = $.trim($("#id_cliente").val());
-		nit = $.trim($("#nit_cliente").val());
-		razon = $.trim($("#razon_social_cliente").val());
-		direccion = $.trim($("#direccion_cliente").val());
-		telefono = $.trim($("#telefono_cliente").val());
-		email = $.trim($("#email_cliente").val());
-		ciudad = $.trim($("#lista_ciudad").val());
+		id = $.trim($("#id_caja").val());
+		descripcion = $.trim($("#descripcion_caja").val());
+		bodega = $.trim($("#lista_bodegas").val());
+		estante = $.trim($("#lista_estantes").val());
+		cara = $.trim($("#lista_caras").val());
+		modulo = $.trim($("#lista_modulos").val());
+		piso = $.trim($("#lista_pisos").val());
+		entrepano = $.trim($("#lista_entrepanos").val());
+		ubicacion = $.trim($("#lista_ubicaciones").val());
+		tipo = $.trim($("#lista_tipo_cajas").val());
 		$.ajax({
-			url: "cruds/crud_clientes.php",
+			url: "cruds/crud_cajas.php",
 			type: "POST",
 			dataType: "json",
 			data: {
 				id: id,
-				nit: nit,
-				razon: razon,
-				direccion: direccion,
-				telefono: telefono,
-				email: email,
-				ciudad: ciudad,
+				descripcion: descripcion,
+				bodega: bodega,
+				estante: estante,
+				cara: cara,
+				modulo: modulo,
+				piso: piso,
+				entrepano: entrepano,
+				ubicacion: ubicacion,
+				tipo: tipo,
 				opcion: opcion
 			},
 			success: function (data) {
 				console.log(data);
 				id = data[0].id;
-				nit = data[0].nit;
-				razon = data[0].razon;
-				direccion = data[0].direccion;
-				telefono = data[0].telefono;
-				email = data[0].email;
-				ciudad = data[0].ciudad;
+				descripcion = data[0].descripcion;
+				bodega = data[0].bodega;
+				estante = data[0].estante;
+				cara = data[0].cara;
+				modulo = data[0].modulo;
+				piso = data[0].piso;
+				entrepano = data[0].entrepano;
+				ubicacion = data[0].ubicacion;
+				tipo = data[0].tipo;
 				if (opcion == 1) {
-					tablaClientes.row.add([id, nit, razon, direccion, telefono, email, ciudad]).draw();
+					tablaCajas.row.add([id, descripcion, bodega, estante, cara, modulo, piso, entrepano, ubicacion, tipo]).draw();
 				} else {
-					tablaClientes.row(fila).data([id, nit, razon, direccion, telefono, email, ciudad]).draw();
+					tablaCajas.row(fila).data([id, descripcion, bodega, estante, cara, modulo, piso, entrepano, ubicacion, tipo]).draw();
 				}
 			}
 		});
