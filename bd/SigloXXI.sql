@@ -18,6 +18,15 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+-- -----------------------------------------------------
+-- Schema NTS
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `NTS` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+-- -----------------------------------------------------
+-- Schema base_datos
+-- -----------------------------------------------------
+
+USE `NTS` ;
 --
 -- Base de datos: `nts`
 --
