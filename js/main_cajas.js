@@ -175,7 +175,7 @@ $(document).ready(function () {
 
 	$('#lista_ubicaciones').on('change', function () {
 		$.ajax({
-				url: './lista_tipos_cajas.php'
+				url: './lista_tipos_cajas.php',
 			})
 			.done(function (ListaTipoCaja) {
 				$('#lista_tipo_cajas').html(ListaTipoCaja);
@@ -184,6 +184,20 @@ $(document).ready(function () {
 				alert('Hubo un error al cargar los tipos de Cajas !');
 			});
 	});
+
+	$('#lista_tipo_cajas').on('change', function () {
+		$.ajax({
+				url: './lista_clientes.php',
+			})
+			.done(function (ListaClientes) {
+				$('#lista_clientes').html(ListaClientes);
+			})
+			.fail(function () {
+				alert('Hubo un error al cargar los Clientes !');
+			});
+	});
+
+
 
 	$("#btnNuevo").click(function () {
 		$("#formCajas").trigger("reset");
@@ -335,6 +349,18 @@ $(document).ready(function () {
 				});
 		});
 
+		$('#lista_tipo_cajas').on('change', function () {
+			$.ajax({
+					url: './lista_clientes.php',
+				})
+				.done(function (ListaClientes) {
+					$('#lista_clientes').html(ListaClientes);
+				})
+				.fail(function () {
+					alert('Hubo un error al cargar los Clientes !');
+				});
+		});
+
 	});
 
 	//botón BORRAR
@@ -377,6 +403,7 @@ $(document).ready(function () {
 		entrepano = $.trim($("#lista_entrepanos").val());
 		ubicacion = $.trim($("#lista_ubicaciones").val());
 		tipo = $.trim($("#lista_tipo_cajas").val());
+		cliente = $.trim($("#lista_clientes").val());
 		$.ajax({
 			url: "cruds/crud_cajas.php",
 			type: "POST",
@@ -392,7 +419,9 @@ $(document).ready(function () {
 				entrepano: entrepano,
 				ubicacion: ubicacion,
 				tipo: tipo,
+				cliente: cliente,
 				opcion: opcion
+
 			},
 			success: function (data) {
 				console.log(data);
@@ -406,10 +435,11 @@ $(document).ready(function () {
 				entrepano = data[0].entrepano;
 				ubicacion = data[0].ubicacion;
 				tipo = data[0].tipo;
+				cliente = data[0].cliente;
 				if (opcion == 1) {
-					tablaCajas.row.add([id, descripcion, bodega, estante, cara, modulo, piso, entrepano, ubicacion, tipo]).draw();
+					tablaCajas.row.add([id, descripcion, bodega, estante, cara, modulo, piso, entrepano, ubicacion, tipo, cliente]).draw();
 				} else {
-					tablaCajas.row(fila).data([id, descripcion, bodega, estante, cara, modulo, piso, entrepano, ubicacion, tipo]).draw();
+					tablaCajas.row(fila).data([id, descripcion, bodega, estante, cara, modulo, piso, entrepano, ubicacion, tipo, cliente]).draw();
 				}
 			}
 		});

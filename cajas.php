@@ -2,11 +2,12 @@
 include_once 'conexion/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
-$consulta = "SELECT CJ.id_caja, CJ.serial_caja, CJ.descripcion_caja, UC.ubicacion_X, UC.ubicacion_Y, UC.ubicacion_Z, EI.nombre_estado_item, TC.nombre_tipo_caja
-			 FROM cajas CJ, estado_item EI, ubicacion_caja UC, tipo_caja TC
+$consulta = "SELECT CJ.id_caja, CJ.serial_caja, CJ.descripcion_caja, UC.ubicacion_X, UC.ubicacion_Y, UC.ubicacion_Z, EI.nombre_estado_item, TC.nombre_tipo_caja, C.razon_social_cliente
+			 FROM cajas CJ, estado_item EI, ubicacion_caja UC, tipo_caja TC, clientes C
 			 WHERE CJ.Estado_item_id_estado_item = EI.id_estado_item
 			 AND CJ.Tipo_caja_id_tipo_caja = TC.id_tipo_caja
 			 AND CJ.Ubicacion_caja_id_ubicacion_caja = UC.id_ubicacion_caja
+			 AND CJ.Clientes_id_cliente = C.id_cliente
 			 ORDER BY id_caja";
 $resultado = $conexion->prepare($consulta);
 $resultado->execute();
@@ -66,6 +67,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 								<th>Ubicación</th>
 								<th>Estado</th>
 								<th>Tipo caja</th>
+								<th>Propietario</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -80,6 +82,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 								<td><?php echo $dat['ubicacion_X'].$dat['ubicacion_Y'].$dat['ubicacion_Z']?></td>
 								<td><?php echo $dat['nombre_estado_item'] ?></td>
 								<td><?php echo $dat['nombre_tipo_caja'] ?></td>
+								<td><?php echo $dat['razon_social_cliente'] ?></td>
 								<td nowrap></td>
 							</tr>
 							<?php
@@ -94,6 +97,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 								<th>Ubicación</th>
 								<th>Estado</th>
 								<th>Tipo caja</th>
+								<th>Propietario</th>
 								<th style="display:none;"></th>
 							</tr>
 						</tfoot>
@@ -151,6 +155,10 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 				<div class="form-group">
 					<label for="lista_tipo_cajas" class=" col-form-label">Tipo Caja:</label>
 					<select class="form-control" id="lista_tipo_cajas" name="lista_tipo_cajas" required></select>
+				</div>
+				<div class="form-group">
+					<label for="lista_clientes" class=" col-form-label">Propietario:</label>
+					<select class="form-control" id="lista_clientes" name="lista_clientes" required></select>
 				</div>
 			</div>
 			<div class="modal-footer">

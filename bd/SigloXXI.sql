@@ -64,7 +64,7 @@ INSERT INTO `bodega` (`id_bodega`, `nombre_bodega`, `direccion_bodega`, `telefon
 
 CREATE TABLE `cajas` (
   `id_caja` int(11) NOT NULL,
-  `nombre_caja` varchar(45) DEFAULT NULL,
+  `serial_caja` varchar(45) DEFAULT NULL,
   `descripcion_caja` varchar(45) DEFAULT NULL,
   `Ubicacion_caja_id_ubicacion_caja` int(11) NOT NULL,
   `Estado_item_id_estado_item` int(11) NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE `cajas` (
 -- Volcado de datos para la tabla `cajas`
 --
 
-INSERT INTO `cajas` (`id_caja`, `nombre_caja`, `descripcion_caja`, `Ubicacion_caja_id_ubicacion_caja`, `Estado_item_id_estado_item`, `Tipo_caja_id_tipo_caja`, `Clientes_id_cliente`) VALUES
+INSERT INTO `cajas` (`id_caja`, `serial_caja`, `descripcion_caja`, `Ubicacion_caja_id_ubicacion_caja`, `Estado_item_id_estado_item`, `Tipo_caja_id_tipo_caja`, `Clientes_id_cliente`) VALUES
 (1, 'Caja1', 'Primera Caja', 1, 1, 1, 1),
 (2, 'Caja 2', 'Segunda Caja', 240, 1, 2, 2),
 (3, 'Caja 3', 'Tercera Caja', 120, 1, 1, 3),
