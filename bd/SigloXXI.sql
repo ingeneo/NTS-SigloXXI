@@ -68,7 +68,9 @@ CREATE TABLE `cajas` (
   `descripcion_caja` varchar(45) DEFAULT NULL,
   `Ubicacion_caja_id_ubicacion_caja` int(11) NOT NULL,
   `Estado_item_id_estado_item` int(11) NOT NULL,
-  `Tipo_caja_id_tipo_caja` int(11) NOT NULL
+  `Tipo_caja_id_tipo_caja` int(11) NOT NULL,
+  `Tipo_caja_id_tipo_caja` int(11) NOT NULL,
+  `Clientes_id_cliente` INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -76,11 +78,11 @@ CREATE TABLE `cajas` (
 --
 
 INSERT INTO `cajas` (`id_caja`, `nombre_caja`, `descripcion_caja`, `Ubicacion_caja_id_ubicacion_caja`, `Estado_item_id_estado_item`, `Tipo_caja_id_tipo_caja`) VALUES
-(1, 'Caja1', 'Primera Caja', 1, 1, 1),
-(2, 'Caja 2', 'Segunda Caja', 240, 1, 2),
-(3, 'Caja 3', 'Tercera Caja', 120, 1, 1),
-(4, 'Caja 4', 'Cuarta Caja', 76, 2, 2),
-(5, 'Caja 5', 'Quinta Caja', 298, 1, 1);
+(1, 'Caja1', 'Primera Caja', 1, 1, 1, 1),
+(2, 'Caja 2', 'Segunda Caja', 240, 1, 2, 2),
+(3, 'Caja 3', 'Tercera Caja', 120, 1, 1, 3),
+(4, 'Caja 4', 'Cuarta Caja', 76, 2, 2, 1),
+(5, 'Caja 5', 'Quinta Caja', 298, 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -2241,7 +2243,8 @@ ALTER TABLE `cajas`
   ADD PRIMARY KEY (`id_caja`),
   ADD KEY `fk_Cajas_Ubicacion_caja1_idx` (`Ubicacion_caja_id_ubicacion_caja`),
   ADD KEY `fk_Cajas_Estado_item1_idx` (`Estado_item_id_estado_item`),
-  ADD KEY `fk_Cajas_Tipo_caja1_idx` (`Tipo_caja_id_tipo_caja`);
+  ADD KEY `fk_Cajas_Tipo_caja1_idx` (`Tipo_caja_id_tipo_caja`),
+  ADD KEY `fk_Cajas_Clientes1_idx` (`Clientes_id_cliente`);
 
 --
 -- Indices de la tabla `cajas_has_prestamo`
