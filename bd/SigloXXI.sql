@@ -69,7 +69,6 @@ CREATE TABLE `cajas` (
   `Ubicacion_caja_id_ubicacion_caja` int(11) NOT NULL,
   `Estado_item_id_estado_item` int(11) NOT NULL,
   `Tipo_caja_id_tipo_caja` int(11) NOT NULL,
-  `Tipo_caja_id_tipo_caja` int(11) NOT NULL,
   `Clientes_id_cliente` INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -77,7 +76,7 @@ CREATE TABLE `cajas` (
 -- Volcado de datos para la tabla `cajas`
 --
 
-INSERT INTO `cajas` (`id_caja`, `nombre_caja`, `descripcion_caja`, `Ubicacion_caja_id_ubicacion_caja`, `Estado_item_id_estado_item`, `Tipo_caja_id_tipo_caja`) VALUES
+INSERT INTO `cajas` (`id_caja`, `nombre_caja`, `descripcion_caja`, `Ubicacion_caja_id_ubicacion_caja`, `Estado_item_id_estado_item`, `Tipo_caja_id_tipo_caja`, `Clientes_id_cliente`) VALUES
 (1, 'Caja1', 'Primera Caja', 1, 1, 1, 1),
 (2, 'Caja 2', 'Segunda Caja', 240, 1, 2, 2),
 (3, 'Caja 3', 'Tercera Caja', 120, 1, 1, 3),
