@@ -2,7 +2,7 @@
 include_once 'conexion/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
-$consulta = "SELECT CP.id_carpeta, CP.codigo_carpeta, CJ.nombre_caja 
+$consulta = "SELECT CP.id_carpeta, CP.codigo_carpeta, CJ.serial_caja 
 			FROM carpeta CP, cajas CJ 
 			WHERE  CP.Cajas_id_caja = CJ.id_caja 
 			ORDER BY codigo_carpeta";
@@ -21,14 +21,12 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 	<title>Modulo Carpetas</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<!-- CSS personalizado --> 
-	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/estilos.css">
 	<!--datables CSS básico-->
 	<link rel="stylesheet" type="text/css" href="datatables/datatables.min.css"/>
 	<!--datables estilo bootstrap 4 CSS-->  
 	<link rel="stylesheet"  type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
-	<script src="https://kit.fontawesome.com/b2b904e426.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+	<link rel="stylesheet" href="css/estilos.css">
   </head>
 	
   <body> 
@@ -71,7 +69,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 							<tr>
 								<td><?php echo $dat['id_carpeta'] ?></td>
 								<td><?php echo $dat['codigo_carpeta'] ?></td>
-								<td><?php echo $dat['nombre_caja'] ?></td>
+								<td><?php echo $dat['serial_caja'] ?></td>
 								<td nowrap></td>
 							</tr>
 							<?php

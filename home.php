@@ -8,10 +8,10 @@
 	<title>Menu Principal</title>
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="datatables/datatables.min.css" />
-	<link rel="stylesheet" href="css/estilos.css">
-	<script src="https://kit.fontawesome.com/b2b904e426.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 	<link rel="stylesheet" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" href="Buttons/css/buttons.bootstrap4.min.css">
+	<link rel="stylesheet" href="css/estilos.css">
 </head>
 
 <body>

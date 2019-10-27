@@ -1772,7 +1772,11 @@ INSERT INTO `piso` (`id_piso`, `descripcion_piso`, `Modulo_id_modulo`) VALUES
 
 CREATE TABLE `prestamo` (
   `id_prestamo` int(11) NOT NULL,
+  `objeto_prestamo` varchar(45) DEFAULT NULL,
+  `id_objeto` int(11) NOT NULL,
   `fecha_solicitud` date DEFAULT NULL,
+  `fecha_entrega` date DEFAULT NULL,
+  `estado_prestamo` varchar(45) DEFAULT NULL,
   `Usuarios_id_usuario` int(11) NOT NULL,
   `Tipo_de_prestamo_id_tipo_prestamo` int(11) NOT NULL,
   `Prioridad_prestamo_id_prioridad` int(11) NOT NULL

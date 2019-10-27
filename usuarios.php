@@ -21,14 +21,12 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 	<title>Modulo Usuarios</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<!-- CSS personalizado --> 
-	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/estilos.css">
 	<!--datables CSS básico-->
 	<link rel="stylesheet" type="text/css" href="datatables/datatables.min.css"/>
 	<!--datables estilo bootstrap 4 CSS-->  
 	<link rel="stylesheet"  type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
-	<script src="https://kit.fontawesome.com/b2b904e426.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+	<link rel="stylesheet" href="css/estilos.css">
   </head>
 	
   <body> 

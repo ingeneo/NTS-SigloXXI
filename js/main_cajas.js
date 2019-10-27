@@ -8,13 +8,13 @@ $(document).ready(function () {
 		"dom": 'Bfrtilp',
 		"buttons": [{
 				extend: 'excelHtml5',
-				text: '<i class="fa fa-file-excel-o"></i>',
+				text: '<i class="fa fa-file-excel"></i>',
 				titleAttr: 'Exportar a excel',
 				className: 'btn btn-success'
 			},
 			{
 				extend: 'pdfHtml5',
-				text: '<i class="fa fa-file-pdf-o"></i>',
+				text: '<i class="fa fa-file-pdf"></i>',
 				titleAttr: 'Exportar a Pdf',
 				className: 'btn btn-danger'
 			},
