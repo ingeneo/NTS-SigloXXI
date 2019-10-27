@@ -2,22 +2,17 @@
 include_once 'conexion/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
-$consulta = "SELECT CJ.id_caja, CJ.serial_caja, CJ.descripcion_caja, UC.ubicacion_X, UC.ubicacion_Y, UC.ubicacion_Z, EI.nombre_estado_item, TC.nombre_tipo_caja, C.razon_social_cliente
-			 FROM cajas CJ, estado_item EI, ubicacion_caja UC, tipo_caja TC, clientes C
-			 WHERE CJ.Estado_item_id_estado_item = EI.id_estado_item
-			 AND CJ.Tipo_caja_id_tipo_caja = TC.id_tipo_caja
-			 AND CJ.Ubicacion_caja_id_ubicacion_caja = UC.id_ubicacion_caja
-			 AND CJ.Clientes_id_cliente = C.id_cliente
-			 AND CJ.Estado_item_id_estado_item = '1'
-			 ORDER BY id_caja";
+$consulta = "SELECT F.id_folio, F.codigo_folio, F.desc_folio, CP.codigo_carpeta 
+             FROM folio F, carpeta CP  
+             WHERE  F.Carpeta_id_carpeta = CP.id_carpeta 
+             AND F.Estado_item_id_estado_item = '1'
+			 ORDER BY id_folio";
 $resultado = $conexion->prepare($consulta);
 $resultado->execute();
 $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 <!doctype html>
 <html lang="es">
-
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -33,7 +28,6 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 	<link rel="stylesheet" href="css/estilos.css">
 </head>
-
 <body>
 	<header>
 		<div class="row fondo">
@@ -41,26 +35,22 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 				<a href="home.php"><i class="icono fas fa-home"></i></a>
 			</div>
 			<div class="col-sm-11 col-md-11 col-lg-11">
-				<h1 class="titulos text-center text-uppercase">Prestamos Cajas</h1>
+				<h1 class="titulos text-center text-uppercase">Prestamos Folios</h1>
 			</div>
 		</div>
 	</header>
 	<br>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-lg-12">
-				<div class="table-responsive">
-					<table id="tablaPrestamos" class="table table-striped table-bordered table-condensed"
-						style="width:100%">
+				<div class="col-lg-12">
+					<div class="table-responsive">
+						<table id="tablaPrestamos" class="table table-striped table-bordered table-condensed" style="width:100%">
 						<thead class="text-center">
 							<tr>
 								<th>ID</th>
-								<th>Serial</th>
-								<th>Descripción</th>
-								<th>Ubicación</th>
-								<th>Estado</th>
-								<th>Tipo caja</th>
-								<th>Propietario</th>
+								<th>Serial Folio</th>
+								<th>Descripcion folio</th>
+								<th>Carpeta a la que pertenece</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -69,13 +59,10 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 							foreach($data as $dat) {
 							?>
 							<tr>
-								<td><?php echo $dat['id_caja'] ?></td>
-								<td><?php echo $dat['serial_caja'] ?></td>
-								<td><?php echo $dat['descripcion_caja'] ?></td>
-								<td><?php echo $dat['ubicacion_X'].$dat['ubicacion_Y'].$dat['ubicacion_Z']?></td>
-								<td><?php echo $dat['nombre_estado_item'] ?></td>
-								<td><?php echo $dat['nombre_tipo_caja'] ?></td>
-								<td><?php echo $dat['razon_social_cliente'] ?></td>
+								<td><?php echo $dat['id_folio'] ?></td>
+								<td><?php echo $dat['codigo_folio'] ?></td>
+								<td><?php echo $dat['desc_folio'] ?></td>
+								<td><?php echo $dat['codigo_carpeta'] ?></td>
 								<td nowrap></td>
 							</tr>
 							<?php
@@ -84,22 +71,18 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 						</tbody>
 						<tfoot class="text-center">
 							<tr>
-								<th>ID</th>
-								<th>Serial</th>
-								<th>Descripción</th>
-								<th>Ubicación</th>
-								<th>Estado</th>
-								<th>Tipo caja</th>
-								<th>Propietario</th>
+							    <th>ID</th>
+								<th>Serial Folio</th>
+								<th>Descripcion folio</th>
+								<th>Carpeta a la que pertenece</th>
 								<th style="display:none;"></th>
 							</tr>
 						</tfoot>
-					</table>
+						</table>
+					</div>
 				</div>
-			</div>
 		</div>
 	</div>
-
 	<!--Modal para CRUD-->
 	<div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 		aria-hidden="true">
@@ -113,10 +96,10 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 				</div>
 				<form id="formPrestamos">
 					<div class="modal-body">
-						<input type="hidden" class="form-control" id="id_caja">
+						<input type="hidden" class="form-control" id="id_folio">
 						<div class="form-group">
-							<label for="serial_caja" class="col-form-label" disabled >Serial Caja:</label>
-							<input type="text" class="form-control" id="serial_caja">
+							<label for="codigo_folio" class="col-form-label" disabled >Serial Folio:</label>
+							<input type="text" class="form-control" id="codigo_folio">
 						</div>
 						<div class="form-group">
 							<label for="fecha_entrega" class="col-form-label">Fecha de entrega:</label>
@@ -153,8 +136,6 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 	<script src="JSZip/jszip.min.js"></script>
 	<script src="pdfmake/pdfmake.min.js"></script>
 	<script src="pdfmake/vfs_fonts.js"></script>
-	<script type="text/javascript" src="js/main_prestamos_cajas.js"></script>
-
+	<script type="text/javascript" src="js/main_prestamos_folios.js"></script>
 </body>
-
 </html>
