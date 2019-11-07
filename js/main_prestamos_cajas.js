@@ -118,11 +118,6 @@ $(document).ready(function () {
 			},
 		});
 		$("#modalCRUD").modal("hide");
-		alert(id);
-		alert(fecha_ent);
-		alert(tipo_prestamo);
-		alert(prioridad_prestamo);
-
 		function recargar() {
 			location.reload();
 		}

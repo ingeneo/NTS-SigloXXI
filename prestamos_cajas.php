@@ -23,7 +23,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="shortcut icon" href="#" />
-	<title>Modulo Prestamos Folios</title>
+	<title>Modulo Prestamos Cajas</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<!--datables CSS básico-->
@@ -154,7 +154,5 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 	<script src="pdfmake/pdfmake.min.js"></script>
 	<script src="pdfmake/vfs_fonts.js"></script>
 	<script type="text/javascript" src="js/main_prestamos_cajas.js"></script>
-
 </body>
-
 </html>
