@@ -27,85 +27,23 @@
 			</div>
 		</div>
 	</header>
-	<div class="container-fluid justify-content-center align-items-center">
+	<div class="container justify-content-center align-items-center">
 		<div class="row">
+			<div class="col-lg-4"></div>
 			<div class="col-lg-4">
 				<form id="formCarpetas">
 					<label for="tipo_item" class=" col-form-label">Seleccione el item a prestar:</label>
-					<select class="form-control" id="tipo_item" name="tipo_item" value="" required>
-						<option value = 'cajas'>Cajas</option>
-						<option value = 'carpeta'>Carpetas</option>
-						<option value = 'folio'>Folios</option>
+					<select class="form-control"onchange="location.href=this.options[this.selectedIndex].value" name="elige" size="1">
+						<option value="#" selected>Elija un item</option>
+						<option value="prestamos_cajas.php">Cajas</option>
+						<option value="prestamos_carpetas.php">Carpetas</option>
+						<option value="prestamos_folios.php">Folios</option>
 					</select>
 				</form>
 			</div>
+			<div class="col-lg-4"></div>
 		</div>
 	</div>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-lg-12">
-			<button id="btnNuevo" type="button" class="btn btn-success" data-toggle="modal"><i class="icono1 fas fa-plus-circle"></i> Nuevo cliente</button>    
-			</div>
-		</div>
-	</div>
-	<br>
-	<div class="container-fluid">
-		<div class="row">
-				<div class="col-lg-12">
-					
-				</div>
-		</div>
-	</div>
-	  
-<!--Modal para CRUD-->
-<div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel"></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-		<form id="formClientes">
-			<div class="modal-body">
-				<input type="hidden" class="form-control" id="id_cliente">
-				<div class="form-group">
-					<label for="nit_cliente" class="col-form-label">Identificación:</label>
-					<input type="text" class="form-control" id="nit_cliente">
-				</div>
-				<div class="form-group">
-					<label for="razon_social_cliente" class="col-form-label">Razon Social:</label>
-					<input type="text" class="form-control" id="razon_social_cliente">
-				</div>
-				<div class="form-group">
-					<label for="direccion_cliente" class="col-form-label">Dirección:</label>
-					<input type="text" class="form-control" id="direccion_cliente">
-				</div>
-				<div class="form-group">
-					<label for="telefono_cliente" class="col-form-label">Teléfono:</label>
-					<input type="text" class="form-control" id="telefono_cliente">
-				</div>
-				<div class="form-group">
-					<label for="email_cliente" class="col-form-label">E-mail:</label>
-					<input type="mail" class="form-control" id="email_cliente">
-				</div>
-				<div class="form-group">
-					<label for="lista_depto" class=" col-form-label">Departamento:</label>
-					<select class="form-control" id="lista_depto" name="lista_depto" required></select>
-				</div>
-				<div class="form-group">
-					<label for="lista_ciudad" class=" col-form-label">Ciudad:</label>
-					<select class="form-control" id="lista_ciudad" name="lista_ciudad" required></select>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="icono1 fas fa-times-circle"></i> Cancelar</button>
-				<button type="submit" id="btnGuardar" class="btn btn-dark"><i class="icono1 fas fa-check-circle"></i> Guardar</button>
-			</div>
-		</form>
-		</div>
-	</div>
-</div>
 	<!-- jQuery, Popper.js, Bootstrap JS -->
 	<script src="jquery/jquery-3.3.1.min.js"></script>
 	<script src="popper/popper.min.js"></script>
@@ -120,7 +58,22 @@
 	<script src="pdfmake/pdfmake.min.js"></script>
 	<script src="pdfmake/vfs_fonts.js"></script>
 	 
-	<script type="text/javascript" src="js/main_clientes.js"></script>  
+	<script>
+		$('#tipo_item').on('change', function () {
+			var seleccion = $('#tipo_item').val();
+			if (seleccion == "cajas") {
+				//window.location = "/ prestamos_cajas.php";
+				document.location.href="prestamos_carpetas.php";
+			}
+		}
+	});
+	
+	
+	
+	
+	
+	
+	</script>
 
 </body>
 </html>

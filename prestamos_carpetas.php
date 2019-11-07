@@ -92,7 +92,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-		<form id="formCarpetas">
+		<form id="formPrestamos">
 			<div class="modal-body">
 				<input type="hidden" class="form-control" id="id_carpeta">
 				<div class="form-group">
