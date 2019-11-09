@@ -16,49 +16,6 @@ class Cl_User
 	}
 	
 	/**
-	 * Registro de usuarios
-	 * @param array $data
-	  */
-	public function registration( array $data )
-	{
-		if( !empty( $data ) ){
-			
-			// Trim todos los datos entrantes:
-			$trimmed_data = array_map('trim', $data);
-			
-			
-			
-			// escapar de las variables para la seguridad
-			$nombre_usuario = mysqli_real_escape_string( $this->_con, $trimmed_data['nombre_usuario'] );
-			$password = mysqli_real_escape_string( $this->_con, $trimmed_data['password'] );
-			$cpassword = mysqli_real_escape_string( $this->_con, $trimmed_data['confirm_password'] );
-			
-			
-			// Verifica la direccion de correo electrónico:
-			if (filter_var( $trimmed_data['email'], FILTER_VALIDATE_EMAIL)) {
-				$email = mysqli_real_escape_string( $this->_con, $trimmed_data['email']);
-			} else {
-				throw new Exception( "Por favor, introduce una dirección de correo electrónico válida!" );
-			}
-			
-			
-			if((!$nombre_usuario) || (!$email) || (!$password) || (!$cpassword) ) {
-				throw new Exception( FIELDS_MISSING );
-			}
-			if ($password !== $cpassword) {
-				throw new Exception( PASSWORD_NOT_MATCH );
-			}
-			$password = md5( $password );
-			$query = "INSERT INTO usuarios (id_usuario, nombre_usuario, email, password, created) VALUES (NULL, '$nombre_usuario', '$email', '$password', CURRENT_TIMESTAMP)";
-			if(mysqli_query($this->_con, $query)){
-				mysqli_close($this->_con);
-				return true;
-			};
-		} else{
-			throw new Exception( USER_REGISTRATION_FAIL );
-		}
-	}
-	/**
 	 * Este metodo para iniciar sesión
 	 * @param array $data
 	 * @return retorna falso o verdadero
@@ -79,7 +36,7 @@ class Cl_User
 				throw new Exception( LOGIN_FIELDS_MISSING );
 			}
 			$password = md5( $password );
-			$query = "SELECT id_usuario, nombre_usuario, email, created FROM usuarios where email = '$email' and password = '$password' ";
+			$query = "SELECT id_usuario, nombre_usuario, email_usuario, Tipos_de_usuario_id_Tipo_usuario, Clientes_id_cliente FROM usuarios where email_usuario = '$email' and password = '$password' ";
 			$result = mysqli_query($this->_con, $query);
 			$data = mysqli_fetch_assoc($result);
 			$count = mysqli_num_rows($result);
@@ -159,14 +116,14 @@ class Cl_User
 			}
 			$password = $this->randomPassword();
 			$password1 = md5( $password );
-			$query = "UPDATE usuarios SET password = '$password1' WHERE email = '$email'";
+			$query = "UPDATE usuarios SET password = '$password1' WHERE email_usuario = '$email'";
 			if(mysqli_query($this->_con, $query)){
 				mysqli_close($this->_con);
 				$to = $email;
 				$subject = "Nueva solicitud de contraseña";
 				$txt = "Su nueva contraseña ".$password;
-				$headers = "From: admin@obedalvarado.pw" . "\r\n" .
-						"CC: admin@obedalvarado.pw";
+				$headers = "From: admin@sigloXXI.com.co" . "\r\n" .
+						"CC: admin@sigloXXI.com.co";
 					
 				mail($to,$subject,$txt,$headers);
 				return true;

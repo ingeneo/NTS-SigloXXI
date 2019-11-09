@@ -12,6 +12,6 @@ class Cl_DBclass
 	public function __construct()
 	{
 		$this->con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-		if( mysqli_connect_error()) echo "Falló conexión a MySQL: " . mysqli_connect_error();
+		if( mysqli_connect_error()) echo "Falló conexión a la base de datos: " . mysqli_connect_error();
 	}
 }

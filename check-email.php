@@ -7,7 +7,7 @@ if( isset( $_POST['password'] ) && !empty($_POST['password'])){
 	$email = $_POST['email'];
 	
 	if( !empty( $email) && !empty($password) ){
-		$query = " SELECT count(email) cnt FROM users where password = '$password' and email = '$email' ";
+		$query = " SELECT count(email_usuario) cnt FROM usuarios where password = '$password' and email_usuario = '$email' ";
 		$result = mysqli_query($db->con, $query);
 		$data = mysqli_fetch_assoc($result);
 		if($data['cnt'] == 1){
@@ -24,7 +24,7 @@ if( isset( $_POST['password'] ) && !empty($_POST['password'])){
 
 if( isset( $_POST['email'] ) && !empty($_POST['email'])){
 	$email = $_POST['email'];
-	$query = " SELECT count(email) cnt FROM users where email = '$email' ";
+	$query = " SELECT count(email_usuario) cnt FROM usuarios where email_usuario = '$email' ";
 	$result = mysqli_query($db->con, $query);
 	$data = mysqli_fetch_assoc($result);
 	if($data['cnt'] > 0){
@@ -37,7 +37,7 @@ if( isset( $_POST['email'] ) && !empty($_POST['email'])){
 
 if( isset( $_GET['email'] ) && !empty($_GET['email'])){
 	$email = $_GET['email'];
-	$query = " SELECT count(email) cnt FROM users where email = '$email' ";
+	$query = " SELECT count(email_usuario) cnt FROM usuarios where email_usuario = '$email' ";
 	$result = mysqli_query($db->con, $query);
 	$data = mysqli_fetch_assoc($result);
 	if($data['cnt'] == 1){
