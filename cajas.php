@@ -1,19 +1,41 @@
 <?php
+
+ob_start();
+session_start();
+require_once 'config.php'; 
+if(!isset($_SESSION['logged_in'])){
+	header('Location: index.php');
+}
+$ClaseUsuario = $_SESSION['Tipos_de_usuario_id_Tipo_usuario'];
+$Gestor = $_SESSION['Clientes_id_cliente'];
 include_once 'conexion/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
-$consulta = "SELECT CJ.id_caja, CJ.serial_caja, CJ.descripcion_caja, UC.ubicacion_X, UC.ubicacion_Y, UC.ubicacion_Z, EI.nombre_estado_item, TC.nombre_tipo_caja, C.razon_social_cliente
-			 FROM cajas CJ, estado_item EI, ubicacion_caja UC, tipo_caja TC, clientes C
-			 WHERE CJ.Estado_item_id_estado_item = EI.id_estado_item
-			 AND CJ.Tipo_caja_id_tipo_caja = TC.id_tipo_caja
-			 AND CJ.Ubicacion_caja_id_ubicacion_caja = UC.id_ubicacion_caja
-			 AND CJ.Clientes_id_cliente = C.id_cliente
-			 ORDER BY id_caja";
-$resultado = $conexion->prepare($consulta);
-$resultado->execute();
-$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+if($ClaseUsuario == "1"){//Administrador
+	$consulta = "SELECT CJ.id_caja, CJ.serial_caja, CJ.descripcion_caja, UC.ubicacion_X, UC.ubicacion_Y, UC.ubicacion_Z, EI.nombre_estado_item, TC.nombre_tipo_caja, C.razon_social_cliente
+				 FROM cajas CJ, estado_item EI, ubicacion_caja UC, tipo_caja TC, clientes C
+				 WHERE CJ.Estado_item_id_estado_item = EI.id_estado_item
+				 AND CJ.Tipo_caja_id_tipo_caja = TC.id_tipo_caja
+				 AND CJ.Ubicacion_caja_id_ubicacion_caja = UC.id_ubicacion_caja
+				 AND CJ.Clientes_id_cliente = C.id_cliente
+				 ORDER BY id_caja";
+	$resultado = $conexion->prepare($consulta);
+	$resultado->execute();
+	$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+} if ($ClaseUsuario == '2' or $ClaseUsuario == '3'){//Archivador
+		$consulta1 = "SELECT CJ.id_caja, CJ.serial_caja, CJ.descripcion_caja, UC.ubicacion_X, UC.ubicacion_Y, UC.ubicacion_Z, EI.nombre_estado_item, TC.nombre_tipo_caja, C.razon_social_cliente
+					 FROM cajas CJ, estado_item EI, ubicacion_caja UC, tipo_caja TC, clientes C
+					 WHERE CJ.Estado_item_id_estado_item = EI.id_estado_item
+					 AND CJ.Tipo_caja_id_tipo_caja = TC.id_tipo_caja
+					 AND CJ.Ubicacion_caja_id_ubicacion_caja = UC.id_ubicacion_caja
+					 AND CJ.Clientes_id_cliente = C.id_cliente
+					 AND CJ.Clientes_id_cliente = '$Gestor'
+					 ORDER BY id_caja";
+		$resultado = $conexion->prepare($consulta1);
+		$resultado->execute();
+		$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+	}
 ?>
-
 <!doctype html>
 <html lang="es">
 
@@ -48,8 +70,10 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12">
-				<button id="btnNuevo" type="button" class="btn btn-success" data-toggle="modal"><i
-						class="icono1 fas fa-plus-circle"></i> Nueva Caja</button>
+				<br>
+				<?php if ($ClaseUsuario == '1' || $ClaseUsuario == '2'){
+				echo "<button id='btnNuevo' type='button' class='btn btn-success' data-toggle='modal'>
+				<i class='icono1 fas fa-plus-circle'></i> Nueva Caja</button>";} ?>
 			</div>
 		</div>
 	</div>
@@ -69,7 +93,9 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 								<th>Estado</th>
 								<th>Tipo caja</th>
 								<th>Propietario</th>
+								<?php if ($ClaseUsuario == '1' || $ClaseUsuario == '2') { ?>
 								<th>Acciones</th>
+								<?php } ?>
 							</tr>
 						</thead>
 						<tbody>
@@ -84,11 +110,11 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 								<td><?php echo $dat['nombre_estado_item'] ?></td>
 								<td><?php echo $dat['nombre_tipo_caja'] ?></td>
 								<td><?php echo $dat['razon_social_cliente'] ?></td>
-								<td nowrap></td>
+								<?php if ($ClaseUsuario == '1' || $ClaseUsuario == '2') { ?>
+									<td nowrap></td>
+								<?php } ?>
 							</tr>
-							<?php
-								}
-							?>
+						<?php } ?>	
 						</tbody>
 						<tfoot class="text-center">
 							<tr>
@@ -99,7 +125,9 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 								<th>Estado</th>
 								<th>Tipo caja</th>
 								<th>Propietario</th>
+								<? if ($ClaseUsuario == '1' || $ClaseUsuario == '2') { ?>
 								<th style="display:none;"></th>
+								<? } ?>								
 							</tr>
 						</tfoot>
 					</table>
@@ -121,8 +149,8 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 				</div>
 				<form id="formCajas">
 					<div class="modal-body">
+						<input type="hidden" class="form-control" id="gestor" value="<?php echo $ClaseUsuario; ?>">
 						<input type="hidden" class="form-control" id="id_caja">
-						<input type="hidden" class="form-control" id="serial_caja">
 						<div class="form-group">
 							<label for="descripcion_caja" class="col-form-label">Descripción:</label>
 							<input type="text" class="form-control" id="descripcion_caja">

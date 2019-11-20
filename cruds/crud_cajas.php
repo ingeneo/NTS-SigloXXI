@@ -18,13 +18,29 @@ $tipo = (isset($_POST['tipo'])) ? $_POST['tipo'] : '';
 $cliente = (isset($_POST['cliente'])) ? $_POST['cliente'] : '';
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 
-$serial = 'B'.$bodega.'E'.$estante.'C'.$cara.'M'.$modulo.'P'.$piso.'EP'.$entrepano.'U'.$ubicacion;
+$consulta1 = "SELECT E.descripcion_estante, C.descripcion_cara, M.descripcion_modulo, P.descripcion_piso, EP.descripcion_entrepano
+	FROM estante E, cara C, modulo M, piso P, entrepano EP
+	WHERE E.id_estante = $estante
+	AND C.id_cara = $cara
+	AND M.id_modulo = $modulo
+	AND P.id_piso = $piso
+	AND EP.id_entrepano = $entrepano";
+	$resultado1 = $conexion->prepare($consulta1);
+	$resultado1->execute();
+	while($row = $resultado1->fetch(PDO::FETCH_ASSOC)) {
+		$lista_estante = "$row[descripcion_estante]";
+		$lista_cara = "$row[descripcion_cara]";
+		$lista_modulo = "$row[descripcion_modulo]";
+		$lista_piso = "$row[descripcion_piso]";
+		$lista_ep = "$row[descripcion_entrepano]";
+	}
+	$serial_final = 'B'.$bodega.'E'.$lista_estante.'C'.$lista_cara.'M'.$lista_modulo.'P'.$lista_piso.'EP'.$lista_ep;
 
 switch($opcion){
 	case 1: //alta
 		$consulta = "INSERT INTO cajas (serial_caja, descripcion_caja, Ubicacion_caja_id_ubicacion_caja, 
 		Estado_item_id_estado_item, Tipo_caja_id_tipo_caja, Clientes_id_cliente) VALUES
-		('$serial','$descripcion','$ubicacion','1','$tipo', $cliente)";
+		('$serial_final','$descripcion','$ubicacion','1','$tipo', $cliente)";
 		$resultado = $conexion->prepare($consulta);
 		$resultado->execute();
 	break;

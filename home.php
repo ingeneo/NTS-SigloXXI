@@ -1,3 +1,12 @@
+<?php
+ob_start();
+session_start();
+require_once 'config.php'; 
+if(!isset($_SESSION['logged_in'])){
+	header('Location: index.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -17,8 +26,14 @@
 <body>
 	<div class="contenedor container-fluid">
 		<div class="row fondo">
-			<div class="col-sm-12 col-md-12 col-lg-12">
-				<h1 class="titulos text-center text-uppercase">menú princial - Administrador</h1>
+			<div class="col-sm-8 col-md-8 col-lg-8">
+				<h1 class="titulos text-center text-uppercase">menú principal - Administrador</h1>
+			</div>
+			<div class="col-sm-2 col-md-2 col-lg-2">
+				<a href="account.php" class="btn" style="font-size:20px; text-align: right;"><i class="fa fa-user-alt" title="Mi cuenta"></i>&nbsp;&nbsp;<?php echo $_SESSION['nombre_usuario'];?></a>
+			</div>
+			<div class="col-sm-2 col-md-2 col-lg-2" style="text-align: right;">
+			    <a href="logout.php" class="btn"  style="font-size:20px;"><i class="fa fa-sign-out-alt" title="Salir"></i></a>
 			</div>
 		</div>
 		<div class="usuarios row">
@@ -68,7 +83,11 @@
 	</div>
 	<script src="jquery/jquery-3.3.1.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
-
+	<footer>
+		<div class="container-fluid">
+			<p class="text-center" style="margin-top:65px;">Copyright by <a href="#" target="_blank">Easy Solutions</a> <?php echo date("Y")?></p>
+		</div>
+	</footer>
 </body>
 
 </html>

@@ -113,10 +113,10 @@ class Cl_User
 			
 			if((!$email) ) {
 				throw new Exception( FIELDS_MISSING );
-			}
-			$password = $this->randomPassword();
-			$password1 = md5( $password );
-			$query = "UPDATE usuarios SET password = '$password1' WHERE email_usuario = '$email'";
+            }
+            $password = $this->randomPassword();
+            $password1 = md5( $password );
+            $query = "UPDATE usuarios SET password = '$password1' WHERE email_usuario = '$email'";
 			if(mysqli_query($this->_con, $query)){
 				mysqli_close($this->_con);
 				$to = $email;
