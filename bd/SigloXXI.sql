@@ -44,28 +44,18 @@ USE `NTS`
 -- Estructura de tabla para la tabla `bodega`
 --
 
-CREATE TABLE `bodega`
-(
-  `id_bodega` int
-(11) NOT NULL,
-  `nombre_bodega` varchar
-(45) DEFAULT NULL,
-  `direccion_bodega` varchar
-(45) DEFAULT NULL,
-  `telefono_bodega` varchar
-(45) DEFAULT NULL,
-  `Municipios_id_municipio` int
-(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `bodega`(`id_bodega` int(11) NOT NULL,
+                      `nombre_bodega` varchar(45) DEFAULT NULL,
+                      `direccion_bodega` varchar(45) DEFAULT NULL,
+                      `telefono_bodega` varchar(45) DEFAULT NULL,
+                      `Municipios_id_municipio` int(11) NOT NULL
+                      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `bodega`
 --
 
-INSERT INTO `bodega` (`
-id_bodega`,
-`nombre_bodega
-`, `direccion_bodega`, `telefono_bodega`, `Municipios_id_municipio`) VALUES
+INSERT INTO `bodega` (`id_bodega`,`nombre_bodega`, `direccion_bodega`, `telefono_bodega`, `Municipios_id_municipio`) VALUES
 (1, 'Norte', 'Cra 243', '5555555', 107),
 (2, 'Sur', 'Call 4 sur 27', '2333333', 91),
 (3, 'NorOccidente', 'Calle lejos con cra cerca', '2333551', 756),
@@ -78,31 +68,20 @@ id_bodega`,
 -- Estructura de tabla para la tabla `cajas`
 --
 
-CREATE TABLE `cajas`
-(
-  `id_caja` int
-(11) NOT NULL,
-  `serial_caja` varchar
-(100) DEFAULT NULL,
-  `descripcion_caja` varchar
-(100) DEFAULT NULL,
-  `Ubicacion_caja_id_ubicacion_caja` int
-(11) NOT NULL,
-  `Estado_item_id_estado_item` int
-(11) NOT NULL,
-  `Tipo_caja_id_tipo_caja` int
-(11) NOT NULL,
-  `Clientes_id_cliente` INT NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `cajas`(`id_caja` int(11) NOT NULL,
+                     `serial_caja` varchar(100) DEFAULT NULL,
+                     `descripcion_caja` varchar(100) DEFAULT NULL,
+                     `Ubicacion_caja_id_ubicacion_caja` int(11) NOT NULL,
+                     `Estado_item_id_estado_item` int(11) NOT NULL,
+                     `Tipo_caja_id_tipo_caja` int(11) NOT NULL,
+                     `Clientes_id_cliente` INT NOT NULL
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `cajas`
 --
 
-INSERT INTO `cajas` (`
-id_caja`,
-`serial_caja
-`, `descripcion_caja`, `Ubicacion_caja_id_ubicacion_caja`, `Estado_item_id_estado_item`, `Tipo_caja_id_tipo_caja`, `Clientes_id_cliente`) VALUES
+INSERT INTO `cajas` (`id_caja`,`serial_caja`, `descripcion_caja`, `Ubicacion_caja_id_ubicacion_caja`, `Estado_item_id_estado_item`, `Tipo_caja_id_tipo_caja`, `Clientes_id_cliente`) VALUES
 (1, 'Caja1', 'Primera Caja', 1, 1, 1, 1),
 (2, 'Caja 2', 'Segunda Caja', 240, 1, 2, 2),
 (3, 'Caja 3', 'Tercera Caja', 120, 1, 1, 3),
@@ -115,13 +94,9 @@ id_caja`,
 -- Estructura de tabla para la tabla `cajas_has_prestamo`
 --
 
-CREATE TABLE `cajas_has_prestamo`
-(
-  `Cajas_id_caja` int
-(11) NOT NULL,
-  `Prestamo_id_prestamo` int
-(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `cajas_has_prestamo`(`Cajas_id_caja` int(11) NOT NULL,
+                                  `Prestamo_id_prestamo` int(11) NOT NULL
+                                  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -129,24 +104,16 @@ CREATE TABLE `cajas_has_prestamo`
 -- Estructura de tabla para la tabla `cara`
 --
 
-CREATE TABLE `cara`
-(
-  `id_cara` int
-(11) NOT NULL,
-  `descripcion_cara` varchar
-(45) DEFAULT NULL,
-  `Estante_id_estante` int
-(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `cara`(`id_cara` int(11) NOT NULL,
+                    `descripcion_cara` varchar(45) DEFAULT NULL,
+                    `Estante_id_estante` int(11) NOT NULL
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `cara`
 --
 
-INSERT INTO `cara` (`
-id_cara`,
-`descripcion_cara
-`, `Estante_id_estante`) VALUES
+INSERT INTO `cara` (`id_cara`,`descripcion_cara`, `Estante_id_estante`) VALUES
 (1, '1', 1),
 (2, '2', 1),
 (3, '1', 2),
@@ -174,26 +141,17 @@ id_cara`,
 -- Estructura de tabla para la tabla `carpeta`
 --
 
-CREATE TABLE `carpeta`
-(
-  `id_carpeta` int
-(11) NOT NULL,
-  `codigo_carpeta` varchar
-(45) DEFAULT NULL,
-  `Cajas_id_caja` int
-(11) NOT NULL,
-  `Estado_item_id_estado_item` int
-(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `carpeta`(`id_carpeta` int(11) NOT NULL,
+                       `codigo_carpeta` varchar(45) DEFAULT NULL,
+                       `Cajas_id_caja` int(11) NOT NULL,
+                      `Estado_item_id_estado_item` int(11) NOT NULL
+                      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `carpeta`
 --
 
-INSERT INTO `carpeta` (`
-id_carpeta`,
-`codigo_carpeta
-`, `Cajas_id_caja`, `Estado_item_id_estado_item`) VALUES
+INSERT INTO `carpeta` (`id_carpeta`,`codigo_carpeta`, `Cajas_id_caja`, `Estado_item_id_estado_item`) VALUES
 (1, '1', 1, 1),
 (2, '2', 1, 1),
 (3, '1', 3, 1),
@@ -209,32 +167,20 @@ id_carpeta`,
 -- Estructura de tabla para la tabla `clientes`
 --
 
-CREATE TABLE `clientes`
-(
-  `id_cliente` int
-(11) NOT NULL,
-  `nit_cliente` varchar
-(45) DEFAULT NULL,
-  `razon_social_cliente` varchar
-(45) DEFAULT NULL,
-  `direccion_cliente` varchar
-(45) DEFAULT NULL,
-  `telefono_cliente` varchar
-(45) DEFAULT NULL,
-  `email_cliente` varchar
-(45) DEFAULT NULL,
-  `Municipios_id_municipio` int
-(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `clientes`(`id_cliente` int(11) NOT NULL,
+                        `nit_cliente` varchar(45) DEFAULT NULL,
+                        `razon_social_cliente` varchar(45) DEFAULT NULL,
+                        `direccion_cliente` varchar(45) DEFAULT NULL,
+                        `telefono_cliente` varchar(45) DEFAULT NULL,
+                        `email_cliente` varchar(45) DEFAULT NULL,
+                        `Municipios_id_municipio` int(11) NOT NULL
+                        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`
-id_cliente`,
-`nit_cliente
-`, `razon_social_cliente`, `direccion_cliente`, `telefono_cliente`, `email_cliente`, `Municipios_id_municipio`) VALUES
+INSERT INTO `clientes` (`id_cliente`,`nit_cliente`, `razon_social_cliente`, `direccion_cliente`, `telefono_cliente`, `email_cliente`, `Municipios_id_municipio`) VALUES
 (1, '830027960-7', 'SigloXXI', 'Cra falsa', '7999999', 'siglo@nts.com', 107),
 (2, '810028050-7', 'Inversiones Dentales Santander', 'Bucaramanga', '8521414', 'sede@nts', 118),
 (3, '830028950-5', 'Damasalud S.A', 'Bogota', '5698742', 'Sonria@sonria.com.co', 275),
@@ -246,22 +192,15 @@ id_cliente`,
 -- Estructura de tabla para la tabla `departamento`
 --
 
-CREATE TABLE `departamento`
-(
-  `id_departamento` int
-(11) NOT NULL,
-  `departamento` varchar
-(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `departamento`(`id_departamento` int(11) NOT NULL,
+                             `departamento` varchar(45) DEFAULT NULL
+                            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `departamento`
 --
 
-INSERT INTO `departamento` (`
-id_departamento`,
-`departamento
-`) VALUES
+INSERT INTO `departamento` (`id_departamento`,`departamento`) VALUES
 (5, 'ANTIOQUIA'),
 (8, 'ATLÁNTICO'),
 (11, 'BOGOTÁ, D.C.'),
@@ -302,24 +241,16 @@ id_departamento`,
 -- Estructura de tabla para la tabla `entrepano`
 --
 
-CREATE TABLE `entrepano`
-(
-  `id_entrepano` int
-(11) NOT NULL,
-  `descripcion_entrepano` varchar
-(45) DEFAULT NULL,
-  `Piso_id_piso` int
-(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `entrepano`(`id_entrepano` int(11) NOT NULL,
+                         `descripcion_entrepano` varchar(45) DEFAULT NULL,
+                          `Piso_id_piso` int(11) NOT NULL
+                        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `entrepano`
 --
 
-INSERT INTO `entrepano` (`
-id_entrepano`,
-`descripcion_entrepano
-`, `Piso_id_piso`) VALUES
+INSERT INTO `entrepano` (`id_entrepano`,`descripcion_entrepano`, `Piso_id_piso`) VALUES
 (1, '1', 1),
 (2, '1', 2),
 (3, '1', 3),
@@ -487,22 +418,15 @@ id_entrepano`,
 -- Estructura de tabla para la tabla `estado_item`
 --
 
-CREATE TABLE `estado_item`
-(
-  `id_estado_item` int
-(11) NOT NULL,
-  `nombre_estado_item` varchar
-(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `estado_item`(`id_estado_item` int(11) NOT NULL,
+                           `nombre_estado_item` varchar(45) DEFAULT NULL
+                          ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `estado_item`
 --
 
-INSERT INTO `estado_item` (`
-id_estado_item`,
-`nombre_estado_item
-`) VALUES
+INSERT INTO `estado_item` (`id_estado_item`,`nombre_estado_item`) VALUES
 (1, 'Custodia'),
 (2, 'Prestado');
 
@@ -512,24 +436,16 @@ id_estado_item`,
 -- Estructura de tabla para la tabla `estante`
 --
 
-CREATE TABLE `estante`
-(
-  `id_estante` int
-(11) NOT NULL,
-  `descripcion_estante` varchar
-(45) DEFAULT NULL,
-  `Bodega_id_bodega` int
-(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `estante`(`id_estante` int(11) NOT NULL,
+                       `descripcion_estante` varchar(45) DEFAULT NULL,
+                      `Bodega_id_bodega` int(11) NOT NULL
+                      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `estante`
 --
 
-INSERT INTO `estante` (`
-id_estante`,
-`descripcion_estante
-`, `Bodega_id_bodega`) VALUES
+INSERT INTO `estante` (`id_estante`,`descripcion_estante`, `Bodega_id_bodega`) VALUES
 (1, '1', 1),
 (2, '2', 1),
 (3, '1', 2),
@@ -547,28 +463,18 @@ id_estante`,
 -- Estructura de tabla para la tabla `folio`
 --
 
-CREATE TABLE `folio`
-(
-  `id_folio` int
-(11) NOT NULL,
-  `codigo_folio` varchar
-(45) DEFAULT NULL,
-  `desc_folio` varchar
-(45) DEFAULT NULL,
-  `Carpeta_id_carpeta` int
-(11) NOT NULL,
-  `Estado_item_id_estado_item` int
-(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `folio`(`id_folio` int(11) NOT NULL,
+                     `codigo_folio` varchar(45) DEFAULT NULL,
+                     `desc_folio` varchar(45) DEFAULT NULL,
+                     `Carpeta_id_carpeta` int(11) NOT NULL,
+                     `Estado_item_id_estado_item` int(11) NOT NULL
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `folio`
 --
 
-INSERT INTO `folio` (`
-id_folio`,
-`codigo_folio
-`, `desc_folio`, `Carpeta_id_carpeta`, `Estado_item_id_estado_item`) VALUES
+INSERT INTO `folio` (`id_folio`,`codigo_folio`, `desc_folio`, `Carpeta_id_carpeta`, `Estado_item_id_estado_item`) VALUES
 (1, 'Folio Uno', 'Folio Uno', 1, 1),
 (2, 'Folio Uno', 'Folio Uno', 2, 1),
 (3, 'Folio Uno', 'Folio Uno', 3, 1),
@@ -585,24 +491,16 @@ id_folio`,
 -- Estructura de tabla para la tabla `modulo`
 --
 
-CREATE TABLE `modulo`
-(
-  `id_modulo` int
-(11) NOT NULL,
-  `descripcion_modulo` varchar
-(45) DEFAULT NULL,
-  `Cara_id_cara` int
-(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `modulo`(`id_modulo` int(11) NOT NULL,
+                      `descripcion_modulo` varchar(45) DEFAULT NULL,
+                      `Cara_id_cara` int(11) NOT NULL
+                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `modulo`
 --
 
-INSERT INTO `modulo` (`
-id_modulo`,
-`descripcion_modulo
-`, `Cara_id_cara`) VALUES
+INSERT INTO `modulo` (`id_modulo`,`descripcion_modulo`, `Cara_id_cara`) VALUES
 (1, '1', 1),
 (2, '1', 2),
 (3, '1', 3),
@@ -650,26 +548,17 @@ id_modulo`,
 -- Estructura de tabla para la tabla `municipios`
 --
 
-CREATE TABLE `municipios`
-(
-  `id_municipio` int
-(11) NOT NULL,
-  `municipio` varchar
-(45) DEFAULT NULL,
-  `estado` int
-(11) DEFAULT NULL,
-  `Departamento_id_departamento` int
-(11) NOT NULL
+CREATE TABLE `municipios`(`id_municipio` int(11) NOT NULL,
+                          `municipio` varchar(45) DEFAULT NULL,
+                          `estado` int(11) DEFAULT NULL,
+                          `Departamento_id_departamento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `municipios`
 --
 
-INSERT INTO `municipios` (`
-id_municipio`,
-`municipio
-`, `estado`, `Departamento_id_departamento`) VALUES
+INSERT INTO `municipios` (`id_municipio`,`municipio`, `estado`, `Departamento_id_departamento`) VALUES
 (1, 'Abriaquí', 1, 5),
 (2, 'Acacías', 1, 50),
 (3, 'Acandí', 1, 27),
@@ -1777,24 +1666,16 @@ id_municipio`,
 -- Estructura de tabla para la tabla `piso`
 --
 
-CREATE TABLE `piso`
-(
-  `id_piso` int
-(11) NOT NULL,
-  `descripcion_piso` varchar
-(45) DEFAULT NULL,
-  `Modulo_id_modulo` int
-(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `piso`(`id_piso` int(11) NOT NULL,
+                    `descripcion_piso` varchar(45) DEFAULT NULL,
+                    `Modulo_id_modulo` int(11) NOT NULL
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `piso`
 --
 
-INSERT INTO `piso` (`
-id_piso`,
-`descripcion_piso
-`, `Modulo_id_modulo`) VALUES
+INSERT INTO `piso` (`id_piso`,`descripcion_piso`, `Modulo_id_modulo`) VALUES
 (1, '1', 1),
 (2, '1', 2),
 (3, '1', 3),
@@ -1882,27 +1763,16 @@ id_piso`,
 -- Estructura de tabla para la tabla `prestamo`
 --
 
-CREATE TABLE `prestamo`
-(
-  `id_prestamo` int
-(11) NOT NULL,
-  `objeto_prestamo` varchar
-(45) DEFAULT NULL,
-  `id_objeto` int
-(11) NOT NULL,
-  `fecha_solicitud` varchar
-(45) DEFAULT NULL,
-  `fecha_entrega` varchar
-(45) DEFAULT NULL,
-  `estado_prestamo` varchar
-(45) DEFAULT NULL,
-  `Usuarios_id_usuario` int
-(11) NOT NULL,
-  `Tipo_de_prestamo_id_tipo_prestamo` int
-(11) NOT NULL,
-  `Prioridad_prestamo_id_prioridad` int
-(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `prestamo`(`id_prestamo` int(11) NOT NULL,
+                        `objeto_prestamo` varchar(45) DEFAULT NULL,
+                        `id_objeto` int(11) NOT NULL,
+                        `fecha_solicitud` varchar(45) DEFAULT NULL,
+                        `fecha_entrega` varchar(45) DEFAULT NULL,
+                        `estado_prestamo` varchar(45) DEFAULT NULL,
+                        `Usuarios_id_usuario` int(11) NOT NULL,
+                        `Tipo_de_prestamo_id_tipo_prestamo` int(11) NOT NULL,
+                        `Prioridad_prestamo_id_prioridad` int(11) NOT NULL
+                        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1910,22 +1780,15 @@ CREATE TABLE `prestamo`
 -- Estructura de tabla para la tabla `prioridad_prestamo`
 --
 
-CREATE TABLE `prioridad_prestamo`
-(
-  `id_prioridad` int
-(11) NOT NULL,
-  `nombre_prioridad` varchar
-(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `prioridad_prestamo`(`id_prioridad` int(11) NOT NULL,
+                                  `nombre_prioridad` varchar(45) DEFAULT NULL
+                                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `prioridad_prestamo`
 --
 
-INSERT INTO `prioridad_prestamo` (`
-id_prioridad`,
-`nombre_prioridad
-`) VALUES
+INSERT INTO `prioridad_prestamo` (`id_prioridad`,`nombre_prioridad`) VALUES
 (1, 'Normal'),
 (2, 'Urgente');
 
@@ -1935,22 +1798,15 @@ id_prioridad`,
 -- Estructura de tabla para la tabla `tipos_de_usuario`
 --
 
-CREATE TABLE `tipos_de_usuario`
-(
-  `id_Tipo_usuario` int
-(11) NOT NULL,
-  `nombre_tipo_usuario` varchar
-(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `tipos_de_usuario`(`id_Tipo_usuario` int(11) NOT NULL,
+                                `nombre_tipo_usuario` varchar(45) DEFAULT NULL
+                               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `tipos_de_usuario`
 --
 
-INSERT INTO `tipos_de_usuario` (`
-id_Tipo_usuario`,
-`nombre_tipo_usuario
-`) VALUES
+INSERT INTO `tipos_de_usuario` (`id_Tipo_usuario`,`nombre_tipo_usuario`) VALUES
 (1, 'Administrador'),
 (2, 'Archivador'),
 (3, 'Cliente');
@@ -1961,22 +1817,15 @@ id_Tipo_usuario`,
 -- Estructura de tabla para la tabla `tipo_caja`
 --
 
-CREATE TABLE `tipo_caja`
-(
-  `id_tipo_caja` int
-(11) NOT NULL,
-  `nombre_tipo_caja` varchar
-(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `tipo_caja`(`id_tipo_caja` int(11) NOT NULL,
+                         `nombre_tipo_caja` varchar(45) DEFAULT NULL
+                        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `tipo_caja`
 --
 
-INSERT INTO `tipo_caja` (`
-id_tipo_caja`,
-`nombre_tipo_caja
-`) VALUES
+INSERT INTO `tipo_caja` (`id_tipo_caja`,`nombre_tipo_caja`) VALUES
 (1, '2 x 2'),
 (2, '3 x 3');
 
@@ -1986,22 +1835,15 @@ id_tipo_caja`,
 -- Estructura de tabla para la tabla `tipo_de_prestamo`
 --
 
-CREATE TABLE `tipo_de_prestamo`
-(
-  `id_tipo_prestamo` int
-(11) NOT NULL,
-  `nombre_tipo_prestamo` varchar
-(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `tipo_de_prestamo`(`id_tipo_prestamo` int(11) NOT NULL,
+                                `nombre_tipo_prestamo` varchar(45) DEFAULT NULL
+                               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `tipo_de_prestamo`
 --
 
-INSERT INTO `tipo_de_prestamo` (`
-id_tipo_prestamo`,
-`nombre_tipo_prestamo
-`) VALUES
+INSERT INTO `tipo_de_prestamo` (`id_tipo_prestamo`,`nombre_tipo_prestamo`) VALUES
 (1, 'Interno'),
 (2, 'Externo');
 
@@ -2011,30 +1853,19 @@ id_tipo_prestamo`,
 -- Estructura de tabla para la tabla `ubicacion_caja`
 --
 
-CREATE TABLE `ubicacion_caja`
-(
-  `id_ubicacion_caja` int
-(11) NOT NULL,
-  `ubicacion_X` varchar
-(45) DEFAULT NULL,
-  `ubicacion_Y` varchar
-(45) DEFAULT NULL,
-  `ubicacion_Z` varchar
-(45) DEFAULT NULL,
-  `estado_ubicacion` int
-(11) DEFAULT NULL,
-  `Entrepano_id_entrepano` int
-(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `ubicacion_caja`(`id_ubicacion_caja` int(11) NOT NULL,
+                              `ubicacion_X` varchar(45) DEFAULT NULL,
+                              `ubicacion_Y` varchar(45) DEFAULT NULL,
+                              `ubicacion_Z` varchar(45) DEFAULT NULL,
+                              `estado_ubicacion` int(11) DEFAULT NULL,
+                              `Entrepano_id_entrepano` int(11) NOT NULL
+                             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `ubicacion_caja`
 --
 
-INSERT INTO `ubicacion_caja` (`
-id_ubicacion_caja`,
-`ubicacion_X
-`, `ubicacion_Y`, `ubicacion_Z`, `estado_ubicacion`, `Entrepano_id_entrepano`) VALUES
+INSERT INTO `ubicacion_caja` (`id_ubicacion_caja`,`ubicacion_X`, `ubicacion_Y`, `ubicacion_Z`, `estado_ubicacion`, `Entrepano_id_entrepano`) VALUES
 (1, 'A', 'B', 'C', 1, 1),
 (2, 'A', 'B', 'C', 1, 2),
 (3, 'A', 'B', 'C', 1, 3),
@@ -2362,36 +2193,22 @@ id_ubicacion_caja`,
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuarios`
-(
-  `id_usuario` int
-(11) NOT NULL,
-  `nombre_usuario` varchar
-(45) DEFAULT NULL,
-  `apellido_usuario` varchar
-(45) DEFAULT NULL,
-  `cedula_usuario` int
-(11) DEFAULT NULL,
-  `telefono_usuario` varchar
-(45) DEFAULT NULL,
-  `email_usuario` varchar
-(45) DEFAULT NULL,
-  `password` varchar
-(45) DEFAULT NULL,
-  `Tipos_de_usuario_id_Tipo_usuario` int
-(11) NOT NULL,
-  `Clientes_id_cliente` int
-(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `usuarios`(`id_usuario` int(11) NOT NULL,
+                        `nombre_usuario` varchar(45) DEFAULT NULL,
+                        `apellido_usuario` varchar(45) DEFAULT NULL,
+                        `cedula_usuario` int(11) DEFAULT NULL,
+                        `telefono_usuario` varchar(45) DEFAULT NULL,
+                        `email_usuario` varchar(45) DEFAULT NULL,
+                        `password` varchar(45) DEFAULT NULL,
+                        `Tipos_de_usuario_id_Tipo_usuario` int(11) NOT NULL,
+                        `Clientes_id_cliente` int(11) NOT NULL
+                       ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`
-id_usuario`,
-`nombre_usuario
-`, `apellido_usuario`, `cedula_usuario`, `telefono_usuario`, `email_usuario`, `password`, `Tipos_de_usuario_id_Tipo_usuario`, `Clientes_id_cliente`) VALUES
+INSERT INTO `usuarios` (`id_usuario`,`nombre_usuario`, `apellido_usuario`, `cedula_usuario`, `telefono_usuario`, `email_usuario`, `password`, `Tipos_de_usuario_id_Tipo_usuario`, `Clientes_id_cliente`) VALUES
 (1, 'Roger A', 'Valencia G', 70258963, '3124567893', 'roger_viper@hotmail.com', '46d90aeb395ea8c82bc0b4c91a20a992', 1, 1),
 (2, 'Rafael Alejandro', 'Lancheros Rodriguez', 79654321, '3216549874', 'francoralf@gmail.com', 'cad8b7fbd0f80ea9f615ec99e051ae0b', 2, 1),
 (3, 'Oscar', 'Garcia', 1030475971, '3234429865', 'oscar@outlook.com', '817c27748118fe337dd5aa2fa3aab27f', 3, 3),
@@ -2404,199 +2221,132 @@ id_usuario`,
 --
 -- Indices de la tabla `bodega`
 --
-ALTER TABLE `bodega`
-ADD PRIMARY KEY
-(`id_bodega`),
-ADD KEY `fk_Bodega_Municipios1_idx`
-(`Municipios_id_municipio`);
+ALTER TABLE `bodega`ADD PRIMARY KEY(`id_bodega`),
+ADD KEY `fk_Bodega_Municipios1_idx`(`Municipios_id_municipio`);
 
 --
 -- Indices de la tabla `cajas`
 --
-ALTER TABLE `cajas`
-ADD PRIMARY KEY
-(`id_caja`),
-ADD KEY `fk_Cajas_Ubicacion_caja1_idx`
-(`Ubicacion_caja_id_ubicacion_caja`),
-ADD KEY `fk_Cajas_Estado_item1_idx`
-(`Estado_item_id_estado_item`),
-ADD KEY `fk_Cajas_Tipo_caja1_idx`
-(`Tipo_caja_id_tipo_caja`),
-ADD KEY `fk_Cajas_Clientes1_idx`
-(`Clientes_id_cliente`);
+ALTER TABLE `cajas`ADD PRIMARY KEY(`id_caja`),
+ADD KEY `fk_Cajas_Ubicacion_caja1_idx`(`Ubicacion_caja_id_ubicacion_caja`),
+ADD KEY `fk_Cajas_Estado_item1_idx`(`Estado_item_id_estado_item`),
+ADD KEY `fk_Cajas_Tipo_caja1_idx`(`Tipo_caja_id_tipo_caja`),
+ADD KEY `fk_Cajas_Clientes1_idx`(`Clientes_id_cliente`);
 
 --
 -- Indices de la tabla `cajas_has_prestamo`
 --
-ALTER TABLE `cajas_has_prestamo`
-ADD PRIMARY KEY
-(`Cajas_id_caja`,`Prestamo_id_prestamo`),
-ADD KEY `fk_Cajas_has_Prestamo_Prestamo1_idx`
-(`Prestamo_id_prestamo`),
-ADD KEY `fk_Cajas_has_Prestamo_Cajas1_idx`
-(`Cajas_id_caja`);
+ALTER TABLE `cajas_has_prestamo`ADD PRIMARY KEY(`Cajas_id_caja`,`Prestamo_id_prestamo`),
+ADD KEY `fk_Cajas_has_Prestamo_Prestamo1_idx`(`Prestamo_id_prestamo`),
+ADD KEY `fk_Cajas_has_Prestamo_Cajas1_idx`(`Cajas_id_caja`);
 
 --
 -- Indices de la tabla `cara`
 --
-ALTER TABLE `cara`
-ADD PRIMARY KEY
-(`id_cara`),
-ADD KEY `fk_Cara_Estante1_idx`
-(`Estante_id_estante`);
+ALTER TABLE `cara`ADD PRIMARY KEY(`id_cara`),
+ADD KEY `fk_Cara_Estante1_idx`(`Estante_id_estante`);
 
 --
 -- Indices de la tabla `carpeta`
 --
-ALTER TABLE `carpeta`
-ADD PRIMARY KEY
-(`id_carpeta`),
-ADD KEY `fk_Carpeta_Cajas1_idx`
-(`Cajas_id_caja`),
-ADD KEY `fk_Carpeta_Estado_item1_idx`
-(`Estado_item_id_estado_item`);
+ALTER TABLE `carpeta`ADD PRIMARY KEY(`id_carpeta`),
+ADD KEY `fk_Carpeta_Cajas1_idx`(`Cajas_id_caja`),
+ADD KEY `fk_Carpeta_Estado_item1_idx`(`Estado_item_id_estado_item`);
 
 --
 -- Indices de la tabla `clientes`
 --
-ALTER TABLE `clientes`
-ADD PRIMARY KEY
-(`id_cliente`),
-ADD KEY `fk_Gestores_Municipios1_idx`
-(`Municipios_id_municipio`);
+ALTER TABLE `clientes`ADD PRIMARY KEY(`id_cliente`),
+ADD KEY `fk_Gestores_Municipios1_idx`(`Municipios_id_municipio`);
 
 --
 -- Indices de la tabla `departamento`
 --
-ALTER TABLE `departamento`
-ADD PRIMARY KEY
-(`id_departamento`);
+ALTER TABLE `departamento`ADD PRIMARY KEY(`id_departamento`);
 
 --
 -- Indices de la tabla `entrepano`
 --
-ALTER TABLE `entrepano`
-ADD PRIMARY KEY
-(`id_entrepano`),
-ADD KEY `fk_Entrepano_Piso1_idx`
-(`Piso_id_piso`);
+ALTER TABLE `entrepano`ADD PRIMARY KEY(`id_entrepano`),
+ADD KEY `fk_Entrepano_Piso1_idx`(`Piso_id_piso`);
 
 --
 -- Indices de la tabla `estado_item`
 --
-ALTER TABLE `estado_item`
-ADD PRIMARY KEY
-(`id_estado_item`);
+ALTER TABLE `estado_item`ADD PRIMARY KEY(`id_estado_item`);
 
 --
 -- Indices de la tabla `estante`
 --
-ALTER TABLE `estante`
-ADD PRIMARY KEY
-(`id_estante`),
-ADD KEY `fk_Estante_Bodega1_idx`
-(`Bodega_id_bodega`);
+ALTER TABLE `estante`ADD PRIMARY KEY(`id_estante`),
+ADD KEY `fk_Estante_Bodega1_idx`(`Bodega_id_bodega`);
 
 --
 -- Indices de la tabla `folio`
 --
-ALTER TABLE `folio`
-ADD PRIMARY KEY
-(`id_folio`),
-ADD KEY `fk_Folio_Carpeta1_idx`
-(`Carpeta_id_carpeta`),
-ADD KEY `fk_Folio_Estado_item1_idx`
-(`Estado_item_id_estado_item`);
+ALTER TABLE `folio`ADD PRIMARY KEY(`id_folio`),
+ADD KEY `fk_Folio_Carpeta1_idx`(`Carpeta_id_carpeta`),
+ADD KEY `fk_Folio_Estado_item1_idx`(`Estado_item_id_estado_item`);
 
 --
 -- Indices de la tabla `modulo`
 --
-ALTER TABLE `modulo`
-ADD PRIMARY KEY
-(`id_modulo`),
-ADD KEY `fk_Modulo_Cara1_idx`
-(`Cara_id_cara`);
+ALTER TABLE `modulo`ADD PRIMARY KEY(`id_modulo`),
+ADD KEY `fk_Modulo_Cara1_idx`(`Cara_id_cara`);
 
 --
 -- Indices de la tabla `municipios`
 --
-ALTER TABLE `municipios`
-ADD PRIMARY KEY
-(`id_municipio`),
-ADD KEY `fk_Ciudad_Departamento_idx`
-(`Departamento_id_departamento`);
+ALTER TABLE `municipios`ADD PRIMARY KEY(`id_municipio`),
+ADD KEY `fk_Ciudad_Departamento_idx`(`Departamento_id_departamento`);
 
 --
 -- Indices de la tabla `piso`
 --
-ALTER TABLE `piso`
-ADD PRIMARY KEY
-(`id_piso`),
-ADD KEY `fk_Piso_Modulo1_idx`
-(`Modulo_id_modulo`);
+ALTER TABLE `piso`ADD PRIMARY KEY(`id_piso`),
+ADD KEY `fk_Piso_Modulo1_idx`(`Modulo_id_modulo`);
 
 --
 -- Indices de la tabla `prestamo`
 --
-ALTER TABLE `prestamo`
-ADD PRIMARY KEY
-(`id_prestamo`),
-ADD KEY `fk_Prestamo_Usuarios1_idx`
-(`Usuarios_id_usuario`),
-ADD KEY `fk_Prestamo_Tipo_de_prestamo1_idx`
-(`Tipo_de_prestamo_id_tipo_prestamo`),
-ADD KEY `fk_Prestamo_Prioridad_prestamo1_idx`
-(`Prioridad_prestamo_id_prioridad`);
+ALTER TABLE `prestamo`ADD PRIMARY KEY(`id_prestamo`),
+ADD KEY `fk_Prestamo_Usuarios1_idx`(`Usuarios_id_usuario`),
+ADD KEY `fk_Prestamo_Tipo_de_prestamo1_idx`(`Tipo_de_prestamo_id_tipo_prestamo`),
+ADD KEY `fk_Prestamo_Prioridad_prestamo1_idx`(`Prioridad_prestamo_id_prioridad`);
 
 --
 -- Indices de la tabla `prioridad_prestamo`
 --
-ALTER TABLE `prioridad_prestamo`
-ADD PRIMARY KEY
-(`id_prioridad`);
+ALTER TABLE `prioridad_prestamo`ADD PRIMARY KEY(`id_prioridad`);
 
 --
 -- Indices de la tabla `tipos_de_usuario`
 --
-ALTER TABLE `tipos_de_usuario`
-ADD PRIMARY KEY
-(`id_Tipo_usuario`);
+ALTER TABLE `tipos_de_usuario`ADD PRIMARY KEY(`id_Tipo_usuario`);
 
 --
 -- Indices de la tabla `tipo_caja`
 --
-ALTER TABLE `tipo_caja`
-ADD PRIMARY KEY
-(`id_tipo_caja`);
+ALTER TABLE `tipo_caja`ADD PRIMARY KEY(`id_tipo_caja`);
 
 --
 -- Indices de la tabla `tipo_de_prestamo`
 --
-ALTER TABLE `tipo_de_prestamo`
-ADD PRIMARY KEY
-(`id_tipo_prestamo`);
+ALTER TABLE `tipo_de_prestamo`ADD PRIMARY KEY(`id_tipo_prestamo`);
 
 --
 -- Indices de la tabla `ubicacion_caja`
 --
-ALTER TABLE `ubicacion_caja`
-ADD PRIMARY KEY
-(`id_ubicacion_caja`),
-ADD KEY `fk_Ubicacion_caja_Entrepano1_idx`
-(`Entrepano_id_entrepano`);
+ALTER TABLE `ubicacion_caja`ADD PRIMARY KEY(`id_ubicacion_caja`),
+ADD KEY `fk_Ubicacion_caja_Entrepano1_idx`(`Entrepano_id_entrepano`);
 
 --
 -- Indices de la tabla `usuarios`
 --
-ALTER TABLE `usuarios`
-ADD PRIMARY KEY
-(`id_usuario`),
-ADD UNIQUE KEY `id_usuario_UNIQUE`
-(`id_usuario`),
-ADD KEY `fk_Usuarios_Tipos_de_usuario1_idx`
-(`Tipos_de_usuario_id_Tipo_usuario`),
-ADD KEY `fk_Usuarios_Clientes1_idx`
-(`Clientes_id_cliente`);
+ALTER TABLE `usuarios`ADD PRIMARY KEY(`id_usuario`),
+ADD UNIQUE KEY `id_usuario_UNIQUE`(`id_usuario`),
+ADD KEY `fk_Usuarios_Tipos_de_usuario1_idx`(`Tipos_de_usuario_id_Tipo_usuario`),
+ADD KEY `fk_Usuarios_Clientes1_idx`(`Clientes_id_cliente`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -2605,86 +2355,62 @@ ADD KEY `fk_Usuarios_Clientes1_idx`
 --
 -- AUTO_INCREMENT de la tabla `bodega`
 --
-ALTER TABLE `bodega`
-  MODIFY `id_bodega` int
-(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `bodega`  MODIFY `id_bodega` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `cajas`
 --
-ALTER TABLE `cajas`
-  MODIFY `id_caja` int
-(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `cajas`  MODIFY `id_caja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `carpeta`
 --
-ALTER TABLE `carpeta`
-  MODIFY `id_carpeta` int
-(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `carpeta`  MODIFY `id_carpeta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
-ALTER TABLE `clientes`
-  MODIFY `id_cliente` int
-(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `clientes`  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `estado_item`
 --
-ALTER TABLE `estado_item`
-  MODIFY `id_estado_item` int
-(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `estado_item`  MODIFY `id_estado_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `folio`
 --
-ALTER TABLE `folio`
-  MODIFY `id_folio` int
-(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+ALTER TABLE `folio`  MODIFY `id_folio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamo`
 --
-ALTER TABLE `prestamo`
-  MODIFY `id_prestamo` int
-(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `prestamo`  MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `prioridad_prestamo`
 --
-ALTER TABLE `prioridad_prestamo`
-  MODIFY `id_prioridad` int
-(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `prioridad_prestamo`  MODIFY `id_prioridad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tipos_de_usuario`
 --
-ALTER TABLE `tipos_de_usuario`
-  MODIFY `id_Tipo_usuario` int
-(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `tipos_de_usuario`  MODIFY `id_Tipo_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_de_prestamo`
 --
-ALTER TABLE `tipo_de_prestamo`
-  MODIFY `id_tipo_prestamo` int
-(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `tipo_de_prestamo`  MODIFY `id_tipo_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `ubicacion_caja`
 --
-ALTER TABLE `ubicacion_caja`
-  MODIFY `id_ubicacion_caja` int
-(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=321;
+ALTER TABLE `ubicacion_caja`  MODIFY `id_ubicacion_caja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=321;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
-ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int
-(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `usuarios`  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
@@ -2693,30 +2419,24 @@ ALTER TABLE `usuarios`
 --
 -- Filtros para la tabla `bodega`
 --
-ALTER TABLE `bodega`
-ADD CONSTRAINT `fk_Bodega_Municipios1` FOREIGN KEY
-(`Municipios_id_municipio`) REFERENCES `municipios`
-(`id_municipio`) ON
+ALTER TABLE `bodega`ADD CONSTRAINT `fk_Bodega_Municipios1` 
+FOREIGN KEY(`Municipios_id_municipio`) REFERENCES `municipios`(`id_municipio`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `cajas`
 --
-ALTER TABLE `cajas`
-ADD CONSTRAINT `fk_Cajas_Estado_item1` FOREIGN KEY
-(`Estado_item_id_estado_item`) REFERENCES `estado_item`
-(`id_estado_item`) ON
+ALTER TABLE `cajas`ADD CONSTRAINT `fk_Cajas_Estado_item1` 
+FOREIGN KEY(`Estado_item_id_estado_item`) REFERENCES `estado_item`(`id_estado_item`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION,
 ADD CONSTRAINT `fk_Cajas_Tipo_caja1` FOREIGN KEY
-(`Tipo_caja_id_tipo_caja`) REFERENCES `tipo_caja`
-(`id_tipo_caja`) ON
+(`Tipo_caja_id_tipo_caja`) REFERENCES `tipo_caja`(`id_tipo_caja`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION,
-ADD CONSTRAINT `fk_Cajas_Ubicacion_caja1` FOREIGN KEY
-(`Ubicacion_caja_id_ubicacion_caja`) REFERENCES `ubicacion_caja`
-(`id_ubicacion_caja`) ON
+ADD CONSTRAINT `fk_Cajas_Ubicacion_caja1` 
+FOREIGN KEY(`Ubicacion_caja_id_ubicacion_caja`) REFERENCES `ubicacion_caja`(`id_ubicacion_caja`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION;
 
@@ -2724,159 +2444,128 @@ UPDATE NO ACTION;
 -- Filtros para la tabla `cajas_has_prestamo`
 --
 ALTER TABLE `cajas_has_prestamo`
-ADD CONSTRAINT `fk_Cajas_has_Prestamo_Cajas1` FOREIGN KEY
-(`Cajas_id_caja`) REFERENCES `cajas`
-(`id_caja`) ON
+ADD CONSTRAINT `fk_Cajas_has_Prestamo_Cajas1` 
+FOREIGN KEY(`Cajas_id_caja`) REFERENCES `cajas`(`id_caja`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION,
-ADD CONSTRAINT `fk_Cajas_has_Prestamo_Prestamo1` FOREIGN KEY
-(`Prestamo_id_prestamo`) REFERENCES `prestamo`
-(`id_prestamo`) ON
+ADD CONSTRAINT `fk_Cajas_has_Prestamo_Prestamo1` 
+FOREIGN KEY(`Prestamo_id_prestamo`) REFERENCES `prestamo`(`id_prestamo`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `cara`
 --
-ALTER TABLE `cara`
-ADD CONSTRAINT `fk_Cara_Estante1` FOREIGN KEY
-(`Estante_id_estante`) REFERENCES `estante`
-(`id_estante`) ON
+ALTER TABLE `cara`ADD CONSTRAINT `fk_Cara_Estante1` 
+FOREIGN KEY(`Estante_id_estante`) REFERENCES `estante`(`id_estante`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `carpeta`
 --
-ALTER TABLE `carpeta`
-ADD CONSTRAINT `fk_Carpeta_Cajas1` FOREIGN KEY
-(`Cajas_id_caja`) REFERENCES `cajas`
-(`id_caja`) ON
+ALTER TABLE `carpeta`ADD CONSTRAINT `fk_Carpeta_Cajas1` 
+FOREIGN KEY(`Cajas_id_caja`) REFERENCES `cajas`(`id_caja`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION,
-ADD CONSTRAINT `fk_Carpeta_Estado_item1` FOREIGN KEY
-(`Estado_item_id_estado_item`) REFERENCES `estado_item`
-(`id_estado_item`) ON
+ADD CONSTRAINT `fk_Carpeta_Estado_item1` 
+FOREIGN KEY(`Estado_item_id_estado_item`) REFERENCES `estado_item`(`id_estado_item`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `clientes`
 --
-ALTER TABLE `clientes`
-ADD CONSTRAINT `fk_Gestores_Municipios1` FOREIGN KEY
-(`Municipios_id_municipio`) REFERENCES `municipios`
-(`id_municipio`) ON
+ALTER TABLE `clientes` ADD CONSTRAINT `fk_Gestores_Municipios1` 
+FOREIGN KEY(`Municipios_id_municipio`) REFERENCES `municipios`(`id_municipio`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `entrepano`
 --
-ALTER TABLE `entrepano`
-ADD CONSTRAINT `fk_Entrepano_Piso1` FOREIGN KEY
-(`Piso_id_piso`) REFERENCES `piso`
-(`id_piso`) ON
+ALTER TABLE `entrepano`ADD CONSTRAINT `fk_Entrepano_Piso1` 
+FOREIGN KEY(`Piso_id_piso`) REFERENCES `piso`(`id_piso`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `estante`
 --
-ALTER TABLE `estante`
-ADD CONSTRAINT `fk_Estante_Bodega1` FOREIGN KEY
-(`Bodega_id_bodega`) REFERENCES `bodega`
-(`id_bodega`) ON
+ALTER TABLE `estante`ADD CONSTRAINT `fk_Estante_Bodega1` 
+FOREIGN KEY(`Bodega_id_bodega`) REFERENCES `bodega`(`id_bodega`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `folio`
 --
-ALTER TABLE `folio`
-ADD CONSTRAINT `fk_Folio_Carpeta1` FOREIGN KEY
-(`Carpeta_id_carpeta`) REFERENCES `carpeta`
-(`id_carpeta`) ON
+ALTER TABLE `folio`ADD CONSTRAINT `fk_Folio_Carpeta1` 
+FOREIGN KEY(`Carpeta_id_carpeta`) REFERENCES `carpeta`(`id_carpeta`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION,
-ADD CONSTRAINT `fk_Folio_Estado_item1` FOREIGN KEY
-(`Estado_item_id_estado_item`) REFERENCES `estado_item`
-(`id_estado_item`) ON
+ADD CONSTRAINT `fk_Folio_Estado_item1` 
+FOREIGN KEY(`Estado_item_id_estado_item`) REFERENCES `estado_item`(`id_estado_item`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `modulo`
 --
-ALTER TABLE `modulo`
-ADD CONSTRAINT `fk_Modulo_Cara1` FOREIGN KEY
-(`Cara_id_cara`) REFERENCES `cara`
-(`id_cara`) ON
+ALTER TABLE `modulo`ADD CONSTRAINT `fk_Modulo_Cara1` 
+FOREIGN KEY(`Cara_id_cara`) REFERENCES `cara`(`id_cara`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `municipios`
 --
-ALTER TABLE `municipios`
-ADD CONSTRAINT `fk_Ciudad_Departamento` FOREIGN KEY
-(`Departamento_id_departamento`) REFERENCES `departamento`
-(`id_departamento`) ON
+ALTER TABLE `municipios`ADD CONSTRAINT `fk_Ciudad_Departamento` 
+FOREIGN KEY(`Departamento_id_departamento`) REFERENCES `departamento`(`id_departamento`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `piso`
 --
-ALTER TABLE `piso`
-ADD CONSTRAINT `fk_Piso_Modulo1` FOREIGN KEY
-(`Modulo_id_modulo`) REFERENCES `modulo`
-(`id_modulo`) ON
+ALTER TABLE `piso`ADD CONSTRAINT `fk_Piso_Modulo1` 
+FOREIGN KEY(`Modulo_id_modulo`) REFERENCES `modulo`(`id_modulo`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `prestamo`
 --
-ALTER TABLE `prestamo`
-ADD CONSTRAINT `fk_Prestamo_Prioridad_prestamo1` FOREIGN KEY
-(`Prioridad_prestamo_id_prioridad`) REFERENCES `prioridad_prestamo`
-(`id_prioridad`) ON
+ALTER TABLE `prestamo` ADD CONSTRAINT `fk_Prestamo_Prioridad_prestamo1` 
+FOREIGN KEY(`Prioridad_prestamo_id_prioridad`) REFERENCES `prioridad_prestamo`(`id_prioridad`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION,
-ADD CONSTRAINT `fk_Prestamo_Tipo_de_prestamo1` FOREIGN KEY
-(`Tipo_de_prestamo_id_tipo_prestamo`) REFERENCES `tipo_de_prestamo`
-(`id_tipo_prestamo`) ON
+ADD CONSTRAINT `fk_Prestamo_Tipo_de_prestamo1` 
+FOREIGN KEY(`Tipo_de_prestamo_id_tipo_prestamo`) REFERENCES `tipo_de_prestamo`(`id_tipo_prestamo`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION,
-ADD CONSTRAINT `fk_Prestamo_Usuarios1` FOREIGN KEY
-(`Usuarios_id_usuario`) REFERENCES `usuarios`
-(`id_usuario`) ON
+ADD CONSTRAINT `fk_Prestamo_Usuarios1` 
+FOREIGN KEY(`Usuarios_id_usuario`) REFERENCES `usuarios`(`id_usuario`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `ubicacion_caja`
 --
-ALTER TABLE `ubicacion_caja`
-ADD CONSTRAINT `fk_Ubicacion_caja_Entrepano1` FOREIGN KEY
-(`Entrepano_id_entrepano`) REFERENCES `entrepano`
-(`id_entrepano`) ON
+ALTER TABLE `ubicacion_caja`ADD CONSTRAINT `fk_Ubicacion_caja_Entrepano1` 
+FOREIGN KEY(`Entrepano_id_entrepano`) REFERENCES `entrepano`(`id_entrepano`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `usuarios`
 --
-ALTER TABLE `usuarios`
-ADD CONSTRAINT `fk_Usuarios_Clientes1` FOREIGN KEY
-(`Clientes_id_cliente`) REFERENCES `clientes`
-(`id_cliente`) ON
+ALTER TABLE `usuarios`ADD CONSTRAINT `fk_Usuarios_Clientes1` 
+FOREIGN KEY(`Clientes_id_cliente`) REFERENCES `clientes`(`id_cliente`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION,
-ADD CONSTRAINT `fk_Usuarios_Tipos_de_usuario1` FOREIGN KEY
-(`Tipos_de_usuario_id_Tipo_usuario`) REFERENCES `tipos_de_usuario`
-(`id_Tipo_usuario`) ON
+ADD CONSTRAINT `fk_Usuarios_Tipos_de_usuario1`
+FOREIGN KEY(`Tipos_de_usuario_id_Tipo_usuario`) REFERENCES `tipos_de_usuario`(`id_Tipo_usuario`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION;
 COMMIT;
