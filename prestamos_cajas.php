@@ -7,6 +7,7 @@ if(!isset($_SESSION['logged_in'])){
 }
 $ClaseUsuario = $_SESSION['Tipos_de_usuario_id_Tipo_usuario'];
 $Gestor = $_SESSION['Clientes_id_cliente'];
+$id_usuario = $_SESSION['id_usuario'];
 $Nombre_Gestor = $_SESSION['nombre_usuario'];
 $Apellido_Gestor = $_SESSION['apellido_usuario'];
 include_once 'conexion/conexion.php';
@@ -139,6 +140,7 @@ if($ClaseUsuario == "1"){//Administrador
 				<form id="formPrestamos">
 					<div class="modal-body">
 						<input type="hidden" class="form-control" id="gestor" value="<?php echo $Gestor; ?>">
+                        <input type="hidden" class="form-control" id="id_usuario" value="<?php echo $id_usuario; ?>">
 						<input type="hidden" class="form-control" id="nombre_gestor" value="<?php echo $Nombre_Gestor; ?>">
 						<input type="hidden" class="form-control" id="apellido_gestor" value="<?php echo $Apellido_Gestor; ?>">
 						<input type="hidden" class="form-control" id="id_caja">

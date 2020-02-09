@@ -101,6 +101,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 		<form id="formPrestamos">
 			<div class="modal-body">
 				<input type="hidden" class="form-control" id="id_carpeta">
+                <input type="hidden" class="form-control" id="id_usuario" value="<?php echo $id_usuario; ?>">
 				<div class="form-group">
 					<label for="codigo_carpeta class="col-form-label">Serial carpeta:</label>
 					<input type="text" class="form-control" id="codigo_carpeta">

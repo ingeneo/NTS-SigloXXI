@@ -14,10 +14,10 @@ $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 if($ClaseUsuario == "1"){//Administrador
 	$consulta = "SELECT P.id_prestamo, P.objeto_prestamo, P.id_objeto, P.fecha_solicitud, P.fecha_entrega, P.estado_prestamo, U.nombre_usuario, U.apellido_usuario, P.Tipo_de_prestamo, P.Prioridad_prestamo
-                 FROM prestamo P, usuarios U
-                 WHERE P.estado_prestamo = 'Abierto'
-                 AND P.Usuarios_id_usuario = U.id_usuario
-                 ORDER BY id_prestamo";
+				 FROM prestamo P, usuarios U
+				 WHERE P.estado_prestamo = 'Abierto'
+				 AND P.Usuarios_id_usuario = U.id_usuario
+				 ORDER BY id_prestamo";
 	$resultado = $conexion->prepare($consulta);
 	$resultado->execute();
 	$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -59,18 +59,19 @@ if($ClaseUsuario == "1"){//Administrador
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="table-responsive">
-					<table id="tablaPrestamos" class="table table-striped table-bordered table-condensed"
+					<table id="tablaDevoluciones" class="table table-striped table-bordered table-condensed"
 						style="width:100%">
 						<thead class="text-center">
 							<tr>
 								<th>ID</th>
 								<th>Objeto Prestamo</th>
+								<th>ID Objeto</th>
 								<th>Fecha Solicitud</th>
 								<th>Fecha Entrega</th>
 								<th>Estado del Prestamo</th>
 								<th>Usuario Solicitud</th>
 								<th>Tipo de prestamo</th>
-                                <th>Prioridad prestamo</th>                                
+								<th>Prioridad prestamo</th>                                
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -81,12 +82,13 @@ if($ClaseUsuario == "1"){//Administrador
 							<tr>
 								<td><?php echo $dat['id_prestamo'] ?></td>
 								<td><?php echo $dat['objeto_prestamo'] ?></td>
+								<td><?php echo $dat['id_objeto'] ?></td>
 								<td><?php echo $dat['fecha_solicitud'] ?></td>								
 								<td><?php echo $dat['fecha_entrega'] ?></td>
 								<td><?php echo $dat['estado_prestamo'] ?></td>
-                                <td><?php echo $dat['nombre_usuario']."    ".$dat['apellido_usuario']?></td>
+								<td><?php echo $dat['nombre_usuario']."    ".$dat['apellido_usuario']?></td>
 								<td><?php echo $dat['Tipo_de_prestamo'] ?></td>
-                                <td><?php echo $dat['Prioridad_prestamo'] ?></td>
+								<td><?php echo $dat['Prioridad_prestamo'] ?></td>
 								<td nowrap></td>
 							</tr>
 							<?php
@@ -95,14 +97,15 @@ if($ClaseUsuario == "1"){//Administrador
 						</tbody>
 						<tfoot class="text-center">
 							<tr>
-                                <th>ID</th>
+								<th>ID</th>
 								<th>Objeto Prestamo</th>
+								<th>ID Objeto</th>
 								<th>Fecha Solicitud</th>
 								<th>Fecha Entrega</th>
 								<th>Estado del Prestamo</th>
 								<th>Usuario Solicitud</th>
 								<th>Tipo de prestamo</th>
-                                <th>Prioridad prestamo</th>
+								<th>Prioridad prestamo</th>  
 								<th style="display:none;"></th>
 							</tr>
 						</tfoot>
@@ -123,28 +126,14 @@ if($ClaseUsuario == "1"){//Administrador
 							aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form id="formPrestamos">
+				<form id="formDevoluciones">
 					<div class="modal-body">
 						<input type="hidden" class="form-control" id="gestor" value="<?php echo $Gestor; ?>">
 						<input type="hidden" class="form-control" id="nombre_gestor" value="<?php echo $Nombre_Gestor; ?>">
 						<input type="hidden" class="form-control" id="apellido_gestor" value="<?php echo $Apellido_Gestor; ?>">
-						<input type="hidden" class="form-control" id="id_caja">
-						<div class="form-group">
-							<label for="serial_caja" class="col-form-label" disabled >Serial Caja:</label>
-							<input type="text" class="form-control" id="serial_caja">
-						</div>
-						<div class="form-group">
-							<label for="fecha_entrega" class="col-form-label">Fecha de entrega:</label>
-							<input type="date" class="form-control" id="fecha_entrega">
-						</div>
-						<div class="form-group">
-							<label for="lista_tipo_prestamos" class=" col-form-label">Tipo de prestamo:</label>
-							<select class="form-control" id="lista_tipo_prestamos" name="lista_tipo_prestamos" required></select>
-						</div>
-						<div class="form-group">
-							<label for="lista_prioridad_prestamo" class=" col-form-label">Prioridad de prestamo:</label>
-							<select class="form-control" id="lista_prioridad_prestamo" name="lista_prioridad_prestamo" required></select>
-						</div>
+						<input type="hidden" class="form-control" id="id_prestamo" value="<?php echo $dat['id_prestamo']; ?>">
+						<input type="hidden" class="form-control" id="id_objeto" value="<?php echo $dat['id_objeto']; ?>">
+						<input type="hidden" class="form-control" id="objeto_prestamo" value="<?php echo $dat['objeto_prestamo'] ?>">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal"><i
@@ -168,6 +157,6 @@ if($ClaseUsuario == "1"){//Administrador
 	<script src="JSZip/jszip.min.js"></script>
 	<script src="pdfmake/pdfmake.min.js"></script>
 	<script src="pdfmake/vfs_fonts.js"></script>
-	<script type="text/javascript" src="js/main_prestamos_cajas.js"></script>
+	<script type="text/javascript" src="js/main_devoluciones.js"></script>
 </body>
 </html>

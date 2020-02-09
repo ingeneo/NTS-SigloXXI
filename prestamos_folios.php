@@ -103,6 +103,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 				<form id="formPrestamos">
 					<div class="modal-body">
 						<input type="hidden" class="form-control" id="id_folio">
+                        <input type="hidden" class="form-control" id="id_usuario" value="<?php echo $id_usuario; ?>">
 						<div class="form-group">
 							<label for="codigo_folio" class="col-form-label" disabled >Serial Folio:</label>
 							<input type="text" class="form-control" id="codigo_folio">
