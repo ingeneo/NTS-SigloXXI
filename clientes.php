@@ -48,7 +48,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 			</div>
 		</div>
 	</header>
-	
+	<br>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12">

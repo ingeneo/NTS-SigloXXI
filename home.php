@@ -27,7 +27,7 @@ if(!isset($_SESSION['logged_in'])){
 	<div class="contenedor container-fluid">
 		<div class="row fondo">
 			<div class="col-sm-8 col-md-8 col-lg-8">
-				<h1 class="titulos text-center text-uppercase">menú principal - Administrador</h1>
+				<h1 class="titulos text-center text-uppercase">Menú principal - Administrador</h1>
 			</div>
 			<div class="col-sm-2 col-md-2 col-lg-2">
 				<a href="account.php" class="btn" style="font-size:20px; text-align: right;"><i class="fa fa-user-alt" title="Mi cuenta"></i>&nbsp;&nbsp;<?php echo $_SESSION['nombre_usuario'];?></a>
@@ -53,10 +53,6 @@ if(!isset($_SESSION['logged_in'])){
 
 		<div class="usuarios row">
 			<div class="caja_icono col-lg-4 col-md-4 col-sm-12">
-				<a href="estantes.php" class="btn1"><i class="fas fa-pallet"></i></a>
-				<h3>Estantes</h3>
-			</div>
-			<div class="caja_icono col-lg-4 col-md-4 col-sm-12">
 				<a href="cajas.php" class="btn1"><i class="fas fa-box-open"></i></a>
 				<h3>Cajas</h3>
 			</div>
@@ -64,16 +60,20 @@ if(!isset($_SESSION['logged_in'])){
 				<a href="carpetas.php" class="btn1"><i class="far fa-folder-open"></i></a>
 				<h3>Carpetas</h3>
 			</div>
+            <div class="caja_icono col-lg-4 col-md-4 col-sm-12">
+				<a href="folios.php" class="btn1"><i class="fas fa-file-invoice"></i></a>
+				<h3>Folios</h3>
+			</div>
 		</div>
 
 		<div class="usuarios row">
 			<div class="caja_icono col-lg-4 col-md-4 col-sm-12">
-				<a href="folios.php" class="btn1"><i class="fas fa-file-invoice"></i></a>
-				<h3>Folios</h3>
-			</div>
-			<div class="caja_icono col-lg-4 col-md-4 col-sm-12">
 				<a href="prestamos.php" class="btn1"><i class="fas fa-chalkboard-teacher"></i></a>
 				<h3>Prestamos</h3>
+			</div>
+            <div class="caja_icono col-lg-4 col-md-4 col-sm-12">
+				<a href="devoluciones.php" class="btn1"><i class="fas fa-chalkboard-teacher"></i></a>
+				<h3>Devoluciones</h3>
 			</div>
 			<div class="caja_icono col-lg-4 col-md-4 col-sm-12">
 				<a href="consultas.php" class="btn1"><i class="fab fa-searchengin"></i></a>

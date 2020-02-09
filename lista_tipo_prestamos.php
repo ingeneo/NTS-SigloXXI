@@ -13,7 +13,7 @@ function ListaTipoPrestamo() {
 	$resultado->execute();
 	$lista_tipo_prestamo = '<option value="" disabled selected>Seleccione el tipo de prestamo...</option>';
 	while($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
-		$lista_tipo_prestamo .= "<option value = '$row[ID]'>$row[TIPOPRES]</option>";
+		$lista_tipo_prestamo .= "<option value = '$row[TIPOPRES]'>$row[TIPOPRES]</option>";
 	}
 	return $lista_tipo_prestamo;
 }

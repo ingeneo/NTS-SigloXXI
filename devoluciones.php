@@ -13,28 +13,12 @@ include_once 'conexion/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 if($ClaseUsuario == "1"){//Administrador
-	$consulta = "SELECT CJ.id_caja, CJ.serial_caja, CJ.descripcion_caja, UC.ubicacion_X, UC.ubicacion_Y, UC.ubicacion_Z, EI.nombre_estado_item, TC.nombre_tipo_caja, C.razon_social_cliente
-			 FROM cajas CJ, estado_item EI, ubicacion_caja UC, tipo_caja TC, clientes C
-			 WHERE CJ.Estado_item_id_estado_item = EI.id_estado_item
-			 AND CJ.Tipo_caja_id_tipo_caja = TC.id_tipo_caja
-			 AND CJ.Ubicacion_caja_id_ubicacion_caja = UC.id_ubicacion_caja
-			 AND CJ.Clientes_id_cliente = C.id_cliente
-			 AND CJ.Estado_item_id_estado_item = '1'
-			 ORDER BY id_caja";
+	$consulta = "SELECT P.id_prestamo, P.objeto_prestamo, P.id_objeto, P.fecha_solicitud, P.fecha_entrega, P.estado_prestamo, U.nombre_usuario, U.apellido_usuario, P.Tipo_de_prestamo, P.Prioridad_prestamo
+                 FROM prestamo P, usuarios U
+                 WHERE P.estado_prestamo = 'Abierto'
+                 AND P.Usuarios_id_usuario = U.id_usuario
+                 ORDER BY id_prestamo";
 	$resultado = $conexion->prepare($consulta);
-	$resultado->execute();
-	$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
-} if ($ClaseUsuario == '2' or $ClaseUsuario == '3'){//Archivador
-	$consulta1 = "SELECT CJ.id_caja, CJ.serial_caja, CJ.descripcion_caja, UC.ubicacion_X, UC.ubicacion_Y, UC.ubicacion_Z, EI.nombre_estado_item, TC.nombre_tipo_caja, C.razon_social_cliente
-			 FROM cajas CJ, estado_item EI, ubicacion_caja UC, tipo_caja TC, clientes C
-			 WHERE CJ.Estado_item_id_estado_item = EI.id_estado_item
-			 AND CJ.Tipo_caja_id_tipo_caja = TC.id_tipo_caja
-			 AND CJ.Ubicacion_caja_id_ubicacion_caja = UC.id_ubicacion_caja
-			 AND CJ.Clientes_id_cliente = C.id_cliente
-			 AND CJ.Clientes_id_cliente = '$Gestor'
-			 AND CJ.Estado_item_id_estado_item = '1'
-			 ORDER BY id_caja";
-	$resultado = $conexion->prepare($consulta1);
 	$resultado->execute();
 	$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -48,7 +32,7 @@ if($ClaseUsuario == "1"){//Administrador
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="shortcut icon" href="#" />
-	<title>Modulo Prestamos Cajas</title>
+	<title>Modulo Devoluciones</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<!--datables CSS básico-->
@@ -66,7 +50,7 @@ if($ClaseUsuario == "1"){//Administrador
 				<a href="home.php"><i class="icono fas fa-home"></i></a>
 			</div>
 			<div class="col-sm-11 col-md-11 col-lg-11">
-				<h1 class="titulos text-center text-uppercase">Prestamos Cajas</h1>
+				<h1 class="titulos text-center text-uppercase">Devoluciones</h1>
 			</div>
 		</div>
 	</header>
@@ -80,12 +64,13 @@ if($ClaseUsuario == "1"){//Administrador
 						<thead class="text-center">
 							<tr>
 								<th>ID</th>
-								<th>Serial</th>
-								<th>Descripción</th>
-								<th>Ubicación</th>
-								<th>Estado</th>
-								<th>Tipo caja</th>
-								<th>Propietario</th>
+								<th>Objeto Prestamo</th>
+								<th>Fecha Solicitud</th>
+								<th>Fecha Entrega</th>
+								<th>Estado del Prestamo</th>
+								<th>Usuario Solicitud</th>
+								<th>Tipo de prestamo</th>
+                                <th>Prioridad prestamo</th>                                
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -94,13 +79,14 @@ if($ClaseUsuario == "1"){//Administrador
 							foreach($data as $dat) {
 							?>
 							<tr>
-								<td><?php echo $dat['id_caja'] ?></td>
-								<td><?php echo $dat['serial_caja'] ?></td>
-								<td><?php echo $dat['descripcion_caja'] ?></td>
-								<td><?php echo $dat['ubicacion_X'].$dat['ubicacion_Y'].$dat['ubicacion_Z']?></td>
-								<td><?php echo $dat['nombre_estado_item'] ?></td>
-								<td><?php echo $dat['nombre_tipo_caja'] ?></td>
-								<td><?php echo $dat['razon_social_cliente'] ?></td>
+								<td><?php echo $dat['id_prestamo'] ?></td>
+								<td><?php echo $dat['objeto_prestamo'] ?></td>
+								<td><?php echo $dat['fecha_solicitud'] ?></td>								
+								<td><?php echo $dat['fecha_entrega'] ?></td>
+								<td><?php echo $dat['estado_prestamo'] ?></td>
+                                <td><?php echo $dat['nombre_usuario']."    ".$dat['apellido_usuario']?></td>
+								<td><?php echo $dat['Tipo_de_prestamo'] ?></td>
+                                <td><?php echo $dat['Prioridad_prestamo'] ?></td>
 								<td nowrap></td>
 							</tr>
 							<?php
@@ -109,13 +95,14 @@ if($ClaseUsuario == "1"){//Administrador
 						</tbody>
 						<tfoot class="text-center">
 							<tr>
-								<th>ID</th>
-								<th>Serial</th>
-								<th>Descripción</th>
-								<th>Ubicación</th>
-								<th>Estado</th>
-								<th>Tipo caja</th>
-								<th>Propietario</th>
+                                <th>ID</th>
+								<th>Objeto Prestamo</th>
+								<th>Fecha Solicitud</th>
+								<th>Fecha Entrega</th>
+								<th>Estado del Prestamo</th>
+								<th>Usuario Solicitud</th>
+								<th>Tipo de prestamo</th>
+                                <th>Prioridad prestamo</th>
 								<th style="display:none;"></th>
 							</tr>
 						</tfoot>

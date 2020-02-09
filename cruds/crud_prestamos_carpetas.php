@@ -17,7 +17,7 @@ $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 
 switch($opcion){
 	case 1: //Prestar
-		$consulta = "INSERT INTO prestamo (objeto_prestamo, id_objeto, fecha_solicitud, fecha_entrega, estado_prestamo, Usuarios_id_usuario, Tipo_de_prestamo_id_tipo_prestamo, Prioridad_prestamo_id_prioridad) 
+		$consulta = "INSERT INTO prestamo (objeto_prestamo, id_objeto, fecha_solicitud, fecha_entrega, estado_prestamo, Usuarios_id_usuario, Tipo_de_prestamo, Prioridad_prestamo) 
 		VALUES('$objeto', '$id', '$fecha', '$fecha_ent', '$estado', '$cliente', '$tipo_prestamo', '$prioridad_prestamo')";
 		echo $consulta;
 		$resultado = $conexion->prepare($consulta);

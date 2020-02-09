@@ -36,7 +36,7 @@ class Cl_User
 				throw new Exception( LOGIN_FIELDS_MISSING );
 			}
 			$password = md5( $password );
-			$query = "SELECT id_usuario, nombre_usuario, email_usuario, Tipos_de_usuario_id_Tipo_usuario, Clientes_id_cliente FROM usuarios where email_usuario = '$email' and password = '$password' ";
+			$query = "SELECT id_usuario, nombre_usuario, apellido_usuario, email_usuario, Tipos_de_usuario_id_Tipo_usuario, Clientes_id_cliente FROM usuarios where email_usuario = '$email' and password = '$password' ";
 			$result = mysqli_query($this->_con, $query);
 			$data = mysqli_fetch_assoc($result);
 			$count = mysqli_num_rows($result);

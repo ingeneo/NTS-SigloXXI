@@ -13,7 +13,7 @@ function ListaPrioridadPrestamo() {
 	$resultado->execute();
 	$lista_prioridad_prestamo = '<option value="" disabled selected>Seleccione la prioridad del prestamo...</option>';
 	while($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
-		$lista_prioridad_prestamo .= "<option value = '$row[ID]'>$row[NOMPRI]</option>";
+		$lista_prioridad_prestamo .= "<option value = '$row[NOMPRI]'>$row[NOMPRI]</option>";
 	}
 	return $lista_prioridad_prestamo;
 }
