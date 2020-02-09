@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
@@ -1770,8 +1770,13 @@ CREATE TABLE `prestamo`(`id_prestamo` int(11) NOT NULL,
                         `fecha_entrega` varchar(45) DEFAULT NULL,
                         `estado_prestamo` varchar(45) DEFAULT NULL,
                         `Usuarios_id_usuario` int(11) NOT NULL,
+<<<<<<< HEAD
+                        `Tipo_de_prestamo` varchar(45) DEFAULT NULL,
+                        `Prioridad_prestamo` varchar(45) DEFAULT NULL
+=======
                         `Tipo_de_prestamo_id_tipo_prestamo` int(11) NOT NULL,
                         `Prioridad_prestamo_id_prioridad` int(11) NOT NULL
+>>>>>>> 17f7f3dda16931c143859ae1565bef8d5ebc94fc
                         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2210,9 +2215,8 @@ CREATE TABLE `usuarios`(`id_usuario` int(11) NOT NULL,
 
 INSERT INTO `usuarios` (`id_usuario`,`nombre_usuario`, `apellido_usuario`, `cedula_usuario`, `telefono_usuario`, `email_usuario`, `password`, `Tipos_de_usuario_id_Tipo_usuario`, `Clientes_id_cliente`) VALUES
 (1, 'Roger A', 'Valencia G', 70258963, '3124567893', 'roger_viper@hotmail.com', '46d90aeb395ea8c82bc0b4c91a20a992', 1, 1),
-(2, 'Rafael Alejandro', 'Lancheros Rodriguez', 79654321, '3216549874', 'francoralf@gmail.com', 'cad8b7fbd0f80ea9f615ec99e051ae0b', 2, 1),
-(3, 'Oscar', 'Garcia', 1030475971, '3234429865', 'oscar@outlook.com', '817c27748118fe337dd5aa2fa3aab27f', 3, 3),
-(4, 'Claudia', 'Florez', 39590621, '3214992356', 'c.florez@hotmail.com', 'c411ecf44082eb793df246271aac4133', 3, 4);
+(2, 'Rafael Alejandro', 'Lancheros Rodriguez', 79654321, '3216549874', 'francoralf@gmail.com', 'c411ecf44082eb793df246271aac4133', 2, 1),
+(3, 'Oscar', 'Garcia', 1030475971, '3234429865', 'oscar@outlook.com', '817c27748118fe337dd5aa2fa3aab27f', 3, 3);
 
 --
 -- Índices para tablas volcadas
@@ -2310,9 +2314,13 @@ ADD KEY `fk_Piso_Modulo1_idx`(`Modulo_id_modulo`);
 -- Indices de la tabla `prestamo`
 --
 ALTER TABLE `prestamo`ADD PRIMARY KEY(`id_prestamo`),
+<<<<<<< HEAD
+ADD KEY `fk_Prestamo_Usuarios1_idx`(`Usuarios_id_usuario`);
+=======
 ADD KEY `fk_Prestamo_Usuarios1_idx`(`Usuarios_id_usuario`),
 ADD KEY `fk_Prestamo_Tipo_de_prestamo1_idx`(`Tipo_de_prestamo_id_tipo_prestamo`),
 ADD KEY `fk_Prestamo_Prioridad_prestamo1_idx`(`Prioridad_prestamo_id_prioridad`);
+>>>>>>> 17f7f3dda16931c143859ae1565bef8d5ebc94fc
 
 --
 -- Indices de la tabla `prioridad_prestamo`
@@ -2533,6 +2541,8 @@ FOREIGN KEY(`Modulo_id_modulo`) REFERENCES `modulo`(`id_modulo`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION;
 
+<<<<<<< HEAD
+=======
 --
 -- Filtros para la tabla `prestamo`
 --
@@ -2548,6 +2558,7 @@ ADD CONSTRAINT `fk_Prestamo_Usuarios1`
 FOREIGN KEY(`Usuarios_id_usuario`) REFERENCES `usuarios`(`id_usuario`) ON
 DELETE NO ACTION ON
 UPDATE NO ACTION;
+>>>>>>> 17f7f3dda16931c143859ae1565bef8d5ebc94fc
 
 --
 -- Filtros para la tabla `ubicacion_caja`
