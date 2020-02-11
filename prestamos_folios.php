@@ -5,17 +5,38 @@ require_once 'config.php';
 if(!isset($_SESSION['logged_in'])){
 	header('Location: index.php');
 }
+
+$ClaseUsuario = $_SESSION['Tipos_de_usuario_id_Tipo_usuario'];
+$Gestor = $_SESSION['Clientes_id_cliente'];
+$id_usuario = $_SESSION['id_usuario'];
+$Nombre_Gestor = $_SESSION['nombre_usuario'];
+$Apellido_Gestor = $_SESSION['apellido_usuario'];
 include_once 'conexion/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
-$consulta = "SELECT F.id_folio, F.codigo_folio, F.desc_folio, CP.codigo_carpeta 
-             FROM folio F, carpeta CP  
-             WHERE  F.Carpeta_id_carpeta = CP.id_carpeta 
-             AND F.Estado_item_id_estado_item = '1'
+
+if($ClaseUsuario == "1"){ //Administrador
+	$consulta = "SELECT F.id_folio, F.codigo_folio, F.desc_folio, CP.codigo_carpeta 
+			 FROM folio F, carpeta CP  
+			 WHERE  F.Carpeta_id_carpeta = CP.id_carpeta 
+			 AND F.Estado_item_id_estado_item = '1'
 			 ORDER BY id_folio";
-$resultado = $conexion->prepare($consulta);
-$resultado->execute();
-$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+	$resultado = $conexion->prepare($consulta);
+	$resultado->execute();
+	$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+} if ($ClaseUsuario == '2' or $ClaseUsuario == '3'){ //Archivador
+	$consulta = "SELECT F.id_folio, F.codigo_folio, F.desc_folio, CP.codigo_carpeta 
+			 FROM folio F, carpeta CP, cajas CJ  
+	         WHERE  F.Carpeta_id_carpeta = CP.id_carpeta 
+	         AND CP.Cajas_id_caja = CJ.id_caja
+	         AND F.Estado_item_id_estado_item = '1'
+	         AND CJ.Clientes_id_cliente = '$Gestor'
+	         ORDER BY id_folio";
+	$resultado = $conexion->prepare($consulta);
+	$resultado->execute();
+	$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+}
+
 ?>
 <!doctype html>
 <html lang="es">
@@ -77,7 +98,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 						</tbody>
 						<tfoot class="text-center">
 							<tr>
-							    <th>ID</th>
+								<th>ID</th>
 								<th>Serial Folio</th>
 								<th>Descripcion folio</th>
 								<th>Carpeta a la que pertenece</th>
@@ -102,8 +123,11 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 				</div>
 				<form id="formPrestamos">
 					<div class="modal-body">
+						<input type="hidden" class="form-control" id="gestor" value="<?php echo $Gestor; ?>">	
+						<input type="hidden" class="form-control" id="id_usuario" value="<?php echo $id_usuario; ?>">
+						<input type="hidden" class="form-control" id="nombre_gestor" value="<?php echo $Nombre_Gestor; ?>">
+						<input type="hidden" class="form-control" id="apellido_gestor" value="<?php echo $Apellido_Gestor; ?>">
 						<input type="hidden" class="form-control" id="id_folio">
-                        <input type="hidden" class="form-control" id="id_usuario" value="<?php echo $id_usuario; ?>">
 						<div class="form-group">
 							<label for="codigo_folio" class="col-form-label" disabled >Serial Folio:</label>
 							<input type="text" class="form-control" id="codigo_folio">

@@ -29,21 +29,7 @@ switch($opcion){
 		WHERE id_caja='$id'";
 		$resultado1 = $conexion->prepare($consulta1);
 		$resultado1->execute();
-		
-
-
-
-
-
-
-
-
-
-
-
-
-		
 	break;
-	}
+}
 
 $conexion = NULL;

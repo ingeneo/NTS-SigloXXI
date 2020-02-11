@@ -5,17 +5,35 @@ require_once 'config.php';
 if(!isset($_SESSION['logged_in'])){
 	header('Location: index.php');
 }
+$ClaseUsuario = $_SESSION['Tipos_de_usuario_id_Tipo_usuario'];
+$Gestor = $_SESSION['Clientes_id_cliente'];
+$id_usuario = $_SESSION['id_usuario'];
+$Nombre_Gestor = $_SESSION['nombre_usuario'];
+$Apellido_Gestor = $_SESSION['apellido_usuario'];
 include_once 'conexion/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
-$consulta = "SELECT CP.id_carpeta, CP.codigo_carpeta, CJ.serial_caja 
+
+if($ClaseUsuario == "1"){ //Administrador
+	$consulta = "SELECT CP.id_carpeta, CP.codigo_carpeta, CJ.serial_caja 
 			FROM carpeta CP, cajas CJ 
 			WHERE  CP.Cajas_id_caja = CJ.id_caja
 			AND CP.Estado_item_id_estado_item = '1'
 			ORDER BY codigo_carpeta";
-$resultado = $conexion->prepare($consulta);
-$resultado->execute();
-$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+	$resultado = $conexion->prepare($consulta);
+	$resultado->execute();
+	$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+} if ($ClaseUsuario == '2' or $ClaseUsuario == '3'){ //Archivador
+	$consulta = "SELECT CP.id_carpeta, CP.codigo_carpeta, CJ.serial_caja 
+			FROM carpeta CP, cajas CJ 
+			WHERE  CP.Cajas_id_caja = CJ.id_caja
+			AND CP.Estado_item_id_estado_item = '1'
+			AND CJ.Clientes_id_cliente = '$Gestor'
+			ORDER BY codigo_carpeta";
+	$resultado = $conexion->prepare($consulta);
+	$resultado->execute();
+	$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
 
 <!doctype html>
@@ -100,8 +118,11 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 			</div>
 		<form id="formPrestamos">
 			<div class="modal-body">
+				<input type="hidden" class="form-control" id="gestor" value="<?php echo $Gestor; ?>">
+				<input type="hidden" class="form-control" id="id_usuario" value="<?php echo $id_usuario; ?>">
+				<input type="hidden" class="form-control" id="nombre_gestor" value="<?php echo $Nombre_Gestor; ?>">
+				<input type="hidden" class="form-control" id="apellido_gestor" value="<?php echo $Apellido_Gestor; ?>">
 				<input type="hidden" class="form-control" id="id_carpeta">
-                <input type="hidden" class="form-control" id="id_usuario" value="<?php echo $id_usuario; ?>">
 				<div class="form-group">
 					<label for="codigo_carpeta class="col-form-label">Serial carpeta:</label>
 					<input type="text" class="form-control" id="codigo_carpeta">

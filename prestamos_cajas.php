@@ -13,6 +13,7 @@ $Apellido_Gestor = $_SESSION['apellido_usuario'];
 include_once 'conexion/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
+
 if($ClaseUsuario == "1"){//Administrador
 	$consulta = "SELECT CJ.id_caja, CJ.serial_caja, CJ.descripcion_caja, UC.ubicacion_X, UC.ubicacion_Y, UC.ubicacion_Z, EI.nombre_estado_item, TC.nombre_tipo_caja, C.razon_social_cliente
 			 FROM cajas CJ, estado_item EI, ubicacion_caja UC, tipo_caja TC, clientes C
@@ -140,7 +141,7 @@ if($ClaseUsuario == "1"){//Administrador
 				<form id="formPrestamos">
 					<div class="modal-body">
 						<input type="hidden" class="form-control" id="gestor" value="<?php echo $Gestor; ?>">
-                        <input type="hidden" class="form-control" id="id_usuario" value="<?php echo $id_usuario; ?>">
+						<input type="hidden" class="form-control" id="id_usuario" value="<?php echo $id_usuario; ?>">
 						<input type="hidden" class="form-control" id="nombre_gestor" value="<?php echo $Nombre_Gestor; ?>">
 						<input type="hidden" class="form-control" id="apellido_gestor" value="<?php echo $Apellido_Gestor; ?>">
 						<input type="hidden" class="form-control" id="id_caja">

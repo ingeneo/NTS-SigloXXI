@@ -105,6 +105,10 @@ $(document).ready(function () {
 		fecha_ent = $.trim($("#fecha_entrega").val());
 		tipo_prestamo = $.trim($("#lista_tipo_prestamos").val());
 		prioridad_prestamo = $.trim($("#lista_prioridad_prestamo").val());
+		cliente = $.trim($("#gestor").val());
+		id_usuario = $.trim($("#id_usuario").val());
+		nombre_usuario = $.trim($("#nombre_gestor").val());
+		apellido_usuario = $.trim($("#apellido_gestor").val());
 		$.ajax({
 			url: "cruds/crud_prestamos_carpetas.php",
 			type: "POST",
@@ -114,10 +118,15 @@ $(document).ready(function () {
 				fecha_ent: fecha_ent,
 				tipo_prestamo: tipo_prestamo,
 				prioridad_prestamo: prioridad_prestamo,
+				cliente: cliente,
+				id_usuario: id_usuario,
+				nombre_usuario: nombre_usuario,
+				apellido_usuario: apellido_usuario,
 				opcion: opcion
 			},
 		});
 		$("#modalCRUD").modal("hide");
+
 		function recargar() {
 			location.reload();
 		}
