@@ -1,53 +1,146 @@
 $(document).ready(function () {
 	$('#tablaFolios tfoot th').each(function () {
 		var title = $(this).text();
-		$(this).html('<input type="text" style="width: 98px" placeholder="'+ title +'" />');
+		$(this).html('<input type="text" style="width: 98px" placeholder="' + title + '" />');
 	});
-	var	tablaFolios = $("#tablaFolios").dataTable({
-		"responsive": true,
-		"dom": 'Bfrtilp',
-		"buttons": [{
-				extend: 'excelHtml5',
-				text: '<i class="fa fa-file-excel"></i>',
-				titleAttr: 'Exportar a excel',
-				className: 'btn btn-success'
-			},
-			{
-				extend: 'pdfHtml5',
-				text: '<i class="fa fa-file-pdf"></i>',
-				titleAttr: 'Exportar a Pdf',
-				className: 'btn btn-danger'
-			},
-			{
-				extend: 'csvHtml5',
-				text: '<i class="fa fa-file-alt"></i>',
-				titleAttr: 'Exportar a CSV',
-				className: 'btn btn-info'
-			}
-		],
-		"columnDefs": [{
-			"targets": -1,
-			"data": null,
-			"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'><i class='icono1 fas fa-pencil-alt'></i> Editar</button><button class='btn btn-danger btnBorrar'><i class='icono1 fas fa-minus-circle'></i> Borrar</button></div></div>"
-		}],
 
-		//Para cambiar el lenguaje a español
-		"language": {
-			"lengthMenu": "Mostrar _MENU_ registros",
-			"zeroRecords": "No se encontraron resultados",
-			"info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-			"infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-			"infoFiltered": "(filtrado de un total de _MAX_ registros)",
-			"sSearch": "Buscar:",
-			"oPaginate": {
-				"sFirst": "Primero",
-				"sLast": "Último",
-				"sNext": "Siguiente",
-				"sPrevious": "Anterior"
-			},
-			"sProcessing": "Procesando...",
-		}
-	});
+	indica = $.trim($("#gestor").val());
+	if (indica == "1") {
+		var tablaFolios = $("#tablaFolios").dataTable({
+			"responsive": true,
+			"dom": 'Bfrtilp',
+			"buttons": [{
+					extend: 'excelHtml5',
+					text: '<i class="fa fa-file-excel"></i>',
+					titleAttr: 'Exportar a excel',
+					className: 'btn btn-success'
+				},
+				{
+					extend: 'pdfHtml5',
+					text: '<i class="fa fa-file-pdf"></i>',
+					titleAttr: 'Exportar a Pdf',
+					className: 'btn btn-danger'
+				},
+				{
+					extend: 'csvHtml5',
+					text: '<i class="fa fa-file-alt"></i>',
+					titleAttr: 'Exportar a CSV',
+					className: 'btn btn-info'
+				}
+			],
+			"columnDefs": [{
+				"targets": -1,
+				"data": null,
+				"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'><i class='icono1 fas fa-pencil-alt'></i> Editar</button><button class='btn btn-danger btnBorrar'><i class='icono1 fas fa-minus-circle'></i> Borrar</button></div></div>"
+			}],
+
+			//Para cambiar el lenguaje a español
+			"language": {
+				"lengthMenu": "Mostrar _MENU_ registros",
+				"zeroRecords": "No se encontraron resultados",
+				"info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+				"infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+				"infoFiltered": "(filtrado de un total de _MAX_ registros)",
+				"sSearch": "Buscar:",
+				"oPaginate": {
+					"sFirst": "Primero",
+					"sLast": "Último",
+					"sNext": "Siguiente",
+					"sPrevious": "Anterior"
+				},
+				"sProcessing": "Procesando...",
+			}
+		});
+	}
+	if (indica == "2") {
+		var tablaFolios = $("#tablaFolios").dataTable({
+			"responsive": true,
+			"dom": 'Bfrtilp',
+			"buttons": [{
+					extend: 'excelHtml5',
+					text: '<i class="fa fa-file-excel"></i>',
+					titleAttr: 'Exportar a excel',
+					className: 'btn btn-success'
+				},
+				{
+					extend: 'pdfHtml5',
+					text: '<i class="fa fa-file-pdf"></i>',
+					titleAttr: 'Exportar a Pdf',
+					className: 'btn btn-danger'
+				},
+				{
+					extend: 'csvHtml5',
+					text: '<i class="fa fa-file-alt"></i>',
+					titleAttr: 'Exportar a CSV',
+					className: 'btn btn-info'
+				}
+			],
+			"columnDefs": [{
+				"targets": -1,
+				"data": null,
+				"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'><i class='icono1 fas fa-pencil-alt'></i> Editar</div></div>"
+			}],
+
+			//Para cambiar el lenguaje a español
+			"language": {
+				"lengthMenu": "Mostrar _MENU_ registros",
+				"zeroRecords": "No se encontraron resultados",
+				"info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+				"infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+				"infoFiltered": "(filtrado de un total de _MAX_ registros)",
+				"sSearch": "Buscar:",
+				"oPaginate": {
+					"sFirst": "Primero",
+					"sLast": "Último",
+					"sNext": "Siguiente",
+					"sPrevious": "Anterior"
+				},
+				"sProcessing": "Procesando...",
+			}
+		});
+	}
+	if (indica == "3") {
+		var tablaFolios = $("#tablaFolios").dataTable({
+			"responsive": true,
+			"dom": 'Bfrtilp',
+			"buttons": [{
+					extend: 'excelHtml5',
+					text: '<i class="fa fa-file-excel"></i>',
+					titleAttr: 'Exportar a excel',
+					className: 'btn btn-success'
+				},
+				{
+					extend: 'pdfHtml5',
+					text: '<i class="fa fa-file-pdf"></i>',
+					titleAttr: 'Exportar a Pdf',
+					className: 'btn btn-danger'
+				},
+				{
+					extend: 'csvHtml5',
+					text: '<i class="fa fa-file-alt"></i>',
+					titleAttr: 'Exportar a CSV',
+					className: 'btn btn-info'
+				}
+			],
+
+			//Para cambiar el lenguaje a español
+			"language": {
+				"lengthMenu": "Mostrar _MENU_ registros",
+				"zeroRecords": "No se encontraron resultados",
+				"info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+				"infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+				"infoFiltered": "(filtrado de un total de _MAX_ registros)",
+				"sSearch": "Buscar:",
+				"oPaginate": {
+					"sFirst": "Primero",
+					"sLast": "Último",
+					"sNext": "Siguiente",
+					"sPrevious": "Anterior"
+				},
+				"sProcessing": "Procesando...",
+			}
+		});
+	}
 
 	tablaFolios.api().columns().every(function () {
 		var that = this;
@@ -104,7 +197,7 @@ $(document).ready(function () {
 	$(document).on("click", ".btnEditar", function () {
 		fila = $(this).closest("tr");
 		id = parseInt(fila.find('td:eq(0)').text());
-		serial = fila.find('td:eq(1)').text();	
+		serial = fila.find('td:eq(1)').text();
 		descripcion = fila.find('td:eq(2)').text();
 
 		$("#id_folio").val(id);
@@ -117,30 +210,30 @@ $(document).ready(function () {
 		$(".modal-title").text("Editar Folio");
 		$("#modalCRUD").modal("show");
 		$.ajax({
-			url: './lista_cajas.php'
-		})
-		.done(function (ListaCajas) {
-			$('#lista_cajas').html(ListaCajas);
-		})
-		.fail(function () {
-			alert('Hubo un error al cargar las Cajas !');
+				url: './lista_cajas.php'
+			})
+			.done(function (ListaCajas) {
+				$('#lista_cajas').html(ListaCajas);
+			})
+			.fail(function () {
+				alert('Hubo un error al cargar las Cajas !');
+			});
+		$('#lista_cajas').on('change', function () {
+			var caja = $('#lista_cajas').val();
+			$.ajax({
+					type: "POST",
+					url: './lista_carpetas.php',
+					data: {
+						'caja': caja
+					}
+				})
+				.done(function (ListaCarpeta) {
+					$('#lista_carpetas').html(ListaCarpeta);
+				})
+				.fail(function () {
+					alert('Hubo un error al cargar las Carpetas !');
+				});
 		});
-        $('#lista_cajas').on('change', function () {
-	        var caja = $('#lista_cajas').val();
-	        $.ajax({
-			        type: "POST",
-			        url: './lista_carpetas.php',
-			        data: {
-				        'caja': caja
-			        }
-		        })
-		        .done(function (ListaCarpeta) {
-			        $('#lista_carpetas').html(ListaCarpeta);
-		        })
-		        .fail(function () {
-			        alert('Hubo un error al cargar las Carpetas !');
-		        });
-        });
 
 	});
 

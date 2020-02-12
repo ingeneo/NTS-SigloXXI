@@ -3,6 +3,7 @@ $(document).ready(function () {
 		var title = $(this).text();
 		$(this).html('<input type="text" style="width: 98px" placeholder="' + title + '" />');
 	});
+
 	indica = $.trim($("#gestor").val());
 	if (indica == "1") {
 		var tablaCajas = $("#tablaCajas").dataTable({

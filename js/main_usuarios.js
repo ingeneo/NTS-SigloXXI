@@ -1,53 +1,146 @@
 $(document).ready(function () {
 	$('#tablaPersonas tfoot th').each(function () {
 		var title = $(this).text();
-		$(this).html('<input type="text" style="width: 98px" placeholder="'+ title +'" />');
+		$(this).html('<input type="text" style="width: 98px" placeholder="' + title + '" />');
 	});
-	var tablaPersonas = $("#tablaPersonas").dataTable({
-		"responsive": true,
-		"dom": 'Bfrtilp',
-		"buttons": [{
-				extend: 'excelHtml5',
-				text: '<i class="fa fa-file-excel"></i>',
-				titleAttr: 'Exportar a excel',
-				className: 'btn btn-success'
-			},
-			{
-				extend: 'pdfHtml5',
-				text: '<i class="fa fa-file-pdf"></i>',
-				titleAttr: 'Exportar a Pdf',
-				className: 'btn btn-danger'
-			},
-			{
-				extend: 'csvHtml5',
-				text: '<i class="fa fa-file-alt"></i>',
-				titleAttr: 'Exportar a CSV',
-				className: 'btn btn-info'
-			}
-		],
-		"columnDefs": [{
-			"targets": -1,
-			"data": null,
-			"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'><i class='icono1 fas fa-pencil-alt'></i> Editar</button><button class='btn btn-danger btnBorrar'><i class='icono1 fas fa-minus-circle'></i> Borrar</button></div></div>"
-		}],
 
-		//Para cambiar el lenguaje a español
-		"language": {
-			"lengthMenu": "Mostrar _MENU_ registros",
-			"zeroRecords": "No se encontraron resultados",
-			"info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-			"infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-			"infoFiltered": "(filtrado de un total de _MAX_ registros)",
-			"sSearch": "Buscar:",
-			"oPaginate": {
-				"sFirst": "Primero",
-				"sLast": "Último",
-				"sNext": "Siguiente",
-				"sPrevious": "Anterior"
-			},
-			"sProcessing": "Procesando..."
-		}
-	});
+	indica = $.trim($("#gestor").val());
+	if (indica == "1") {
+		var tablaPersonas = $("#tablaPersonas").dataTable({
+			"responsive": true,
+			"dom": 'Bfrtilp',
+			"buttons": [{
+					extend: 'excelHtml5',
+					text: '<i class="fa fa-file-excel"></i>',
+					titleAttr: 'Exportar a excel',
+					className: 'btn btn-success'
+				},
+				{
+					extend: 'pdfHtml5',
+					text: '<i class="fa fa-file-pdf"></i>',
+					titleAttr: 'Exportar a Pdf',
+					className: 'btn btn-danger'
+				},
+				{
+					extend: 'csvHtml5',
+					text: '<i class="fa fa-file-alt"></i>',
+					titleAttr: 'Exportar a CSV',
+					className: 'btn btn-info'
+				}
+			],
+			"columnDefs": [{
+				"targets": -1,
+				"data": null,
+				"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'><i class='icono1 fas fa-pencil-alt'></i> Editar</button><button class='btn btn-danger btnBorrar'><i class='icono1 fas fa-minus-circle'></i> Borrar</button></div></div>"
+			}],
+
+			//Para cambiar el lenguaje a español
+			"language": {
+				"lengthMenu": "Mostrar _MENU_ registros",
+				"zeroRecords": "No se encontraron resultados",
+				"info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+				"infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+				"infoFiltered": "(filtrado de un total de _MAX_ registros)",
+				"sSearch": "Buscar:",
+				"oPaginate": {
+					"sFirst": "Primero",
+					"sLast": "Último",
+					"sNext": "Siguiente",
+					"sPrevious": "Anterior"
+				},
+				"sProcessing": "Procesando...",
+			}
+		});
+	}
+	if (indica == "2") {
+		var tablaPersonas = $("#tablaPersonas").dataTable({
+			"responsive": true,
+			"dom": 'Bfrtilp',
+			"buttons": [{
+					extend: 'excelHtml5',
+					text: '<i class="fa fa-file-excel"></i>',
+					titleAttr: 'Exportar a excel',
+					className: 'btn btn-success'
+				},
+				{
+					extend: 'pdfHtml5',
+					text: '<i class="fa fa-file-pdf"></i>',
+					titleAttr: 'Exportar a Pdf',
+					className: 'btn btn-danger'
+				},
+				{
+					extend: 'csvHtml5',
+					text: '<i class="fa fa-file-alt"></i>',
+					titleAttr: 'Exportar a CSV',
+					className: 'btn btn-info'
+				}
+			],
+			"columnDefs": [{
+				"targets": -1,
+				"data": null,
+				"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'><i class='icono1 fas fa-pencil-alt'></i> Editar</div></div>"
+			}],
+
+			//Para cambiar el lenguaje a español
+			"language": {
+				"lengthMenu": "Mostrar _MENU_ registros",
+				"zeroRecords": "No se encontraron resultados",
+				"info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+				"infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+				"infoFiltered": "(filtrado de un total de _MAX_ registros)",
+				"sSearch": "Buscar:",
+				"oPaginate": {
+					"sFirst": "Primero",
+					"sLast": "Último",
+					"sNext": "Siguiente",
+					"sPrevious": "Anterior"
+				},
+				"sProcessing": "Procesando...",
+			}
+		});
+	}
+	if (indica == "3") {
+		var tablaPersonas = $("#tablaPersonas").dataTable({
+			"responsive": true,
+			"dom": 'Bfrtilp',
+			"buttons": [{
+					extend: 'excelHtml5',
+					text: '<i class="fa fa-file-excel"></i>',
+					titleAttr: 'Exportar a excel',
+					className: 'btn btn-success'
+				},
+				{
+					extend: 'pdfHtml5',
+					text: '<i class="fa fa-file-pdf"></i>',
+					titleAttr: 'Exportar a Pdf',
+					className: 'btn btn-danger'
+				},
+				{
+					extend: 'csvHtml5',
+					text: '<i class="fa fa-file-alt"></i>',
+					titleAttr: 'Exportar a CSV',
+					className: 'btn btn-info'
+				}
+			],
+
+			//Para cambiar el lenguaje a español
+			"language": {
+				"lengthMenu": "Mostrar _MENU_ registros",
+				"zeroRecords": "No se encontraron resultados",
+				"info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+				"infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+				"infoFiltered": "(filtrado de un total de _MAX_ registros)",
+				"sSearch": "Buscar:",
+				"oPaginate": {
+					"sFirst": "Primero",
+					"sLast": "Último",
+					"sNext": "Siguiente",
+					"sPrevious": "Anterior"
+				},
+				"sProcessing": "Procesando...",
+			}
+		});
+	}
 
 	tablaPersonas.api().columns().every(function () {
 		var that = this;

@@ -33,7 +33,7 @@ if($ClaseUsuario == "1"){//Administrador
 		$resultado = $conexion->prepare($consulta1);
 		$resultado->execute();
 		$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
-	}
+}
 ?>
 <!doctype html>
 <html lang="es">
@@ -126,7 +126,7 @@ if($ClaseUsuario == "1"){//Administrador
 								<th>Propietario</th>
 								<? if ($ClaseUsuario == '1' || $ClaseUsuario == '2') { ?>
 								<th style="display:none;"></th>
-								<? } ?>								
+								<? } ?>
 							</tr>
 						</tfoot>
 					</table>
