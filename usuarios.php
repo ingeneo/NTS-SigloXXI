@@ -6,42 +6,25 @@ if(!isset($_SESSION['logged_in'])){
 	header('Location: index.php');
 }
 
-include_once 'conexion/conexion.php';
-$objeto = new Conexion();
-$conexion = $objeto->Conectar();
-$consulta = "SELECT U.id_usuario, U.nombre_usuario, U.apellido_usuario, U.cedula_usuario, U.telefono_usuario, U.email_usuario, TU.nombre_tipo_usuario, C.razon_social_cliente 
-			FROM usuarios U, tipos_de_usuario TU, clientes C 
-			WHERE  U.Tipos_de_usuario_id_Tipo_usuario = TU.id_Tipo_usuario AND U.Clientes_id_cliente=C.id_cliente 
-			ORDER BY id_usuario";
-$resultado = $conexion->prepare($consulta);
-$resultado->execute();
-$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
-
 $ClaseUsuario = $_SESSION['Tipos_de_usuario_id_Tipo_usuario'];
 $Gestor = $_SESSION['Clientes_id_cliente'];
 include_once 'conexion/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 if($ClaseUsuario == "1"){//Administrador
-	$consulta = "SELECT CJ.id_caja, CJ.serial_caja, CJ.descripcion_caja, UC.ubicacion_X, UC.ubicacion_Y, UC.ubicacion_Z, EI.nombre_estado_item, TC.nombre_tipo_caja, C.razon_social_cliente
-				 FROM cajas CJ, estado_item EI, ubicacion_caja UC, tipo_caja TC, clientes C
-				 WHERE CJ.Estado_item_id_estado_item = EI.id_estado_item
-				 AND CJ.Tipo_caja_id_tipo_caja = TC.id_tipo_caja
-				 AND CJ.Ubicacion_caja_id_ubicacion_caja = UC.id_ubicacion_caja
-				 AND CJ.Clientes_id_cliente = C.id_cliente
-				 ORDER BY id_caja";
+	$consulta = "SELECT U.id_usuario, U.nombre_usuario, U.apellido_usuario, U.cedula_usuario, U.telefono_usuario, U.email_usuario, TU.nombre_tipo_usuario, C.razon_social_cliente 
+				 FROM usuarios U, tipos_de_usuario TU, clientes C 
+				 WHERE  U.Tipos_de_usuario_id_Tipo_usuario = TU.id_Tipo_usuario AND U.Clientes_id_cliente=C.id_cliente 
+				 ORDER BY id_usuario";
 	$resultado = $conexion->prepare($consulta);
 	$resultado->execute();
 	$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 } if ($ClaseUsuario == '2' or $ClaseUsuario == '3'){//Archivador
-		$consulta1 = "SELECT CJ.id_caja, CJ.serial_caja, CJ.descripcion_caja, UC.ubicacion_X, UC.ubicacion_Y, UC.ubicacion_Z, EI.nombre_estado_item, TC.nombre_tipo_caja, C.razon_social_cliente
-					 FROM cajas CJ, estado_item EI, ubicacion_caja UC, tipo_caja TC, clientes C
-					 WHERE CJ.Estado_item_id_estado_item = EI.id_estado_item
-					 AND CJ.Tipo_caja_id_tipo_caja = TC.id_tipo_caja
-					 AND CJ.Ubicacion_caja_id_ubicacion_caja = UC.id_ubicacion_caja
-					 AND CJ.Clientes_id_cliente = C.id_cliente
-					 AND CJ.Clientes_id_cliente = '$Gestor'
-					 ORDER BY id_caja";
+		$consulta1 = "SELECT U.id_usuario, U.nombre_usuario, U.apellido_usuario, U.cedula_usuario, U.telefono_usuario, U.email_usuario, TU.nombre_tipo_usuario, C.razon_social_cliente 
+					  FROM usuarios U, tipos_de_usuario TU, clientes C 
+					  WHERE  U.Tipos_de_usuario_id_Tipo_usuario = TU.id_Tipo_usuario AND U.Clientes_id_cliente=C.id_cliente
+					  AND  U.Clientes_id_cliente = $Gestor
+					  ORDER BY id_usuario";
 		$resultado = $conexion->prepare($consulta1);
 		$resultado->execute();
 		$data=$resultado->fetchAll(PDO::FETCH_ASSOC);

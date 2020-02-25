@@ -21,7 +21,24 @@ if($ClaseUsuario == "1"){//Administrador
 	$resultado = $conexion->prepare($consulta);
 	$resultado->execute();
 	$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+}if ($ClaseUsuario == '2'){//Archivador
+	$consulta1 = "SELECT P.id_prestamo, P.objeto_prestamo, P.id_objeto, P.fecha_solicitud, P.fecha_entrega, P.estado_prestamo, U.nombre_usuario, U.apellido_usuario, P.Tipo_de_prestamo, P.Prioridad_prestamo
+				  FROM prestamo P, usuarios U
+				  WHERE P.estado_prestamo = 'Abierto'
+				  AND P.Usuarios_id_usuario = U.id_usuario
+				  AND  U.Clientes_id_cliente = $Gestor
+				  ORDER BY id_prestamo";
+	$resultado = $conexion->prepare($consulta1);
+	$resultado->execute();
+	$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 }
+if ($ClaseUsuario == '3'){//Cliente
+	echo "<script = 'javaScript'>
+	alert('Usuario sin privilegios !!!!')
+	window.location.href='home.php';
+	</script>";
+}
+
 ?>
 
 <!doctype html>

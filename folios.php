@@ -6,45 +6,31 @@ if(!isset($_SESSION['logged_in'])){
 	header('Location: index.php');
 }
 
-include_once 'conexion/conexion.php';
-$objeto = new Conexion();
-$conexion = $objeto->Conectar();
-$consulta = "SELECT F.id_folio, F.codigo_folio, F.desc_folio, CP.codigo_carpeta 
-			FROM folio F, carpeta CP  
-			WHERE  F.Carpeta_id_carpeta = CP.id_carpeta 
-			ORDER BY id_folio";
-$resultado = $conexion->prepare($consulta);
-$resultado->execute();
-$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
-
 $ClaseUsuario = $_SESSION['Tipos_de_usuario_id_Tipo_usuario'];
 $Gestor = $_SESSION['Clientes_id_cliente'];
 include_once 'conexion/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
-if($ClaseUsuario == "1"){//Administrador
-	$consulta = "SELECT CJ.id_caja, CJ.serial_caja, CJ.descripcion_caja, UC.ubicacion_X, UC.ubicacion_Y, UC.ubicacion_Z, EI.nombre_estado_item, TC.nombre_tipo_caja, C.razon_social_cliente
-				 FROM cajas CJ, estado_item EI, ubicacion_caja UC, tipo_caja TC, clientes C
-				 WHERE CJ.Estado_item_id_estado_item = EI.id_estado_item
-				 AND CJ.Tipo_caja_id_tipo_caja = TC.id_tipo_caja
-				 AND CJ.Ubicacion_caja_id_ubicacion_caja = UC.id_ubicacion_caja
-				 AND CJ.Clientes_id_cliente = C.id_cliente
-				 ORDER BY id_caja";
+if($ClaseUsuario == "1"){ //Administrador
+	$consulta = "SELECT F.id_folio, F.codigo_folio, F.desc_folio, CP.codigo_carpeta 
+			 FROM folio F, carpeta CP  
+			 WHERE  F.Carpeta_id_carpeta = CP.id_carpeta 
+			 AND F.Estado_item_id_estado_item = '1'
+			 ORDER BY id_folio";
 	$resultado = $conexion->prepare($consulta);
 	$resultado->execute();
 	$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
-} if ($ClaseUsuario == '2' or $ClaseUsuario == '3'){//Archivador
-		$consulta1 = "SELECT CJ.id_caja, CJ.serial_caja, CJ.descripcion_caja, UC.ubicacion_X, UC.ubicacion_Y, UC.ubicacion_Z, EI.nombre_estado_item, TC.nombre_tipo_caja, C.razon_social_cliente
-					 FROM cajas CJ, estado_item EI, ubicacion_caja UC, tipo_caja TC, clientes C
-					 WHERE CJ.Estado_item_id_estado_item = EI.id_estado_item
-					 AND CJ.Tipo_caja_id_tipo_caja = TC.id_tipo_caja
-					 AND CJ.Ubicacion_caja_id_ubicacion_caja = UC.id_ubicacion_caja
-					 AND CJ.Clientes_id_cliente = C.id_cliente
-					 AND CJ.Clientes_id_cliente = '$Gestor'
-					 ORDER BY id_caja";
-		$resultado = $conexion->prepare($consulta1);
-		$resultado->execute();
-		$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+} if ($ClaseUsuario == '2' or $ClaseUsuario == '3'){ //Archivador
+	$consulta = "SELECT F.id_folio, F.codigo_folio, F.desc_folio, CP.codigo_carpeta 
+			 FROM folio F, carpeta CP, cajas CJ  
+	         WHERE  F.Carpeta_id_carpeta = CP.id_carpeta 
+	         AND CP.Cajas_id_caja = CJ.id_caja
+	         AND F.Estado_item_id_estado_item = '1'
+	         AND CJ.Clientes_id_cliente = '$Gestor'
+	         ORDER BY id_folio";
+	$resultado = $conexion->prepare($consulta);
+	$resultado->execute();
+	$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
 
