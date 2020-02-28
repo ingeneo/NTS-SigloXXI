@@ -27,11 +27,11 @@ if($ClaseUsuario == "1"){ //Administrador
 } if ($ClaseUsuario == '2' or $ClaseUsuario == '3'){ //Archivador
 	$consulta = "SELECT F.id_folio, F.codigo_folio, F.desc_folio, CP.codigo_carpeta 
 			 FROM folio F, carpeta CP, cajas CJ  
-	         WHERE  F.Carpeta_id_carpeta = CP.id_carpeta 
-	         AND CP.Cajas_id_caja = CJ.id_caja
-	         AND F.Estado_item_id_estado_item = '1'
-	         AND CJ.Clientes_id_cliente = '$Gestor'
-	         ORDER BY id_folio";
+			 WHERE  F.Carpeta_id_carpeta = CP.id_carpeta 
+			 AND CP.Cajas_id_caja = CJ.id_caja
+			 AND F.Estado_item_id_estado_item = '1'
+			 AND CJ.Clientes_id_cliente = '$Gestor'
+			 ORDER BY id_folio";
 	$resultado = $conexion->prepare($consulta);
 	$resultado->execute();
 	$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -168,5 +168,13 @@ if($ClaseUsuario == "1"){ //Administrador
 	<script src="pdfmake/pdfmake.min.js"></script>
 	<script src="pdfmake/vfs_fonts.js"></script>
 	<script type="text/javascript" src="js/main_prestamos_folios.js"></script>
+
+	<footer>
+		<div class="container-fluid">
+			<p class="text-center" style="margin-top:65px;">Copyright by <a href="#" target="_blank">Easy Solutions</a> <?php echo date("Y")?></p>
+		</div>
+	</footer>
+
 </body>
+
 </html>

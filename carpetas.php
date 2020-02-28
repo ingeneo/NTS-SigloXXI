@@ -14,18 +14,18 @@ $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 if($ClaseUsuario == "1"){//Administrador
 	$consulta = "SELECT CP.id_carpeta, CP.codigo_carpeta, CJ.serial_caja 
-                 FROM carpeta CP, cajas CJ 
-                 WHERE  CP.Cajas_id_caja = CJ.id_caja 
-                 ORDER BY codigo_carpeta";
+				 FROM carpeta CP, cajas CJ 
+				 WHERE  CP.Cajas_id_caja = CJ.id_caja 
+				 ORDER BY codigo_carpeta";
 	$resultado = $conexion->prepare($consulta);
 	$resultado->execute();
 	$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 } if ($ClaseUsuario == '2' or $ClaseUsuario == '3'){//Archivador
 		$consulta1 = "SELECT CP.id_carpeta, CP.codigo_carpeta, CJ.serial_caja 
-                      FROM carpeta CP, cajas CJ 
-                      WHERE  CP.Cajas_id_caja = CJ.id_caja 
-                      AND CJ.Clientes_id_cliente = '$Gestor'
-                      ORDER BY codigo_carpeta";
+					  FROM carpeta CP, cajas CJ 
+					  WHERE  CP.Cajas_id_caja = CJ.id_caja 
+					  AND CJ.Clientes_id_cliente = '$Gestor'
+					  ORDER BY codigo_carpeta";
 		$resultado = $conexion->prepare($consulta1);
 		$resultado->execute();
 		$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -34,24 +34,24 @@ if($ClaseUsuario == "1"){//Administrador
 
 <!doctype html>
 <html lang="es">
-  <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="shortcut icon" href="#" />  
-	<title>Modulo Carpetas</title>
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<!--datables CSS básico-->
-	<link rel="stylesheet" type="text/css" href="datatables/datatables.min.css"/>
-	<!--datables estilo bootstrap 4 CSS-->  
-	<link rel="stylesheet"  type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-	<link rel="stylesheet" href="css/estilos.css">
-  </head>
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="shortcut icon" href="#" />  
+		<title>Modulo Carpetas</title>
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<!--datables CSS básico-->
+		<link rel="stylesheet" type="text/css" href="datatables/datatables.min.css"/>
+		<!--datables estilo bootstrap 4 CSS-->  
+		<link rel="stylesheet"  type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+		<link rel="stylesheet" href="css/estilos.css">
+	</head>
 	
-  <body> 
-	 <header>
+<body> 
+	<header>
 		<div class="row fondo">
 			<div class="col-sm-1 col-md-1">
 				<a href="home.php"><i class="icono fas fa-home"></i></a>
@@ -120,36 +120,36 @@ if($ClaseUsuario == "1"){//Administrador
 		</div>
 	</div>
 	  
-<!--Modal para CRUD-->
-<div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel"></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-		<form id="formCarpetas">
-			<div class="modal-body">
-				<input type="hidden" class="form-control" id="gestor" value="<?php echo $ClaseUsuario; ?>">
-				<input type="hidden" class="form-control" id="id_carpeta">
-				<div class="form-group">
-					<label for="codigo_carpeta class="col-form-label">Serial carpeta:</label>
-					<input type="text" class="form-control" id="codigo_carpeta">
+	<!--Modal para CRUD-->
+	<div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel"></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+					</button>
 				</div>
-				<div class="form-group">
-					<label for="lista_cajas" class=" col-form-label">Caja al que pertenece:</label>
-					<select class="form-control" id="lista_cajas" name="lista_cajas" required></select>
-				</div>
-		</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="icono1 fas fa-times-circle"></i> Cancelar</button>
-				<button type="submit" id="btnGuardar" class="btn btn-dark"><i class="icono1 fas fa-check-circle"></i> Guardar</button>
+			<form id="formCarpetas">
+				<div class="modal-body">
+					<input type="hidden" class="form-control" id="gestor" value="<?php echo $ClaseUsuario; ?>">
+					<input type="hidden" class="form-control" id="id_carpeta">
+					<div class="form-group">
+						<label for="codigo_carpeta class="col-form-label">Serial carpeta:</label>
+						<input type="text" class="form-control" id="codigo_carpeta">
+					</div>
+					<div class="form-group">
+						<label for="lista_cajas" class=" col-form-label">Caja al que pertenece:</label>
+						<select class="form-control" id="lista_cajas" name="lista_cajas" required></select>
+					</div>
 			</div>
-		</form>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="icono1 fas fa-times-circle"></i> Cancelar</button>
+					<button type="submit" id="btnGuardar" class="btn btn-dark"><i class="icono1 fas fa-check-circle"></i> Guardar</button>
+				</div>
+			</form>
+			</div>
 		</div>
 	</div>
-</div>
 	<!-- jQuery, Popper.js, Bootstrap JS -->
 	<script src="jquery/jquery-3.3.1.min.js"></script>
 	<script src="popper/popper.min.js"></script>
@@ -164,7 +164,13 @@ if($ClaseUsuario == "1"){//Administrador
 	<script src="pdfmake/pdfmake.min.js"></script>
 	<script src="pdfmake/vfs_fonts.js"></script>
 	 
-	<script type="text/javascript" src="js/main_carpetas.js"></script>  
-
+	<script type="text/javascript" src="js/main_carpetas.js"></script>
+	
+	<footer>
+		<div class="container-fluid">
+			<p class="text-center" style="margin-top:65px;">Copyright by <a href="#" target="_blank">Easy Solutions</a> <?php echo date("Y")?></p>
+		</div>
+	</footer>
 </body>
+
 </html>

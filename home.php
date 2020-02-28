@@ -5,6 +5,9 @@ require_once 'config.php';
 if(!isset($_SESSION['logged_in'])){
 	header('Location: index.php');
 }
+
+$ClaseUsuario = $_SESSION['Tipos_de_usuario_id_Tipo_usuario'];
+
 ?>
 
 <!DOCTYPE html>
@@ -24,8 +27,8 @@ if(!isset($_SESSION['logged_in'])){
 </head>
 
 <body>
-	<div class="contenedor container-fluid">
-		<div class="row fondo">
+	<header>
+		<div class="row fondo1">
 			<div class="col-sm-8 col-md-8 col-lg-8">
 				<h1 class="titulos text-center text-uppercase">Menú principal - Administrador</h1>
 			</div>
@@ -33,10 +36,34 @@ if(!isset($_SESSION['logged_in'])){
 				<a href="account.php" class="btn" style="font-size:20px; text-align: right;"><i class="fa fa-user-alt" title="Mi cuenta"></i>&nbsp;&nbsp;<?php echo $_SESSION['nombre_usuario'];?></a>
 			</div>
 			<div class="col-sm-2 col-md-2 col-lg-2" style="text-align: right;">
-			    <a href="logout.php" class="btn"  style="font-size:20px;"><i class="fa fa-sign-out-alt" title="Salir"></i></a>
+				<a href="logout.php" class="btn"  style="font-size:20px;"><i class="fa fa-sign-out-alt" title="Salir"></i></a>
 			</div>
 		</div>
-		<div class="usuarios row">
+	</header>
+	
+	<div class="container-fluid">
+
+		<?php if ($ClaseUsuario == '1'){
+			
+			echo "	<div class='usuarios row'>
+						<div class='caja_icono col-lg-4 col-md-4 col-sm-12'>
+							<a href='usuarios.php' class='btn1'><i class='fas fa-users'></i></a>
+							<h3>Usuarios</h3>
+						</div>
+						<div class='caja_icono col-lg-4 col-md-4 col-sm-12'>
+							<a href='clientes.php' class='btn1'><i class='fas fa-sitemap'></i></a>
+							<h3>Clientes</h3>
+						</div>
+						<div class='caja_icono col-lg-4 col-md-4 col-sm-12'>
+							<a href='bodegas.php' class='btn1'><i class='fas fa-warehouse'></i></a>
+							<h3>Bodega</h3>
+						</div>
+					</div> ";
+		}?>
+
+
+
+		<!-- <div class="usuarios row">
 			<div class="caja_icono col-lg-4 col-md-4 col-sm-12">
 				<a href="usuarios.php" class="btn1"><i class="fas fa-users"></i></a>
 				<h3>Usuarios</h3>
@@ -49,7 +76,7 @@ if(!isset($_SESSION['logged_in'])){
 				<a href="bodegas.php" class="btn1"><i class="fas fa-warehouse"></i></a>
 				<h3>Bodega</h3>
 			</div>
-		</div>
+		</div> -->
 
 		<div class="usuarios row">
 			<div class="caja_icono col-lg-4 col-md-4 col-sm-12">
@@ -60,25 +87,25 @@ if(!isset($_SESSION['logged_in'])){
 				<a href="carpetas.php" class="btn1"><i class="far fa-folder-open"></i></a>
 				<h3>Carpetas</h3>
 			</div>
-            <div class="caja_icono col-lg-4 col-md-4 col-sm-12">
+			<div class="caja_icono col-lg-4 col-md-4 col-sm-12">
 				<a href="folios.php" class="btn1"><i class="fas fa-file-invoice"></i></a>
 				<h3>Folios</h3>
 			</div>
 		</div>
 
-		<div class="usuarios row">
+		<div class="usuarios row justify-content-center">
 			<div class="caja_icono col-lg-4 col-md-4 col-sm-12">
 				<a href="prestamos.php" class="btn1"><i class="fas fa-chalkboard-teacher"></i></a>
 				<h3>Prestamos</h3>
 			</div>
-            <div class="caja_icono col-lg-4 col-md-4 col-sm-12">
+			<div class="caja_icono col-lg-4 col-md-4 col-sm-12">
 				<a href="devoluciones.php" class="btn1"><i class="fas fa-chalkboard-teacher"></i></a>
 				<h3>Devoluciones</h3>
 			</div>
-			<div class="caja_icono col-lg-4 col-md-4 col-sm-12">
+			<!-- <div class="caja_icono col-lg-4 col-md-4 col-sm-12">
 				<a href="consultas.php" class="btn1"><i class="fab fa-searchengin"></i></a>
 				<h3>Consultas y Reportes</h3>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<script src="jquery/jquery-3.3.1.min.js"></script>

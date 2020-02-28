@@ -218,6 +218,12 @@ if($ClaseUsuario == "1"){//Administrador
 	<script src="pdfmake/vfs_fonts.js"></script>
 	<script type="text/javascript" src="js/main_cajas.js"></script>
 
+	<footer>
+		<div class="container-fluid">
+			<p class="text-center" style="margin-top:65px;">Copyright by <a href="#" target="_blank">Easy Solutions</a> <?php echo date("Y")?></p>
+		</div>
+	</footer>
+
 </body>
 
 </html>

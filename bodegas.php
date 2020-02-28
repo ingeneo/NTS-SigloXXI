@@ -29,24 +29,24 @@ if($ClaseUsuario == "1"){//Administrador
 
 <!doctype html>
 <html lang="es">
-  <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="shortcut icon" href="#" />  
-	<title>Modulo Bodegas</title>
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<!--datables CSS básico-->
-	<link rel="stylesheet" type="text/css" href="datatables/datatables.min.css"/>
-	<!--datables estilo bootstrap 4 CSS-->  
-	<link rel="stylesheet"  type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-	<link rel="stylesheet" href="css/estilos.css">
-  </head>
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="shortcut icon" href="#" />  
+		<title>Modulo Bodegas</title>
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<!--datables CSS básico-->
+		<link rel="stylesheet" type="text/css" href="datatables/datatables.min.css"/>
+		<!--datables estilo bootstrap 4 CSS-->  
+		<link rel="stylesheet"  type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+		<link rel="stylesheet" href="css/estilos.css">
+	</head>
 	
-  <body> 
-	 <header>
+<body> 
+	<header>
 		<div class="row fondo">
 			<div class="col-sm-1 col-md-1">
 				<a href="home.php"><i class="icono fas fa-home"></i></a>
@@ -121,48 +121,48 @@ if($ClaseUsuario == "1"){//Administrador
 		</div>
 	</div>
 	  
-<!--Modal para CRUD-->
-<div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel"></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-				</button>
+	<!--Modal para CRUD-->
+	<div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel"></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			<form id="formBodegas">
+				<div class="modal-body">
+					<input type="hidden" class="form-control" id="gestor" value="<?php echo $ClaseUsuario; ?>">
+					<input type="hidden" class="form-control" id="id_bodega">
+					<div class="form-group">
+						<label for="nombre_bodega class="col-form-label">Nombre:</label>
+						<input type="text" class="form-control" id="nombre_bodega">
+					</div>
+					<div class="form-group">
+						<label for="direccion_bodega" class="col-form-label">Dirección:</label>
+						<input type="text" class="form-control" id="direccion_bodega">
+					</div>
+					<div class="form-group">
+						<label for="telefono_bodega" class="col-form-label">Teléfono:</label>
+						<input type="text" class="form-control" id="telefono_bodega">
+					</div>
+					<div class="form-group">
+						<label for="lista_depto" class=" col-form-label">Departamento:</label>
+						<select class="form-control" id="lista_depto" name="lista_depto" required></select>
+					</div>
+					<div class="form-group">
+						<label for="lista_ciudad" class=" col-form-label">Ciudad:</label>
+						<select class="form-control" id="lista_ciudad" name="lista_ciudad" required></select>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="icono1 fas fa-times-circle"></i> Cancelar</button>
+					<button type="submit" id="btnGuardar" class="btn btn-dark"><i class="icono1 fas fa-check-circle"></i> Guardar</button>
+				</div>
+			</form>
 			</div>
-		<form id="formBodegas">
-			<div class="modal-body">
-				<input type="hidden" class="form-control" id="gestor" value="<?php echo $ClaseUsuario; ?>">
-				<input type="hidden" class="form-control" id="id_bodega">
-				<div class="form-group">
-					<label for="nombre_bodega class="col-form-label">Nombre:</label>
-					<input type="text" class="form-control" id="nombre_bodega">
-				</div>
-				<div class="form-group">
-					<label for="direccion_bodega" class="col-form-label">Dirección:</label>
-					<input type="text" class="form-control" id="direccion_bodega">
-				</div>
-				<div class="form-group">
-					<label for="telefono_bodega" class="col-form-label">Teléfono:</label>
-					<input type="text" class="form-control" id="telefono_bodega">
-				</div>
-				<div class="form-group">
-					<label for="lista_depto" class=" col-form-label">Departamento:</label>
-					<select class="form-control" id="lista_depto" name="lista_depto" required></select>
-				</div>
-				<div class="form-group">
-					<label for="lista_ciudad" class=" col-form-label">Ciudad:</label>
-					<select class="form-control" id="lista_ciudad" name="lista_ciudad" required></select>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="icono1 fas fa-times-circle"></i> Cancelar</button>
-				<button type="submit" id="btnGuardar" class="btn btn-dark"><i class="icono1 fas fa-check-circle"></i> Guardar</button>
-			</div>
-		</form>
 		</div>
 	</div>
-</div>
 	<!-- jQuery, Popper.js, Bootstrap JS -->
 	<script src="jquery/jquery-3.3.1.min.js"></script>
 	<script src="popper/popper.min.js"></script>
@@ -177,7 +177,13 @@ if($ClaseUsuario == "1"){//Administrador
 	<script src="pdfmake/pdfmake.min.js"></script>
 	<script src="pdfmake/vfs_fonts.js"></script>
 	 
-	<script type="text/javascript" src="js/main_bodegas.js"></script>  
+	<script type="text/javascript" src="js/main_bodegas.js"></script>
+
+	<footer>
+		<div class="container-fluid">
+			<p class="text-center" style="margin-top:65px;">Copyright by <a href="#" target="_blank">Easy Solutions</a> <?php echo date("Y")?></p>
+		</div>
+	</footer>
 
 </body>
 </html>

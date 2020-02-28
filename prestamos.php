@@ -8,23 +8,23 @@ if(!isset($_SESSION['logged_in'])){
 ?>
 <!doctype html>
 <html lang="es">
-  <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="shortcut icon" href="#" />  
-	<title>Modulo Prestamos</title>
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<!--datables CSS básico-->
-	<link rel="stylesheet" type="text/css" href="datatables/datatables.min.css"/>
-	<!--datables estilo bootstrap 4 CSS-->  
-	<link rel="stylesheet"  type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-	<link rel="stylesheet" href="css/estilos.css">
-  </head>
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="shortcut icon" href="#" />  
+		<title>Modulo Prestamos</title>
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<!--datables CSS básico-->
+		<link rel="stylesheet" type="text/css" href="datatables/datatables.min.css"/>
+		<!--datables estilo bootstrap 4 CSS-->  
+		<link rel="stylesheet"  type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+		<link rel="stylesheet" href="css/estilos.css">
+	</head>
 	
-  <body> 
+<body> 
 	<header>
 		<div class="row fondo">
 			<div class="col-sm-1 col-md-1">
@@ -76,12 +76,14 @@ if(!isset($_SESSION['logged_in'])){
 		}
 	});
 	
-	
-	
-	
-	
-	
 	</script>
 
+	<footer>
+		<div class="container-fluid">
+			<p class="text-center" style="margin-top:65px;">Copyright by <a href="#" target="_blank">Easy Solutions</a> <?php echo date("Y")?></p>
+		</div>
+	</footer>
+
 </body>
+
 </html>
